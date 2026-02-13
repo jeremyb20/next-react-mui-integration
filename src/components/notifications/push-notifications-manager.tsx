@@ -45,7 +45,7 @@ const PushNotificationManager = ({
     try {
       const registration = await navigator.serviceWorker.ready;
       const existingSubscription =
-        await registration.pushManager.getSubscription();
+        await (registration as any).pushManager.getSubscription();
 
       if (existingSubscription) {
         setIsSubscribed(true);
@@ -121,7 +121,7 @@ const PushNotificationManager = ({
       }
 
       // Suscribirse a push notifications
-      const subscription = await registration.pushManager.subscribe({
+      const subscription = await (registration as any).pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: getApplicationServerKey(vapidPublicKey),
       });
@@ -185,7 +185,7 @@ const PushNotificationManager = ({
   const unsubscribeFromNotifications = useCallback(async () => {
     try {
       const registration = await navigator.serviceWorker.ready;
-      const subscription = await registration.pushManager.getSubscription();
+      const subscription = await (registration as any).pushManager.getSubscription();
 
       if (subscription) {
         const success = await subscription.unsubscribe();
