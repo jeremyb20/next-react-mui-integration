@@ -1,0 +1,1040 @@
+'use client';
+
+import * as Yup from 'yup';
+import { useSnackbar } from 'notistack';
+import { endpoints } from '@/utils/axios';
+import Iconify from '@/components/iconify';
+import { useTranslation } from 'react-i18next';
+import { OptionType } from '@/types/global';
+import useIPInfo from '@/hooks/use-ip-info';
+import { fData } from '@/utils/format-number';
+import { useBoolean } from '@/hooks/use-boolean';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState, useEffect, useCallback } from 'react';
+import { getValidationCode } from '@/hooks/use-fetch';
+import { HOST_API, PATH_AFTER_LOGIN } from '@/config-global';
+import UploadAvatar from '@/components/upload/upload-avatar';
+import { PetAgeCalculator } from '@/utils/pet-age-calculator';
+import { BreedOptions, GENDER_OPTIONS } from '@/utils/constants';
+import useCelebrationConfetti from '@/hooks/use-celebration-confetti';
+import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
+import { getDogSizeFromBreed, getSpeciesFromBreed } from '@/utils/pet-utils';
+import {
+  getPhoneHelperText,
+  getPhonePlaceholder,
+  simplePhoneValidation,
+} from '@/utils/phone-validation';
+
+import Box from '@mui/material/Box';
+import Step from '@mui/material/Step';
+import Paper from '@mui/material/Paper';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import Stepper from '@mui/material/Stepper';
+import { alpha } from '@mui/material/styles';
+import StepLabel from '@mui/material/StepLabel';
+import Typography from '@mui/material/Typography';
+import LoadingButton from '@mui/lab/LoadingButton';
+import StepContent from '@mui/material/StepContent';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import {
+  Card,
+  Stack,
+  MenuItem,
+  IconButton,
+  CardHeader,
+  ButtonGroup,
+  CardContent,
+  InputAdornment,
+} from '@mui/material';
+
+import { useRouter } from '@/routes/hooks';
+
+import { countries } from '@/assets/data';
+
+import FormProvider, {
+  RHFSelect,
+  RHFTextField,
+  RHFAutocomplete,
+} from '@/components/hook-form';
+
+// ----------------------------------------------------------------------
+
+const steps = [
+  {
+    label: 'Code Validation',
+    description: 'Enter your invitation code to start the registration',
+  },
+  {
+    label: 'User Registration',
+    description: 'Create your user account to start managing your pets',
+  },
+  {
+    label: 'Pet Information',
+    description: "Add your pet's basic information",
+  },
+  {
+    label: 'Preview & Confirm',
+    description: 'Review all information before completing registration',
+  },
+];
+
+export default function PetRegistrationCodeStepperFirstTime({
+  code,
+  onBackToSelection,
+}: {
+  code?: string;
+  onBackToSelection?: () => void;
+}) {
+  const router = useRouter();
+  const password = useBoolean();
+  const { ipData } = useIPInfo();
+  const { celebrate } = useCelebrationConfetti();
+  const { mutateAsync } = useCreateGenericMutation();
+  const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  // Estado local para la edad de la mascota
+  const [ageResult, setAgeResult] = useState<any>(null);
+  const [recommendations, setRecommendations] = useState<string[]>([]);
+
+  const [petPhoto, setPetPhoto] = useState<File | null>(null);
+  const [petPhotoPreview, setPetPhotoPreview] = useState<string | null>(null);
+
+  const [weightUnit, setWeightUnit] = useState<'kg' | 'lb'>('kg');
+  const [activeStep, setActiveStep] = useState(0);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [userData, setUserData] = useState<any>(null);
+  const [petData, setPetData] = useState<any>(null);
+
+  // Esquema de validación para el código
+  const CodeSchema = Yup.object().shape({
+    code: Yup.string()
+      .required(t('Code is required'))
+      .min(4, t('Code must be at least 4 characters')),
+  });
+
+  // Esquema de validación para el usuario
+  const UserSchema = Yup.object().shape({
+    firstName: Yup.string().required(t('First name is required')),
+    lastName: Yup.string().required(t('Last name is required')),
+    phone: Yup.string()
+      .required(t('Phone number is required'))
+      .test(
+        'valid-phone',
+        t('Please enter a valid phone number for the selected country'),
+        simplePhoneValidation
+      ),
+    country: Yup.string().required(t('Country is required')),
+    email: Yup.string()
+      .required(t('Email is required'))
+      .email('Email must be a valid email address'),
+    password: Yup.string()
+      .required('Password is required')
+      .min(6, t('Password must be at least 6 characters'))
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+        t(
+          'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'
+        )
+      ),
+  });
+
+  // Esquema de validación para la mascota
+  const PetSchema = Yup.object().shape({
+    petName: Yup.string().required(t('Pet name is required')),
+    breed: Yup.string().required(t('Breed is required')),
+    genderSelected: Yup.string().required(t('Gender is required')),
+    birthDate: Yup.string().optional(),
+    favoriteActivities: Yup.string().optional(),
+    healthAndRequirements: Yup.string().optional(),
+    weight: Yup.string().optional(),
+  });
+
+  // Función para manejar la subida de foto
+  const handleDropPetPhoto = useCallback((acceptedFiles: File[]) => {
+    const newFile = acceptedFiles[0];
+    if (newFile) {
+      setPetPhoto(newFile);
+      // Crear preview para mostrar
+      const previewUrl = URL.createObjectURL(newFile);
+      setPetPhotoPreview(previewUrl);
+    }
+  }, []);
+
+  // Función para eliminar la foto
+  const handleRemovePetPhoto = useCallback(() => {
+    setPetPhoto(null);
+    if (petPhotoPreview) {
+      URL.revokeObjectURL(petPhotoPreview);
+    }
+    setPetPhotoPreview(null);
+  }, [petPhotoPreview]);
+
+  // Formulario para código
+  const codeMethods = useForm({
+    resolver: yupResolver(CodeSchema),
+    defaultValues: {
+      code: code || '',
+    },
+  });
+
+  // Formulario para usuario
+  const userMethods = useForm({
+    resolver: yupResolver(UserSchema),
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      phone: '',
+      country: '',
+    },
+  });
+
+  // Formulario para mascota
+  const petMethods = useForm({
+    resolver: yupResolver(PetSchema),
+    defaultValues: {
+      petName: '',
+      breed: '',
+      genderSelected: '',
+      birthDate: '',
+      weight: '',
+      favoriteActivities: '',
+      healthAndRequirements: '',
+    },
+  });
+
+  const {
+    handleSubmit: handleCodeSubmit,
+    watch: watchCode,
+    formState: { isSubmitting: isCodeSubmitting },
+  } = codeMethods;
+
+  const {
+    handleSubmit: handleUserSubmit,
+    watch,
+    setValue: setUserValue,
+    formState: { isSubmitting: isUserSubmitting },
+  } = userMethods;
+
+  const {
+    handleSubmit: handlePetSubmit,
+    setValue: setPetValue,
+    control,
+    watch: watchPetForm,
+    formState: { isSubmitting: isPetSubmitting },
+  } = petMethods;
+
+  const watchCountry = watch('country');
+  const watchPhone = watch('phone');
+  const watchCodeValue = watchCode('code');
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleWeightUnitChange = (unit: 'kg' | 'lb') => {
+    setWeightUnit(unit);
+  };
+
+  // Paso 1: Validación del código
+
+  const onCodeSubmit = handleCodeSubmit(async (data) => {
+    try {
+      setErrorMsg(''); // Limpiar errores previos
+
+      const { data: res, error, isError } = await getValidationCode(data.code);
+
+      // Si hay error en la petición (network, etc.)
+      if (isError) {
+        setErrorMsg(error?.message || 'Network error. Please try again.');
+        return;
+      }
+
+      // Si no hay respuesta
+      if (!res) {
+        setErrorMsg('No response from server. Please try again.');
+        return;
+      }
+
+      setErrorMsg('');
+
+      // Avanzar inmediatamente
+      setActiveStep(1);
+    } catch (error: any) {
+      console.error('Unexpected error:', error);
+      setErrorMsg(
+        error.message || 'An unexpected error occurred. Please try again.'
+      );
+    }
+  });
+
+  // Función para calcular la edad usando useCallback para evitar recreaciones innecesarias
+  const calculatePetAge = useCallback(
+    (birthDate: string, breedValue?: string) => {
+      if (!birthDate) {
+        setAgeResult(null);
+        setRecommendations([]);
+        return;
+      }
+
+      try {
+        // Determinar especie basado en la raza
+        let species: 'dog' | 'cat' = 'dog'; // valor por defecto
+        let size: 'small' | 'medium' | 'large' | undefined;
+
+        if (breedValue) {
+          const detectedSpecies = getSpeciesFromBreed(breedValue);
+          if (detectedSpecies) {
+            species = detectedSpecies;
+
+            // Solo determinar tamaño para perros
+            if (detectedSpecies === 'dog') {
+              size = getDogSizeFromBreed(breedValue) || undefined;
+            }
+          }
+        }
+
+        const result = PetAgeCalculator.calculateAge(birthDate, {
+          species,
+          size, // será undefined para gatos, lo cual está bien
+        });
+
+        setAgeResult({
+          ...result,
+          species, // agregar la especie al resultado para mostrarla
+          size, // agregar el tamaño al resultado
+        });
+        setRecommendations(PetAgeCalculator.getAgeRecommendations(result));
+      } catch (error) {
+        console.error('Error calculando edad:', error);
+        setAgeResult(null);
+        setRecommendations([]);
+      }
+    },
+    []
+  );
+
+  // Paso 2: Registro de usuario
+  const onUserSubmit = handleUserSubmit(async (data) => {
+    try {
+      setUserData(data);
+      handleNext();
+    } catch (error) {
+      console.error(error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setErrorMsg(errorMessage);
+    }
+  });
+
+  // Paso 3: Información de la mascota
+  const onPetSubmit = handlePetSubmit(async (data) => {
+    try {
+      setPetData({
+        ...data,
+        photo: petPhoto, // Incluir el archivo de la foto
+      });
+      handleNext();
+    } catch (error) {
+      console.error(error);
+      setErrorMsg('Error saving pet information');
+    }
+  });
+
+  // Paso 4: Confirmación y registro completo
+  const handleCompleteRegistration = async () => {
+    try {
+      // Aquí iría la lógica para guardar la mascota en la base de datos
+      // usando userData y petData
+      setIsSubmitting(true);
+      const weightWithUnit = petData.weight
+        ? `${petData.weight} ${weightUnit}`
+        : '';
+
+      await mutateAsync<any>({
+        // payload: completeData as any,
+        payload: {
+          code: watchCodeValue,
+          userData: {
+            ...userData,
+          },
+          petData: {
+            ...petData,
+            weight: weightWithUnit,
+          },
+          image: petPhoto,
+        } as any,
+        pEndpoint: `${HOST_API}${endpoints.user.registerNewPetByQRcode}`,
+        method: 'POST',
+        isFormData: !!petPhoto,
+      });
+      setErrorMsg('');
+      // 🔥 ACTIVAR CONFETI DESPUÉS DEL REGISTRO EXITOSO
+      celebrate({
+        type: 'celebration',
+        customOptions: {
+          particleCount: 250,
+          spread: 80,
+        },
+      });
+      enqueueSnackbar(t('Registration completed successfully'), {
+        variant: 'success',
+      });
+      setIsSubmitting(false);
+      setActiveStep(4);
+    } catch (error) {
+      console.error(error);
+      const errorMessage = error instanceof Error ? error.message : 'Error completing registration';
+      setErrorMsg(errorMessage);
+      enqueueSnackbar(t(errorMessage), {
+        variant: 'error',
+      });
+      setIsSubmitting(false);
+    }
+  };
+
+  const goToLogin = () => {
+    router.push(PATH_AFTER_LOGIN);
+  };
+
+  // Revalidar el teléfono cuando cambia el país
+  useEffect(() => {
+    if (watchPhone && watchCountry) {
+      userMethods.trigger('phone');
+    }
+  }, [watchCountry, watchPhone, userMethods]);
+
+  useEffect(() => {
+    if (ipData?.country) {
+      setUserValue('country', ipData.country, { shouldValidate: true });
+    }
+  }, [ipData, setUserValue]);
+
+  useEffect(() => {
+    const currentBreed = watchPetForm('breed');
+    const currentBirthDate = watchPetForm('birthDate');
+
+    if (currentBirthDate && currentBreed) {
+      calculatePetAge(currentBirthDate, currentBreed);
+    }
+  }, [calculatePetAge, watchPetForm]);
+
+  // Si el código viene por props, pre-llenar el campo y avanzar automáticamente si es válido
+  useEffect(() => {
+    if (code) {
+      codeMethods.setValue('code', code);
+    }
+  }, [code, codeMethods]);
+
+  // Renderizar Edad de la mascota cuando se calcule
+  const renderAgeResult = (
+    <>
+      {ageResult && (
+        <Paper sx={{ p: 2, mb: 3 }}>
+          <Typography variant="h6" gutterBottom>
+            {t('Pet Age Information')}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            <strong>{t('Species')}:</strong>{' '}
+            {ageResult.species === 'dog' ? 'Dog' : 'Cat'}
+            {ageResult.size &&
+              ageResult.species === 'dog' &&
+              ` (${ageResult.size})`}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {ageResult.years} {t('years and')} {ageResult.months} {t('months')}
+          </Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>
+            {t(ageResult.description)}
+          </Typography>
+        </Paper>
+      )}
+    </>
+  );
+
+  // Renderizar el paso 1 - Validación del código
+  const renderCodeStep = () => (
+    <FormProvider methods={codeMethods} onSubmit={onCodeSubmit}>
+      <Box sx={{ mt: 2 }}>
+        {!!errorMsg && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {t(errorMsg)}
+          </Alert>
+        )}
+
+        <Typography variant="body1" sx={{ mb: 3 }}>
+          {t(
+            'Please enter your invitation code to start the registration process.'
+          )}
+        </Typography>
+
+        <RHFTextField
+          name="code"
+          label={t('Invitation Code')}
+          placeholder={t('Enter your code')}
+          autoComplete="off"
+          autoFocus
+        />
+
+        <Box sx={{ mt: 3 }}>
+          <Button onClick={onBackToSelection} sx={{ mr: 1 }}>
+            {t('Back')}
+          </Button>
+          <LoadingButton
+            type="submit"
+            variant="contained"
+            loading={isCodeSubmitting}
+            disabled={!watchCodeValue}
+          >
+            {t('Validate Code')}
+          </LoadingButton>
+        </Box>
+
+        {code && (
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+            {t('Code provided: ')}
+            {code}
+          </Typography>
+        )}
+      </Box>
+    </FormProvider>
+  );
+
+  // Renderizar el paso 2 - Registro de usuario
+  const renderUserStep = () => (
+    <FormProvider methods={userMethods} onSubmit={onUserSubmit}>
+      <Box sx={{ mt: 2 }}>
+        {!!errorMsg && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {errorMsg}
+          </Alert>
+        )}
+
+        <Typography variant="body1" sx={{ mb: 3, color: 'success.main' }}>
+          ✓ {t('Code validated successfully')}
+        </Typography>
+
+        <Box
+          sx={{
+            display: 'grid',
+            gap: 2,
+            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+          }}
+        >
+          <RHFTextField name="firstName" label={t('First name')} />
+          <RHFTextField name="lastName" label={t('Last name')} />
+        </Box>
+
+        <Box
+          sx={{
+            display: 'grid',
+            gap: 3,
+            gridTemplateColumns: '1fr',
+            mt: 3,
+          }}
+        >
+          <RHFAutocomplete
+            name="country"
+            type="country"
+            label={t('Country')}
+            placeholder={t('Choose a country')}
+            fullWidth
+            options={countries.map((option) => option.label)}
+            getOptionLabel={(option) => option}
+          />
+          <RHFTextField
+            name="phone"
+            label={t('Phone Number')}
+            placeholder={getPhonePlaceholder(watchCountry, 'Phone number')}
+            helperText={getPhoneHelperText(watchCountry, watchPhone)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <Iconify
+                      icon={`flag:${countries
+                        .find(
+                          (c) =>
+                            c.label.toLowerCase() ===
+                            watchCountry?.toLowerCase()
+                        )
+                        ?.code.toLowerCase()}-4x3`}
+                    />
+                    <Box>
+                      (+
+                      {`${
+                        countries
+                          .find(
+                            (c) =>
+                              c.label.toLowerCase() ===
+                              watchCountry?.toLowerCase()
+                          )
+                          ?.phone.toLowerCase() || ''
+                      }`}{' '}
+                      )
+                    </Box>
+                  </Stack>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+
+        <RHFTextField name="email" label="Email address" sx={{ mt: 2 }} />
+
+        <RHFTextField
+          name="password"
+          label={t('Password')}
+          type={password.value ? 'text' : 'password'}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={password.onToggle} edge="end">
+                  <Iconify
+                    icon={
+                      password.value
+                        ? 'solar:eye-bold'
+                        : 'solar:eye-closed-bold'
+                    }
+                  />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+          sx={{ mt: 2 }}
+        />
+
+        <Box sx={{ mt: 3 }}>
+          <Button onClick={handleBack} sx={{ mr: 1 }}>
+            {t('Back')}
+          </Button>
+          <LoadingButton
+            type="submit"
+            variant="contained"
+            loading={isUserSubmitting}
+          >
+            {t('Continue')}
+          </LoadingButton>
+        </Box>
+      </Box>
+    </FormProvider>
+  );
+
+  // Renderizar el paso 3 - Información de la mascota
+  const renderPetStep = () => (
+    <FormProvider methods={petMethods} onSubmit={onPetSubmit}>
+      <Box sx={{ mt: 2 }}>
+        {!!errorMsg && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {errorMsg}
+          </Alert>
+        )}
+        {/* Sección de Foto de la Mascota */}
+        <Card sx={{ mb: 3 }}>
+          <CardHeader title={t('Pet Photo (Optional)')} />
+          <CardContent>
+            <UploadAvatar
+              file={petPhotoPreview}
+              onDrop={handleDropPetPhoto}
+              onDelete={handleRemovePetPhoto}
+              validator={(fileData) => {
+                // Validar tipo de archivo
+                const allowedTypes = [
+                  'image/jpeg',
+                  'image/jpg',
+                  'image/png',
+                  'image/gif',
+                ];
+                if (!allowedTypes.includes(fileData.type)) {
+                  return {
+                    code: 'invalid-file-type',
+                    message: t('Only JPEG, JPG, PNG or GIF images are allowed'),
+                  };
+                }
+
+                // Validar tamaño (2MB máximo)
+                if (fileData.size > 2 * 1024 * 1024) {
+                  return {
+                    code: 'file-too-large',
+                    message: `${t('Image is too large. Maximum')} ${fData(
+                      2 * 1024 * 1024
+                    )}`,
+                  };
+                }
+
+                return null;
+              }}
+              helperText={
+                <Typography
+                  variant="caption"
+                  sx={{
+                    mt: 2,
+                    mx: 'auto',
+                    display: 'block',
+                    textAlign: 'center',
+                    color: 'text.disabled',
+                  }}
+                >
+                  {t('Allowed *.jpeg, *.jpg, *.png, *.gif')}
+                  <br /> {t('max size of')} {fData(2 * 1024 * 1024)}
+                </Typography>
+              }
+            />
+          </CardContent>
+        </Card>
+
+        <Box
+          sx={{
+            display: 'grid',
+            gap: 2,
+            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+          }}
+        >
+          <RHFTextField name="petName" label={t('Pet Name')} />
+          <RHFAutocomplete
+            name="breed"
+            label={t('Breed')}
+            options={BreedOptions.todos}
+            getOptionLabel={(option: OptionType | string) => {
+              if (typeof option === 'string') {
+                const foundOption = BreedOptions.todos.find(
+                  (opt) => opt.value === option
+                );
+                return foundOption ? foundOption.label : option;
+              }
+              return option.label;
+            }}
+            isOptionEqualToValue={(option, value) => {
+              if (typeof value === 'string') {
+                return option.value === value;
+              }
+              return option.value === value?.value;
+            }}
+            onChange={(event, newValue) => {
+              let stringValue = '';
+              if (newValue) {
+                if (typeof newValue === 'string') {
+                  stringValue = newValue;
+                } else if (
+                  typeof newValue === 'object' &&
+                  'value' in newValue
+                ) {
+                  stringValue = newValue.value;
+                }
+              }
+              setPetValue('breed', stringValue, { shouldValidate: true });
+            }}
+            renderOption={(props, option) => (
+              <li {...props} key={option.value}>
+                {t(option.label)}
+              </li>
+            )}
+          />
+          <RHFSelect name="genderSelected" label="Gender">
+            {GENDER_OPTIONS.map((gender) => (
+              <MenuItem key={gender.value} value={gender.value}>
+                {t(gender.label)}
+              </MenuItem>
+            ))}
+          </RHFSelect>
+
+          <RHFTextField
+            name="weight"
+            label={t('Weight')}
+            type="number"
+            inputProps={{ step: '0.1' }}
+            InputProps={{
+              endAdornment: (
+                <ButtonGroup
+                  variant="outlined"
+                  aria-label="Weight unit selector"
+                  size="small"
+                >
+                  <Button
+                    onClick={() => handleWeightUnitChange('kg')}
+                    variant={weightUnit === 'kg' ? 'contained' : 'outlined'}
+                  >
+                    kg
+                  </Button>
+                  <Button
+                    onClick={() => handleWeightUnitChange('lb')}
+                    variant={weightUnit === 'lb' ? 'contained' : 'outlined'}
+                  >
+                    lb
+                  </Button>
+                </ButtonGroup>
+              ),
+            }}
+          />
+
+          <Controller
+            name="birthDate"
+            control={control}
+            render={({ field, fieldState: { error } }) => {
+              const currentBreed = watchPetForm('breed');
+
+              return (
+                <DatePicker
+                  views={['year', 'month', 'day']}
+                  label={t('Birth Date')}
+                  minDate={new Date('2000-03-01')}
+                  maxDate={new Date()}
+                  value={field.value ? new Date(field.value) : null}
+                  onChange={(newValue) => {
+                    field.onChange(newValue ? newValue.toISOString() : '');
+                    if (newValue) {
+                      calculatePetAge(newValue.toISOString(), currentBreed);
+                    } else {
+                      setAgeResult(null);
+                      setRecommendations([]);
+                    }
+                  }}
+                  slotProps={{
+                    textField: {
+                      fullWidth: true,
+                      margin: 'normal',
+                      error: !!error,
+                      helperText: error?.message,
+                    },
+                  }}
+                />
+              );
+            }}
+          />
+        </Box>
+
+        {renderAgeResult}
+
+        <RHFTextField
+          name="favoriteActivities"
+          label={t('Favorite Activities')}
+          multiline
+          rows={2}
+          sx={{ mt: 2 }}
+        />
+        <RHFTextField
+          name="healthAndRequirements"
+          label={t('Health & Requirements')}
+          multiline
+          rows={2}
+          sx={{ mt: 2 }}
+        />
+
+        <Box sx={{ mt: 3 }}>
+          <Button onClick={handleBack} sx={{ mr: 1 }}>
+            {t('Back')}
+          </Button>
+          <LoadingButton
+            type="submit"
+            variant="contained"
+            loading={isPetSubmitting}
+          >
+            {t('Continue')}
+          </LoadingButton>
+        </Box>
+      </Box>
+    </FormProvider>
+  );
+
+  // Renderizar el paso 4 - Preview
+  const renderPreviewStep = () => (
+    <Box sx={{ mt: 2 }}>
+      <Paper sx={{ p: 3, mb: 3, bgcolor: 'background.neutral' }}>
+        <Typography variant="h6" gutterBottom>
+          {t('Code Information')}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Invitation Code')}:</strong> {watchCodeValue}
+        </Typography>
+      </Paper>
+
+      <Paper sx={{ p: 3, mb: 3, bgcolor: 'background.neutral' }}>
+        <Typography variant="h6" gutterBottom>
+          {t('User Information')}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Name')}:</strong> {userData?.firstName}{' '}
+          {userData?.lastName}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Email address')}:</strong> {userData?.email}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Phone Number')}:</strong> {userData?.phone}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Country')}:</strong> {userData?.country}
+        </Typography>
+      </Paper>
+
+      <Paper sx={{ p: 3, bgcolor: 'background.neutral' }}>
+        <Typography variant="h6" gutterBottom>
+          {t('Pet Information')}
+        </Typography>
+
+        {/* Mostrar preview de la foto si existe */}
+        {petPhotoPreview && (
+          <Box sx={{ mb: 2, textAlign: 'center' }}>
+            <Typography variant="subtitle2" gutterBottom>
+              {t('Pet Photo')}:
+            </Typography>
+            <Box
+              component="img"
+              src={petPhotoPreview}
+              alt="Pet preview"
+              sx={{
+                width: 100,
+                height: 100,
+                borderRadius: '50%',
+                objectFit: 'cover',
+                border: (theme) => `2px solid ${theme.palette.divider}`,
+              }}
+            />
+          </Box>
+        )}
+
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Pet Name')}:</strong> {petData?.petName}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Breed')}: </strong>
+          {BreedOptions.todos.find((breed) => breed.value === petData?.breed)
+            ?.label || 'Unknown breed'}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Gender')}:</strong> {petData?.genderSelected}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Weight')}:</strong> {petData?.weight} {weightUnit}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Birth Date')}:</strong>{' '}
+          {petData?.birthDate
+            ? new Date(petData.birthDate).toLocaleDateString()
+            : t('Not specified')}
+        </Typography>
+        {petData?.favoriteActivities && (
+          <Typography variant="body2" color="text.secondary">
+            <strong>{t('Favorite Activities')}:</strong>{' '}
+            {petData.favoriteActivities}
+          </Typography>
+        )}
+        {petData?.healthAndRequirements && (
+          <Typography variant="body2" color="text.secondary">
+            <strong>{t('Health & Requirements')}:</strong>{' '}
+            {petData.healthAndRequirements}
+          </Typography>
+        )}
+      </Paper>
+
+      {ageResult && (
+        <Paper sx={{ p: 2, mt: 2 }}>
+          <Typography variant="h6" gutterBottom>
+            {t('Pets Age')}
+          </Typography>
+          <Typography variant="body2">
+            <strong>{t('Human age')}:</strong> {ageResult.humanYears}{' '}
+            {t('years')}
+          </Typography>
+          <Typography variant="body2">
+            <strong>{t('Pet age')}:</strong> {ageResult.petYears} {t('years')}
+          </Typography>
+          <Typography variant="body2">
+            <strong>{t('Category')}:</strong> {ageResult.ageCategory}
+          </Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>
+            {ageResult.description}
+          </Typography>
+
+          {recommendations.length > 0 && (
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                {t('Recommendations')}:
+              </Typography>
+              <ul style={{ margin: 0, paddingLeft: '20px' }}>
+                {recommendations.map((rec, index) => (
+                  <li key={index}>
+                    <Typography variant="body2">{t(rec)}</Typography>
+                  </li>
+                ))}
+              </ul>
+            </Box>
+          )}
+        </Paper>
+      )}
+      {!!errorMsg && (
+        <Alert severity="error" sx={{ my: 2 }}>
+          {t(errorMsg)}
+        </Alert>
+      )}
+      <Box sx={{ mt: 3 }}>
+        <Button onClick={handleBack} sx={{ mr: 1 }}>
+          {t('Back')}
+        </Button>
+        <LoadingButton
+          type="submit"
+          variant="contained"
+          loading={isSubmitting}
+          onClick={handleCompleteRegistration}
+        >
+          {t('Complete Registration')}
+        </LoadingButton>
+      </Box>
+    </Box>
+  );
+
+  return (
+    <>
+      <Stepper activeStep={activeStep} orientation="vertical">
+        {steps.map((step, index) => (
+          <Step key={step.label}>
+            <StepLabel
+              optional={
+                index === steps.length - 1 ? (
+                  <Typography variant="caption">{t('Last step')}</Typography>
+                ) : null
+              }
+            >
+              {t(step.label)}
+            </StepLabel>
+            <StepContent>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                {t(step.description)}
+              </Typography>
+
+              {index === 0 && renderCodeStep()}
+              {index === 1 && renderUserStep()}
+              {index === 2 && renderPetStep()}
+              {index === 3 && renderPreviewStep()}
+            </StepContent>
+          </Step>
+        ))}
+      </Stepper>
+
+      {activeStep === steps.length && (
+        <Paper
+          sx={{
+            p: 3,
+            mt: 3,
+            bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
+          }}
+        >
+          <Typography sx={{ mb: 2 }}>
+            {t('Registration completed successfully!')}
+          </Typography>
+          <Button variant="contained" onClick={goToLogin}>
+            {t('Redirect to login')}
+          </Button>
+        </Paper>
+      )}
+    </>
+  );
+}

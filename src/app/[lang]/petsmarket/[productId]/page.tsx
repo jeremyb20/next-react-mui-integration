@@ -1,0 +1,37 @@
+// import axios, { endpoints } from '@/utils/axios';
+
+import { paths } from '@/routes/paths';
+
+import { ProductDetailsView } from '../../dashboard/admin/product/_components/product/view';
+
+// ----------------------------------------------------------------------
+
+export const metadata = {
+  title: 'Dashboard: Product Details',
+};
+
+type Props = {
+  params: {
+    productId: string;
+  };
+};
+
+export default function ProductDetailsPage({ params }: Props) {
+  const { productId } = params;
+
+  return (
+    <ProductDetailsView
+      productId={productId}
+      backLink={paths.dashboard.petsmarket.root}
+    />
+  );
+  // return <>ProductDetailsView</>;
+}
+
+// export async function generateStaticParams() {
+//   const res = await axios.get(endpoints.product.list);
+
+//   return res.data.products.map((product: { id: string }) => ({
+//     id: product.id,
+//   }));
+// }
