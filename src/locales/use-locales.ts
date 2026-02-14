@@ -11,11 +11,12 @@ import { allLangs, defaultLang } from './config-lang';
 import { LANGUAGE_NORMALIZATION_MAP } from '../utils/constants';
 import { getExchangeRate, DEFAULT_CURRENCY } from '../utils/currency-service';
 import { usePathname, useRouter, useSearchParams } from '@/routes/hooks';
+import { locales } from './config';
 
 // ----------------------------------------------------------------------
 
 export function useLocales() {
-  const langStorage = localStorageGetItem('i18next');
+  const langStorage = localStorageGetItem('i18nextLng');
 
   // Si no hay idioma guardado, usar español por defecto
   if (!langStorage) {
@@ -89,40 +90,55 @@ export function useTranslate() {
 
   const onChangeLang = useCallback(
     (newlang: string) => {
+      let pathWithoutLocale = pathname || '/';
+      locales.forEach((locale) => {
+        if (pathWithoutLocale.startsWith(`/${locale}/`)) {
+          pathWithoutLocale = pathWithoutLocale.substring(locale.length + 1);
+        } else if (pathWithoutLocale === `/${locale}`) {
+          pathWithoutLocale = '/';
+        }
+      });
+      // Construir nueva ruta
+      let newPath = `/${newlang}${pathWithoutLocale}`;
+
+      // Asegurar que la ruta no termine con doble slash
+      newPath = newPath.replace(/\/\//g, '/');
+      if (newPath === '') newPath = '/';
+
       i18n.changeLanguage(newlang);
       settings.onChangeDirectionByLang(newlang);
       // Solo actualizar la URL si estamos en el cliente y tenemos un pathname
-      if (typeof window !== 'undefined' && pathname) {
-        // 1. Obtener locales disponibles
-        const locales = i18n.languages || ['es', 'en', 'pt', 'pt-BR', 'zh'];
+      // if (typeof window !== 'undefined' && pathname) {
+      //   // 1. Obtener locales disponibles
+      //   const locales = i18n.languages || ['es', 'en', 'pt', 'pt-BR', 'zh'];
 
-        // 2. Extraer el path sin locale actual
-        let pathWithoutLocale = pathname;
+      //   // 2. Extraer el path sin locale actual
+      //   let pathWithoutLocale = pathname;
 
-        for (const locale of locales) {
-          if (pathname.startsWith(`/${locale}/`)) {
-            pathWithoutLocale = pathname.substring(locale.length + 1);
-            break;
-          } else if (pathname === `/${locale}`) {
-            pathWithoutLocale = '/';
-            break;
-          }
-        }
+      //   for (const locale of locales) {
+      //     if (pathname.startsWith(`/${locale}/`)) {
+      //       pathWithoutLocale = pathname.substring(locale.length + 1);
+      //       break;
+      //     } else if (pathname === `/${locale}`) {
+      //       pathWithoutLocale = '/';
+      //       break;
+      //     }
+      //   }
 
-        // 3. Construir el nuevo path con el nuevo locale
-        let newPath = pathWithoutLocale;
-        if (newlang !== 'es') {
-          // 'es' es tu idioma por defecto
-          newPath = `/${newlang}${pathWithoutLocale}`;
-        }
+      //   // 3. Construir el nuevo path con el nuevo locale
+      //   let newPath = pathWithoutLocale;
+      //   if (newlang !== 'es') {
+      //     // 'es' es tu idioma por defecto
+      //     newPath = `/${newlang}${pathWithoutLocale}`;
+      //   }
 
-        // 4. Mantener los query params si existen
-        const queryString = searchParams?.toString();
-        const fullPath = queryString ? `${newPath}?${queryString}` : newPath;
+      //   // 4. Mantener los query params si existen
+      //   const queryString = searchParams?.toString();
+      //   const fullPath = queryString ? `${newPath}?${queryString}` : newPath;
 
-        // 5. Usar router.replace() para cambiar la URL sin recargar la página
-        router.replace(fullPath);
-      }
+      //   // 5. Usar router.replace() para cambiar la URL sin recargar la página
+      //   router.replace(fullPath);
+      // }
     },
     [i18n, settings]
   );

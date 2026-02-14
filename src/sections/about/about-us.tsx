@@ -9,12 +9,11 @@ import {
   Card,
   Paper,
   Divider,
-  useTheme,
   Container,
   Typography,
   CardContent,
 } from '@mui/material';
-
+import { useTheme } from '@mui/material/styles';
 const AboutUs = () => {
   const theme = useTheme();
   const { t } = useTranslation();

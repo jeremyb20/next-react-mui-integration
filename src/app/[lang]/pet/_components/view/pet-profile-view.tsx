@@ -28,14 +28,13 @@ import {
   Dialog,
   Button,
   Divider,
-  useTheme,
   Container,
   Typography,
   IconButton,
   ListItemText,
   SwipeableDrawer,
-  alpha,
 } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { RouterLink } from '@/routes/components';
 

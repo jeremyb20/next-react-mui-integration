@@ -3,14 +3,13 @@ import Iconify from '@/components/iconify';
 
 import {
   Box,
-  useTheme,
   Accordion,
   Container,
   Typography,
   AccordionSummary,
   AccordionDetails,
 } from '@mui/material';
-
+import { useTheme } from '@mui/material/styles';
 const FaqsList = () => {
   const theme = useTheme();
 

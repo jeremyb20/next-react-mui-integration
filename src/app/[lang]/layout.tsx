@@ -1,28 +1,25 @@
-import AppProviders from '@/components/providers/AppProviders';
-import { getServerLanguage } from '@/locales/get-server-language';
-// ----------------------------------------------------------------------
+// src/app/[lang]/layout.tsx
+import { locales } from '@/locales/config';
+import { notFound } from 'next/navigation';
 
-type Props = {
+export default async function LangLayout({
+  children,
+  params,
+}: {
   children: React.ReactNode;
-};
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
 
-export default async function RootLayout({ children }: Props) {
-  const language = await getServerLanguage();
+  // Validar que el idioma sea soportado
+  if (!locales.includes(lang as any)) {
+    notFound();
+  }
+
   return (
-    <html lang={language.toLowerCase() || 'es'} translate="no">
-      <head>
-        {/* Viewport - importante para SEO móvil */}
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1"
-        />
-
-        {/* Theme color */}
-        <meta name="theme-color" content="#20252e" />
-      </head>
-      <body>
-        <AppProviders>{children}</AppProviders>
-      </body>
-    </html>
+    <>
+      {/* Aquí puedes inyectar el idioma a tus providers si es necesario */}
+      {children}
+    </>
   );
 }
