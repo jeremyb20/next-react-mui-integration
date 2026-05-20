@@ -1,5 +1,4 @@
 import { paths } from '@/routes/paths';
-
 import Iconify from '@/components/iconify';
 
 // ----------------------------------------------------------------------
@@ -19,6 +18,11 @@ export const navConfig = [
     title: 'Contact us',
     path: paths.contact,
     icon: <Iconify icon="solar:bell-bing-bold-duotone" />,
+  },
+  {
+    title: 'FAQs',
+    path: paths.faqs,
+    icon: <Iconify icon="solar:question-circle-bold-duotone" />,
   },
   // {
   //   title: 'Components',

@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 
-import { Box, alpha, useTheme, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
 
 interface PetStickyNoteProps {
   notes: string;

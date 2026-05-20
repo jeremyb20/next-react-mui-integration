@@ -1,17 +1,15 @@
+import { bgBlur } from '@/theme/css';
+import Logo from '@/components/logo';
+import SvgColor from '@/components/svg-color';
+import { useOffSetTop } from '@/hooks/use-off-set-top';
+import { useResponsive } from '@/hooks/use-responsive';
+import { useSettingsContext } from '@/components/settings';
+
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
-
-import { useOffSetTop } from '@/hooks/use-off-set-top';
-import { useResponsive } from '@/hooks/use-responsive';
-
-import { bgBlur } from '@/theme/css';
-
-import Logo from '@/components/logo';
-import SvgColor from '@/components/svg-color';
-import { useSettingsContext } from '@/components/settings';
 
 import Searchbar from '../common/searchbar';
 import { NAV, HEADER } from '../config-layout';
@@ -50,9 +48,7 @@ export default function Header({ onOpenNav }: Props) {
           <SvgColor src="/assets/icons/navbar/ic_menu_item.svg" />
         </IconButton>
       )}
-
-      <Searchbar />
-
+      {lgUp && <Searchbar />}
       <Stack
         flexGrow={1}
         direction="row"

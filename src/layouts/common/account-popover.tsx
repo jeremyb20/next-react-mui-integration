@@ -1,5 +1,12 @@
 import { m } from 'framer-motion';
+import { paths } from '@/routes/paths';
+import { useRouter } from '@/routes/hooks';
+import { useAuthContext } from '@/auth/hooks';
+import { varHover } from '@/components/animate';
+import { useSnackbar } from '@/components/snackbar';
+import { useTranslation } from '@/hooks/use-translation';
 import { useManagerUser } from '@/hooks/use-manager-user';
+import CustomPopover, { usePopover } from '@/components/custom-popover';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -10,15 +17,6 @@ import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
-import { paths } from '@/routes/paths';
-import { useRouter } from '@/routes/hooks';
-
-import { useAuthContext } from '@/auth/hooks';
-
-import { varHover } from '@/components/animate';
-import { useSnackbar } from '@/components/snackbar';
-import CustomPopover, { usePopover } from '@/components/custom-popover';
-
 // ----------------------------------------------------------------------
 
 const OPTIONS = [
@@ -27,12 +25,12 @@ const OPTIONS = [
     linkTo: '/',
   },
   {
-    label: 'Profile',
-    linkTo: paths.dashboard.user.profile,
+    label: 'profile',
+    linkTo: `${paths.dashboard.user.account}?tab=general`,
   },
   {
-    label: 'Settings',
-    linkTo: paths.dashboard.user.account,
+    label: 'Security',
+    linkTo: `${paths.dashboard.user.account}?tab=security`,
   },
 ];
 
@@ -40,6 +38,7 @@ const OPTIONS = [
 
 export default function AccountPopover() {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const { user } = useManagerUser();
 
@@ -117,9 +116,12 @@ export default function AccountPopover() {
           {OPTIONS.map((option) => (
             <MenuItem
               key={option.label}
+              sx={{
+                textTransform: 'capitalize',
+              }}
               onClick={() => handleClickItem(option.linkTo)}
             >
-              {option.label}
+              {t(option.label)}
             </MenuItem>
           ))}
         </Stack>
@@ -130,7 +132,7 @@ export default function AccountPopover() {
           onClick={handleLogout}
           sx={{ m: 1, fontWeight: 'fontWeightBold', color: 'error.main' }}
         >
-          Logout
+          {t('Logout')}
         </MenuItem>
       </CustomPopover>
     </>

@@ -1,6 +1,6 @@
-// src/app/[lang]/layout.tsx
-import { locales } from '@/locales/config';
 import { notFound } from 'next/navigation';
+
+import { languages } from '../i18n/settings';
 
 export default async function LangLayout({
   children,
@@ -12,7 +12,7 @@ export default async function LangLayout({
   const { lang } = await params;
 
   // Validar que el idioma sea soportado
-  if (!locales.includes(lang as any)) {
+  if (!languages.includes(lang as any)) {
     notFound();
   }
 

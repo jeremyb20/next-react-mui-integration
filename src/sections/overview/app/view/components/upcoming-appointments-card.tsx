@@ -8,15 +8,14 @@ import {
   Card,
   Chip,
   Grid,
-  alpha,
   Button,
   Divider,
-  useTheme,
   Skeleton,
   Typography,
   IconButton,
   CardContent,
 } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
 
 interface UpcomingAppointmentsCardProps {
   appointments: IUpcomingAppointment[];

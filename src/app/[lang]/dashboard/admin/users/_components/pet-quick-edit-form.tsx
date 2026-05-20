@@ -44,14 +44,13 @@ import {
   Tab,
   Tabs,
   Stack,
-  useTheme,
   Typography,
   IconButton,
   ButtonGroup,
-  useMediaQuery,
   InputAdornment,
 } from '@mui/material';
-
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/system/useMediaQuery';
 // ----------------------------------------------------------------------
 
 interface TabPanelProps {

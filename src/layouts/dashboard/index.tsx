@@ -1,15 +1,15 @@
-import Box from '@mui/material/Box';
-
 import { useBoolean } from '@/hooks/use-boolean';
 import { useResponsive } from '@/hooks/use-responsive';
-
 import { useSettingsContext } from '@/components/settings';
+
+import Box from '@mui/material/Box';
 
 import Main from './main';
 import Header from './header';
 import NavMini from './nav-mini';
 import NavVertical from './nav-vertical';
 import NavHorizontal from './nav-horizontal';
+import NavBottomNavigation from './nav-bottom-navigation';
 
 // ----------------------------------------------------------------------
 
@@ -83,6 +83,7 @@ export default function DashboardLayout({ children }: Props) {
 
         <Main>{children}</Main>
       </Box>
+      <NavBottomNavigation />
     </>
   );
 }

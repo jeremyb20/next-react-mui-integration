@@ -35,20 +35,19 @@ import {
   Grid,
   Chip,
   Stack,
-  alpha,
   Paper,
   Avatar,
   Dialog,
   Button,
   Divider,
   Tooltip,
-  useTheme,
   Container,
   Typography,
   IconButton,
   useMediaQuery,
   CircularProgress,
 } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import LocationConsentOverlay from '../locations/location-consent-overlay';
 

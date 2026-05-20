@@ -1,24 +1,22 @@
 import { useEffect } from 'react';
+import { paper } from '@/theme/css';
+import Logo from '@/components/logo';
+import { usePathname } from '@/routes/hooks';
+import Scrollbar from '@/components/scrollbar';
+import { useResponsive } from '@/hooks/use-responsive';
 import { useManagerUser } from '@/hooks/use-manager-user';
+import { NavSectionVertical } from '@/components/nav-section';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Drawer from '@mui/material/Drawer';
-
-import { usePathname } from '@/routes/hooks';
-
-import { useResponsive } from '@/hooks/use-responsive';
-
-import Logo from '@/components/logo';
-import Scrollbar from '@/components/scrollbar';
-import { NavSectionVertical } from '@/components/nav-section';
+import Drawer, { drawerClasses } from '@mui/material/Drawer';
 
 import { NAV } from '../config-layout';
 import NavUpgrade from '../common/nav-upgrade';
 import { useNavData } from './config-navigation';
 import NavToggleButton from '../common/nav-toggle-button';
-
 // ----------------------------------------------------------------------
+import { useTheme } from '@mui/material/styles';
 
 type Props = {
   openNav: boolean;
@@ -27,6 +25,7 @@ type Props = {
 
 export default function NavVertical({ openNav, onCloseNav }: Props) {
   const { user } = useManagerUser();
+  const theme = useTheme();
   const currentRole = user?.role;
 
   const pathname = usePathname();
@@ -47,7 +46,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
       sx={{
         height: 1,
         '& .simplebar-content': {
-          height: 1,
+          height: '100vh',
           display: 'flex',
           flexDirection: 'column',
         },
@@ -83,7 +82,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
             height: 1,
             position: 'fixed',
             width: NAV.W_VERTICAL,
-            borderRight: (theme) => `dashed 1px ${theme.palette.divider}`,
+            borderRight: `dashed 1px ${theme.palette.divider}`,
           }}
         >
           {renderContent}
@@ -95,6 +94,12 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
           PaperProps={{
             sx: {
               width: NAV.W_VERTICAL,
+            },
+          }}
+          sx={{
+            [`& .${drawerClasses.paper}`]: {
+              ...paper({ theme, bgcolor: theme.palette.background.default }),
+              width: 280,
             },
           }}
         >

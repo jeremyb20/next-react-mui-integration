@@ -1,5 +1,11 @@
+import { _socials } from '@/_mock';
+import Logo from '@/components/logo';
+import { paths } from '@/routes/paths';
 import Label from '@/components/label';
-import { useTranslation } from 'react-i18next';
+import Iconify from '@/components/iconify';
+import { usePathname } from '@/routes/hooks';
+import { RouterLink } from '@/routes/components';
+import { useTranslation } from '@/hooks/use-translation';
 import { APP_NAME, EMAIL_SUPPORT } from '@/config-global';
 
 import Box from '@mui/material/Box';
@@ -11,15 +17,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-
-import { paths } from '@/routes/paths';
-import { usePathname } from '@/routes/hooks';
-import { RouterLink } from '@/routes/components';
-
-import { _socials } from '@/_mock';
-
-import Logo from '@/components/logo';
-import Iconify from '@/components/iconify';
 
 // ----------------------------------------------------------------------
 
@@ -35,12 +32,12 @@ const LINKS = [
   {
     headline: 'Legal',
     children: [
-      { name: 'Terms and Condition', href: '/terms-and-conditions' },
+      { name: 'Terms and Conditions', href: '/terms-and-conditions' },
       { name: 'Privacy Policy', href: '/privacy-policy' },
     ],
   },
   {
-    headline: 'Contact',
+    headline: 'Contact us',
     children: [{ name: EMAIL_SUPPORT, href: '#' }],
   },
 ];
@@ -74,7 +71,7 @@ export default function Footer() {
             {APP_NAME}.{' '}
           </Link>
           <Link
-            href={paths.auth.jwt.login}
+            href={paths.auth.signIn}
             target="_blank"
             rel="noopener"
             underline="none"
@@ -140,6 +137,8 @@ export default function Footer() {
               {_socials.map((social) => (
                 <IconButton
                   key={social.name}
+                  aria-label={social.name}
+                  onClick={() => window.open(social.path, '_blank')}
                   sx={{
                     '&:hover': {
                       bgcolor: alpha(social.color, 0.08),
@@ -162,7 +161,7 @@ export default function Footer() {
                   sx={{ width: 1 }}
                 >
                   <Typography component="div" variant="overline">
-                    {list.headline}
+                    {t(list.headline)}
                   </Typography>
 
                   {list.children.map((link) => (
@@ -173,7 +172,7 @@ export default function Footer() {
                       color="inherit"
                       variant="body2"
                     >
-                      {link.name}
+                      {t(link.name)}
                     </Link>
                   ))}
                 </Stack>
@@ -190,7 +189,7 @@ export default function Footer() {
             {APP_NAME}.{' '}
           </Link>
           <Link
-            href={paths.auth.jwt.login}
+            href={paths.auth.signIn}
             target="_blank"
             rel="noopener"
             underline="none"

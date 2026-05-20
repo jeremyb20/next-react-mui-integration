@@ -1,7 +1,15 @@
+import Label from '@/components/label';
+import { useRouter } from '@/routes/hooks';
+import Iconify from '@/components/iconify';
+import Scrollbar from '@/components/scrollbar';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
+import { useBoolean } from '@/hooks/use-boolean';
 import { memo, useState, useCallback } from 'react';
+import { useResponsive } from '@/hooks/use-responsive';
 import { useManagerUser } from '@/hooks/use-manager-user';
+import SearchNotFound from '@/components/search-not-found';
+import { useEventListener } from '@/hooks/use-event-listener';
 
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -12,24 +20,16 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import Dialog, { dialogClasses } from '@mui/material/Dialog';
 
-import { useRouter } from '@/routes/hooks';
-
-import { useBoolean } from '@/hooks/use-boolean';
-import { useResponsive } from '@/hooks/use-responsive';
-import { useEventListener } from '@/hooks/use-event-listener';
-
-import Label from '@/components/label';
-import Iconify from '@/components/iconify';
-import Scrollbar from '@/components/scrollbar';
-import SearchNotFound from '@/components/search-not-found';
-
 import ResultItem from './result-item';
 import { useNavData } from '../../dashboard/config-navigation';
 import { applyFilter, groupedData, getAllItems } from './utils';
 
 // ----------------------------------------------------------------------
+interface Props {
+  style?: React.CSSProperties;
+}
 
-function Searchbar() {
+function Searchbar({ style }: Props) {
   const theme = useTheme();
 
   const router = useRouter();
@@ -115,9 +115,19 @@ function Searchbar() {
 
   const renderButton = (
     <Stack direction="row" alignItems="center">
-      <IconButton onClick={search.onTrue}>
+      <Box
+        component="span"
+        onClick={search.onTrue}
+        sx={{
+          ...style,
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <Iconify icon="eva:search-fill" />
-      </IconButton>
+      </Box>
 
       {lgUp && (
         <Label sx={{ px: 0.75, fontSize: 12, color: 'text.secondary' }}>

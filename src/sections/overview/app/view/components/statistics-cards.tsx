@@ -6,11 +6,11 @@ import {
   Box,
   Card,
   Grid,
-  useTheme,
   Skeleton,
   Typography,
   CardContent,
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 interface StatisticsCardsProps {
   petsCount: number;

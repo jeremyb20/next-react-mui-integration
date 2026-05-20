@@ -170,6 +170,7 @@ export default function JwtRegisterView() {
             ? error.message
             : 'Error saving user information'
       );
+
       // Resetear Turnstile en caso de error
       setValue('password', '');
       // if (turnstileRef.current) {

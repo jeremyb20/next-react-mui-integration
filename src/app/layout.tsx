@@ -1,16 +1,17 @@
-import AppProviders from '@/components/providers/AppProviders';
-import { DOMAIN, HOST_API } from '@/config-global';
-import { getServerLanguage } from '@/locales/get-server-language';
+import { DOMAIN, HOST_API } from '../config-global';
+import AppProviders from '../components/providers/AppProviders';
 // ----------------------------------------------------------------------
 
 type Props = {
   children: React.ReactNode;
+  params: { lang: string };
 };
 
-export default async function RootLayout({ children }: Props) {
-  const language = await getServerLanguage();
+export default async function RootLayout({ children, params }: Props) {
+  const lang = params.lang?.toLowerCase() || 'es';
+  const isRTL = lang === 'ar';
   return (
-    <html lang={language.toLowerCase() || 'es'} translate="no">
+    <html lang={lang} dir={isRTL ? 'rtl' : 'ltr'} translate="no">
       <head>
         {/* Meta tags para SEO multilingüe */}
         <link rel="alternate" hrefLang="x-default" href={DOMAIN} />
@@ -24,7 +25,7 @@ export default async function RootLayout({ children }: Props) {
         {/* Viewport */}
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1"
+          content="width=device-width, initial-scale=1, maximum-scale=5"
         />
 
         {/* Favicons */}
@@ -51,7 +52,7 @@ export default async function RootLayout({ children }: Props) {
         <link rel="manifest" href="/manifest.json" />
 
         {/* Theme color */}
-        <meta name="theme-color" content="#20252e" />
+        <meta name="theme-color" content="#161C24" />
 
         {/* Preconnect */}
         <link rel="preconnect" href={HOST_API} />

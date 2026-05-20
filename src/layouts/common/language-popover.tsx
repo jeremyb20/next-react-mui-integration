@@ -1,16 +1,12 @@
-'use client';
-
 import { m } from 'framer-motion';
 import { useCallback } from 'react';
+import Iconify from '@/components/iconify';
+import { varHover } from '@/components/animate';
+import { useLocales, useTranslate } from '@/locales';
+import CustomPopover, { usePopover } from '@/components/custom-popover';
 
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
-
-import { useLocales, useTranslate } from '@/locales';
-
-import Iconify from '@/components/iconify';
-import { varHover } from '@/components/animate';
-import CustomPopover, { usePopover } from '@/components/custom-popover';
 
 // ----------------------------------------------------------------------
 
@@ -37,6 +33,7 @@ export default function LanguagePopover() {
         whileHover="hover"
         variants={varHover(1.05)}
         onClick={popover.onOpen}
+        aria-label={`Flag-Name-selected-${currentLang.label}`}
         sx={{
           width: 40,
           height: 40,

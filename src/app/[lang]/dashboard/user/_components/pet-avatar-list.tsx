@@ -7,12 +7,13 @@ import { useTranslation } from '@/hooks/use-translation';
 import {
   Box,
   Badge,
-  alpha,
   Avatar,
   Tooltip,
   Skeleton,
   Typography,
 } from '@mui/material';
+
+import { alpha } from '@mui/material/styles';
 
 interface PetAvatarListProps {
   pets: IPetProfile[];

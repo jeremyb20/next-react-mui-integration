@@ -14,13 +14,13 @@ import {
   Card,
   Chip,
   Stack,
-  alpha,
   Button,
   Divider,
-  useTheme,
   Typography,
   useMediaQuery,
 } from '@mui/material';
+
+import { alpha, useTheme } from '@mui/material/styles';
 
 interface PromotionsCardProps {
   promotions: IPromotions[];

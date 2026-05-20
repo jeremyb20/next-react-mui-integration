@@ -1,4 +1,4 @@
-import { getServerLanguage } from '@/locales/get-server-language';
+import { getServerLanguage } from '@/utils/get-server-language';
 import { redirect } from 'next/navigation';
 
 export default async function HomePage() {

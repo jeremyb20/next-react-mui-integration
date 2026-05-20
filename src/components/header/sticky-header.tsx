@@ -1,7 +1,8 @@
 // components/sticky-header/sticky-header.tsx
 import { useState, useEffect, ReactNode } from 'react';
 
-import { Box, Theme, SxProps, useTheme } from '@mui/material';
+import { Box, Theme, SxProps } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 interface StickyHeaderProps {
   children: ReactNode;

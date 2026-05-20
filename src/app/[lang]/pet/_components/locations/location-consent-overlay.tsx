@@ -9,12 +9,11 @@ import {
   Alert,
   Stack,
   Paper,
-  alpha,
   Button,
-  useTheme,
   Typography,
   CircularProgress,
 } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
 
 interface LocationConsentOverlayProps {
   onLocationAccepted: (position: GeolocationPosition) => void;

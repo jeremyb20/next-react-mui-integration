@@ -117,11 +117,6 @@ export const allLangs = [
 
 export const defaultLang = allLangs[0]; // Spanish
 
-// Función para obtener configuración de idioma
-export function getLang(lang: string) {
-  return allLangs.find((l) => l.value === lang) || defaultLang;
-}
-
 // GET MORE COUNTRY FLAGS
 // https://icon-sets.iconify.design/flagpack/
 // https://www.dropbox.com/sh/nec1vwswr9lqbh9/AAB9ufC8iccxvtWi3rzZvndLa?dl=0

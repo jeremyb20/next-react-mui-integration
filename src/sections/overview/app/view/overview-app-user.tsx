@@ -26,14 +26,13 @@ import {
   Grid,
   Alert,
   Paper,
-  alpha,
   Avatar,
-  useTheme,
   Container,
   Typography,
   CardContent,
   useMediaQuery,
 } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import { QuickActions } from './components/quick-actions';
 import { StatisticsCards } from './components/statistics-cards';
