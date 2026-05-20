@@ -1,4 +1,9 @@
 import { m } from 'framer-motion';
+import { paths } from '@/routes/paths';
+import Iconify from '@/components/iconify';
+import { useResponsive } from '@/hooks/use-responsive';
+import { bgGradient, textGradient } from '@/theme/css';
+import { varFade, MotionViewport } from '@/components/animate';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -6,15 +11,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
-
-import { paths } from '@/routes/paths';
-
-import { useResponsive } from '@/hooks/use-responsive';
-
-import { bgGradient, textGradient } from '@/theme/css';
-
-import Iconify from '@/components/iconify';
-import { varFade, MotionViewport } from '@/components/animate';
 
 // ----------------------------------------------------------------------
 
@@ -69,12 +65,13 @@ export default function HomeForDesigner() {
   );
 
   const renderImg = (
-    <m.img
+    <Box
+      component={m.img}
       src="/assets/images/home/for_designer.webp"
-      alt="for designer"
-      style={{
-        height: '100%',
-        width: '50%',
+      variants={varFade().in}
+      sx={{
+        height: 1,
+        width: 0.5,
         objectFit: 'cover',
         position: 'absolute',
         boxShadow: `-80px 80px 80px ${
@@ -109,7 +106,7 @@ export default function HomeForDesigner() {
         <Grid container>
           <Grid size={{ xs: 12, md: 6 }}>{renderDescription}</Grid>
 
-          {mdUp && <Grid size={{ xs: 12, md: 6 }}>{renderImg}</Grid>}
+          {mdUp && <Grid size={{ md: 6 }}>{renderImg}</Grid>}
         </Grid>
       </Container>
     </Box>

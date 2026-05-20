@@ -1,4 +1,10 @@
+import Label from '@/components/label';
+import Iconify from '@/components/iconify';
 import { useState, useCallback } from 'react';
+import { IPaymentCard } from '@/types/payment';
+import { IAddressItem } from '@/types/address';
+import { useBoolean } from '@/hooks/use-boolean';
+import { PlanFreeIcon, PlanStarterIcon, PlanPremiumIcon } from '@/assets/icons';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -8,16 +14,6 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import CardHeader from '@mui/material/CardHeader';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { PlanFreeIcon, PlanStarterIcon, PlanPremiumIcon } from '@/assets/icons';
-
-import Label from '@/components/label';
-import Iconify from '@/components/iconify';
-
-import { IPaymentCard } from '@/types/payment';
-import { IAddressItem } from '@/types/address';
 
 import { AddressListDialog } from '../address';
 import PaymentCardListDialog from '../payment/payment-card-list-dialog';

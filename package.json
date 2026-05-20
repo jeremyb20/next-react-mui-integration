@@ -33,6 +33,7 @@
     "@hello-pangea/dnd": "^18.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@iconify/react": "^6.0.2",
+    "@marsidev/react-turnstile": "^1.5.2",
     "@mui/lab": "^7.0.1-beta.21",
     "@mui/material": "^7.3.7",
     "@mui/material-nextjs": "^7.3.7",

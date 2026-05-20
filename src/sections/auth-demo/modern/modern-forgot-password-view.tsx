@@ -1,41 +1,65 @@
 'use client';
 
 import * as Yup from 'yup';
-import { useState } from 'react';
+import dynamic from 'next/dynamic';
+import { paths } from '@/routes/paths';
 import { useSnackbar } from 'notistack';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { endpoints } from '@/utils/axios';
-import { HOST_API } from '@/config-global';
-import { useTranslation } from 'react-i18next';
+import Iconify from '@/components/iconify';
+import { useParams } from '@/routes/hooks';
+import { PasswordIcon } from '@/assets/icons';
+import { RouterLink } from '@/routes/components';
+import { fallbackLng } from '@/app/i18n/settings';
+import { SITEKEY, HOST_API } from '@/config-global';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from '@/hooks/use-translation';
+import FormProvider, { RHFTextField } from '@/components/hook-form';
 import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 
 import Link from '@mui/material/Link';
-import { Alert } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
-
-import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import { PasswordIcon } from '@/assets/icons';
-
-import Iconify from '@/components/iconify';
-import FormProvider, { RHFTextField } from '@/components/hook-form';
+import { Box, Alert, CircularProgress } from '@mui/material';
 
 // ----------------------------------------------------------------------
-
+const Turnstile = dynamic(
+  () => import('@marsidev/react-turnstile').then((mod) => mod.Turnstile),
+  {
+    ssr: false,
+    loading: () => (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 1,
+          minHeight: '65px',
+        }}
+      >
+        <CircularProgress size={20} />
+        <Typography variant="caption" color="text.secondary">
+          Loading security verification...
+        </Typography>
+      </Box>
+    ),
+  }
+);
 export default function ModernForgotPasswordView() {
   const { mutateAsync } = useCreateGenericMutation();
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
-
+  const params = useParams();
+  const lng = (params?.lang as string) || fallbackLng;
   const [messageResponse, setMessageResponse] = useState({
     status: '',
     message: '',
   });
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
+  const turnstileRef = useRef<any>(null);
   const ForgotPasswordSchema = Yup.object().shape({
     email: Yup.string()
       .required(t('Email is required'))
@@ -53,13 +77,20 @@ export default function ModernForgotPasswordView() {
 
   const {
     handleSubmit,
+    watch,
     formState: { isSubmitting },
   } = methods;
+
+  const watchEmail = watch('email');
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       const res = await mutateAsync({
-        payload: data,
+        payload: {
+          ...data,
+          lang: lng,
+          turnstileToken,
+        },
         pEndpoint: `${HOST_API}${endpoints.user.forgotPassword}`,
         method: 'POST',
       });
@@ -68,15 +99,14 @@ export default function ModernForgotPasswordView() {
       enqueueSnackbar(t('Request sent! Please check your email.'));
     } catch (error) {
       console.error(error);
-      const errorMessage =
-        error instanceof Error ? error.message : 'Login failed';
-
       setMessageResponse({
         status: 'error',
         message: t(
           typeof error === 'string'
             ? error
-            : errorMessage || 'Something went wrong!'
+            : error instanceof Error
+              ? error.message
+              : 'Something went wrong!'
         ),
       });
     }
@@ -85,13 +115,45 @@ export default function ModernForgotPasswordView() {
   const renderForm = (
     <Stack spacing={3} alignItems="center">
       <RHFTextField name="email" label={t('Email address')} />
-
+      {/* Widget de Cloudflare Turnstile */}
+      {SITEKEY && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
+          <Turnstile
+            ref={turnstileRef}
+            siteKey={SITEKEY}
+            onSuccess={(token) => {
+              console.log('✅ Turnstile verification successful');
+              setTurnstileToken(token);
+            }}
+            onExpire={() => {
+              console.log('⏰ Turnstile token expired');
+              setTurnstileToken(null);
+            }}
+            onError={() => {
+              console.error('❌ Turnstile error');
+              setMessageResponse({
+                status: 'error',
+                message: t(
+                  'Security verification failed. Please refresh the page.'
+                ),
+              });
+              setTurnstileToken(null);
+            }}
+            options={{
+              theme: 'light',
+              size: 'flexible',
+              action: 'login_submit',
+            }}
+          />
+        </Box>
+      )}
       <LoadingButton
         fullWidth
         size="large"
         type="submit"
         variant="contained"
         loading={isSubmitting}
+        disabled={!turnstileToken || !watchEmail}
         endIcon={<Iconify icon="eva:arrow-ios-forward-fill" />}
         sx={{ justifyContent: 'space-between', pl: 2, pr: 1.5 }}
       >
@@ -100,7 +162,7 @@ export default function ModernForgotPasswordView() {
 
       <Link
         component={RouterLink}
-        href={paths.auth.login}
+        href={paths.auth.signIn}
         color="inherit"
         variant="subtitle2"
         sx={{

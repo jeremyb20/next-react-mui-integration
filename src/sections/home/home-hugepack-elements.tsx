@@ -1,5 +1,12 @@
+import { _mock } from '@/_mock';
 import { m } from 'framer-motion';
+import { paths } from '@/routes/paths';
+import Label from '@/components/label';
+import Image from '@/components/image';
+import Iconify from '@/components/iconify';
 import { useState, useCallback } from 'react';
+import { useResponsive } from '@/hooks/use-responsive';
+import { varFade, MotionViewport } from '@/components/animate';
 
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
@@ -31,17 +38,6 @@ import ToggleButton from '@mui/material/ToggleButton';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import CircularProgress from '@mui/material/CircularProgress';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
-import { paths } from '@/routes/paths';
-
-import { useResponsive } from '@/hooks/use-responsive';
-
-import { _mock } from '@/_mock';
-
-import Label from '@/components/label';
-import Image from '@/components/image';
-import Iconify from '@/components/iconify';
-import { varFade, MotionViewport } from '@/components/animate';
 
 // ----------------------------------------------------------------------
 
@@ -157,7 +153,7 @@ export default function HomeHugePackElements() {
         spacing={{ xs: 3, md: 4 }}
         sx={{ width: 1 }}
       >
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <Button
             variant="contained"
             color="primary"
@@ -167,7 +163,7 @@ export default function HomeHugePackElements() {
           </Button>
         </m.div>
 
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <Button
             variant="soft"
             color="primary"
@@ -177,13 +173,13 @@ export default function HomeHugePackElements() {
           </Button>
         </m.div>
 
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <Fab color="info" size="medium">
             <Iconify icon="eva:search-fill" />
           </Fab>
         </m.div>
 
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <CircularProgress color="error" />
         </m.div>
       </Stack>
@@ -197,7 +193,7 @@ export default function HomeHugePackElements() {
         spacing={{ xs: 3, md: 4 }}
         sx={{ width: 1 }}
       >
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <Tabs
             value={currentTab}
             onChange={handleChangeTab}
@@ -219,7 +215,7 @@ export default function HomeHugePackElements() {
           </Tabs>
         </m.div>
 
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <ToggleButtonGroup
             size="small"
             color="secondary"
@@ -252,7 +248,7 @@ export default function HomeHugePackElements() {
           </ToggleButtonGroup>
         </m.div>
 
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <Chip
             color="error"
             variant="soft"
@@ -274,7 +270,7 @@ export default function HomeHugePackElements() {
         spacing={{ xs: 3, md: 4 }}
         sx={{ width: 1 }}
       >
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <Badge
             variant="online"
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
@@ -283,7 +279,7 @@ export default function HomeHugePackElements() {
           </Badge>
         </m.div>
 
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <AvatarGroup>
             {[...Array(8)].map((_, index) => (
               <Avatar key={index} src={_mock.image.avatar(index)} />
@@ -291,7 +287,7 @@ export default function HomeHugePackElements() {
           </AvatarGroup>
         </m.div>
 
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <Rating
             value={rating}
             onChange={(event, newValue) => {
@@ -300,7 +296,7 @@ export default function HomeHugePackElements() {
           />
         </m.div>
 
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <Label
             variant="filled"
             startIcon={<Iconify icon="fluent:mail-24-filled" />}
@@ -320,7 +316,7 @@ export default function HomeHugePackElements() {
           gridTemplateColumns: { xs: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' },
         }}
       >
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <Slider
             valueLabelDisplay="on"
             value={slider}
@@ -330,7 +326,7 @@ export default function HomeHugePackElements() {
           />
         </m.div>
 
-        <m.div variants={varFade().in as any}>
+        <m.div variants={varFade().in}>
           <Alert severity="success" onClose={() => {}}>
             <AlertTitle>Success</AlertTitle>
             This is a success alert — <strong>check it out!</strong>
@@ -349,7 +345,7 @@ export default function HomeHugePackElements() {
             spacing={{ xs: 3, md: 4 }}
             sx={{ width: 1 }}
           >
-            <m.div variants={varFade().in as any}>
+            <m.div variants={varFade().in}>
               <FormControlLabel
                 control={<Switch defaultChecked />}
                 label="Switch"
@@ -357,7 +353,7 @@ export default function HomeHugePackElements() {
               />
             </m.div>
 
-            <m.div variants={varFade().in as any}>
+            <m.div variants={varFade().in}>
               <FormControlLabel
                 control={<Radio color="error" defaultChecked />}
                 label="Radio Button"
@@ -365,7 +361,7 @@ export default function HomeHugePackElements() {
               />
             </m.div>
 
-            <m.div variants={varFade().in as any}>
+            <m.div variants={varFade().in}>
               <FormControlLabel
                 control={<Checkbox color="info" defaultChecked />}
                 label="Checkbox"
@@ -373,7 +369,7 @@ export default function HomeHugePackElements() {
               />
             </m.div>
 
-            <m.div variants={varFade().in as any}>
+            <m.div variants={varFade().in}>
               <FormControlLabel
                 control={<Checkbox color="warning" indeterminate />}
                 label="Indeterminate"
@@ -389,7 +385,7 @@ export default function HomeHugePackElements() {
             justifyContent="center"
             sx={{ width: 1 }}
           >
-            <m.div variants={varFade().in as any}>
+            <m.div variants={varFade().in}>
               <Paper
                 sx={{
                   width: 320,
@@ -464,11 +460,11 @@ export default function HomeHugePackElements() {
             </m.div>
 
             <Stack spacing={3} sx={{ width: 1 }}>
-              <m.div variants={varFade().in as any}>
+              <m.div variants={varFade().in}>
                 <TextField fullWidth label="Text Field" value="Value" />
               </m.div>
 
-              <m.div variants={varFade().in as any}>
+              <m.div variants={varFade().in}>
                 <TextField
                   select
                   fullWidth
@@ -486,7 +482,7 @@ export default function HomeHugePackElements() {
                 </TextField>
               </m.div>
 
-              <m.div variants={varFade().in as any}>
+              <m.div variants={varFade().in}>
                 <TextField fullWidth multiline rows={3} label="Textarea" />
               </m.div>
             </Stack>
@@ -513,7 +509,7 @@ export default function HomeHugePackElements() {
         <Grid size={{ xs: 12, md: 7 }}>{renderContent}</Grid>
 
         {!mdUp && (
-          <Grid size={{ xs: 12 }} sx={{ textAlign: 'center' }}>
+          <Grid size={{ xs: 12, md: 4 }} sx={{ textAlign: 'center' }}>
             {viewAllBtn}
           </Grid>
         )}

@@ -1,6 +1,10 @@
 'use client';
 
 import { useRef } from 'react';
+import { _socials } from '@/_mock';
+import Iconify from '@/components/iconify';
+import { fNumber } from '@/utils/format-number';
+import { IUserProfile, IUserProfilePost } from '@/types/user';
 
 import Fab from '@mui/material/Fab';
 import Box from '@mui/material/Box';
@@ -12,16 +16,7 @@ import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import Grid from '@mui/material/Grid';
-
 import CardHeader from '@mui/material/CardHeader';
-
-import { fNumber } from '@/utils/format-number';
-
-import { _socials } from '@/_mock';
-
-import Iconify from '@/components/iconify';
-
-import { IUserProfile, IUserProfilePost } from '@/types/user';
 
 import ProfilePostItem from './profile-post-item';
 

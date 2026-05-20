@@ -1,11 +1,9 @@
 import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { NavItemBaseProps } from '@/components/nav-section';
-
 import { paths } from '@/routes/paths';
-
 import Iconify from '@/components/iconify';
 import SvgColor from '@/components/svg-color';
+import { useTranslation } from '@/hooks/use-translation';
+import { NavItemBaseProps } from '@/components/nav-section';
 
 // ----------------------------------------------------------------------
 
@@ -75,6 +73,7 @@ const ICONS = {
   QR_code: icon('lucide:qr-code'),
   catalogs: icon('carbon:catalog-publish'),
   seo: icon('hugeicons:seo'),
+  promotions: icon('lsicon:badge-promotion-filled'),
   blogPanel: icon('meteor-icons:blogger'),
   inventory: icon('material-symbols:inventory'),
   home: icon('solar:home-2-linear'),
@@ -144,6 +143,12 @@ export function useNavData(userRole: string) {
             title: t('Seo Panel'),
             path: paths.dashboard.admin.seoAdmin,
             icon: ICONS.seo,
+            roles: ['admin'],
+          },
+          {
+            title: t('Promotions'),
+            path: paths.dashboard.admin.promotions,
+            icon: ICONS.promotions,
             roles: ['admin'],
           },
           // {
@@ -234,17 +239,17 @@ export function useNavData(userRole: string) {
           {
             // title: t('app'),
             title: t('My Pets'),
-            path: paths.dashboard.user.myPets,
+            path: paths.dashboard.user.pets,
             icon: ICONS.paw,
             roles: ['admin', 'client'],
           },
 
-          // CALENDAR
-          {
-            title: t('Calendar'),
-            path: paths.dashboard.calendar,
-            icon: ICONS.calendar,
-          },
+          // CALENDAR Funcionalidad para luego
+          // {
+          //   title: t('Calendar'),
+          //   path: paths.dashboard.calendar,
+          //   icon: ICONS.calendar,
+          // },
           // {
           // title: t('pets market'),
           // path: authenticated

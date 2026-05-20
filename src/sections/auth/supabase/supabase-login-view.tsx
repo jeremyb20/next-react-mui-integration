@@ -2,8 +2,16 @@
 
 import * as Yup from 'yup';
 import { useState } from 'react';
+import { paths } from '@/routes/paths';
 import { useForm } from 'react-hook-form';
+import Iconify from '@/components/iconify';
+import { useAuthContext } from '@/auth/hooks';
+import { RouterLink } from '@/routes/components';
+import { useBoolean } from '@/hooks/use-boolean';
+import { PATH_AFTER_LOGIN } from '@/config-global';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter, useSearchParams } from '@/routes/hooks';
+import FormProvider, { RHFTextField } from '@/components/hook-form';
 
 import Link from '@mui/material/Link';
 import Alert from '@mui/material/Alert';
@@ -12,18 +20,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
 import InputAdornment from '@mui/material/InputAdornment';
-
-import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-import { useRouter, useSearchParams } from '@/routes/hooks';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { useAuthContext } from '@/auth/hooks';
-import { PATH_AFTER_LOGIN } from '@/config-global';
-
-import Iconify from '@/components/iconify';
-import FormProvider, { RHFTextField } from '@/components/hook-form';
 
 // ----------------------------------------------------------------------
 
@@ -65,15 +61,19 @@ export default function SupabaseLoginView() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await login?.(data.email, data.password);
+      await login?.(data.email, data.password, '');
 
       router.push(returnTo || PATH_AFTER_LOGIN);
     } catch (error) {
       console.error(error);
       reset();
-      const errorMessage =
-        error instanceof Error ? error.message : 'Login failed';
-      setErrorMsg(errorMessage);
+      setErrorMsg(
+        typeof error === 'string'
+          ? error
+          : error instanceof Error
+            ? error.message
+            : 'Error saving user information'
+      );
     }
   });
 

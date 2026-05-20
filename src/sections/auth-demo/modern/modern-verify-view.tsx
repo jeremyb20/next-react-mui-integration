@@ -1,21 +1,18 @@
 'use client';
 
 import * as Yup from 'yup';
+import { paths } from '@/routes/paths';
 import { useForm } from 'react-hook-form';
+import Iconify from '@/components/iconify';
+import { EmailInboxIcon } from '@/assets/icons';
+import { RouterLink } from '@/routes/components';
 import { yupResolver } from '@hookform/resolvers/yup';
+import FormProvider, { RHFCode, RHFTextField } from '@/components/hook-form';
 
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
-
-import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import { EmailInboxIcon } from '@/assets/icons';
-
-import Iconify from '@/components/iconify';
-import FormProvider, { RHFCode, RHFTextField } from '@/components/hook-form';
 
 // ----------------------------------------------------------------------
 

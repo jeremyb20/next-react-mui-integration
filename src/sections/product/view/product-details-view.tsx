@@ -1,6 +1,13 @@
 'use client';
 
+import { paths } from '@/routes/paths';
+import Iconify from '@/components/iconify';
+import { useGetProduct } from '@/api/product';
+import { RouterLink } from '@/routes/components';
+import { PRODUCT_PUBLISH_OPTIONS } from '@/_mock';
+import EmptyContent from '@/components/empty-content';
 import { useState, useEffect, useCallback } from 'react';
+import { useSettingsContext } from '@/components/settings';
 
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
@@ -9,16 +16,6 @@ import Button from '@mui/material/Button';
 import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-
-import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import { useGetProduct } from '@/api/product';
-import { PRODUCT_PUBLISH_OPTIONS } from '@/_mock';
-
-import Iconify from '@/components/iconify';
-import EmptyContent from '@/components/empty-content';
-import { useSettingsContext } from '@/components/settings';
 
 import { ProductDetailsSkeleton } from '../product-skeleton';
 import ProductDetailsReview from '../product-details-review';

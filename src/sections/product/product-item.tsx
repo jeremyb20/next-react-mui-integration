@@ -1,5 +1,12 @@
+import { paths } from '@/routes/paths';
+import Label from '@/components/label';
+import Image from '@/components/image';
+import Iconify from '@/components/iconify';
 import { useAuthContext } from '@/auth/hooks';
+import { IProductItem } from '@/types/product';
+import { RouterLink } from '@/routes/components';
 import { useCurrency } from '@/hooks/use-currency';
+import { ColorPreview } from '@/components/color-utils';
 
 import Fab from '@mui/material/Fab';
 import Box from '@mui/material/Box';
@@ -7,16 +14,6 @@ import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
-
-import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import Label from '@/components/label';
-import Image from '@/components/image';
-import Iconify from '@/components/iconify';
-import { ColorPreview } from '@/components/color-utils';
-
-import { IProductItem } from '@/types/product';
 
 import { useCheckoutContext } from '../checkout/context';
 
@@ -51,17 +48,6 @@ export default function ProductItem({ product }: Props) {
   const linkTo = authenticated
     ? paths.dashboard.product.details(productId)
     : paths.product.details(productId);
-
-  // useEffect(() => {
-  //   const currency = countries.find((c) => c.label === country)?.currency || 'USD';
-  //   convert(currency, price)
-  //     .then((result) => {
-  //       setConvertedPrice(result.convertedAmount);
-  //     })
-  //     .catch(() => {
-  //       setConvertedPrice(fCurrency(price));
-  //     });
-  // }, [country, price]);
 
   const handleAddCart = async () => {
     const newProduct = {
@@ -107,7 +93,16 @@ export default function ProductItem({ product }: Props) {
   );
 
   const renderImg = (
-    <Box sx={{ position: 'relative', p: 1 }}>
+    <Box
+      sx={{
+        position: 'relative',
+        p: {
+          xs: 0,
+          sm: 0,
+          md: 1,
+        },
+      }}
+    >
       {!!available && (
         <Fab
           color="warning"
@@ -149,7 +144,15 @@ export default function ProductItem({ product }: Props) {
   );
 
   const renderContent = (
-    <Stack spacing={2.5} sx={{ p: 3, pt: 2 }}>
+    <Stack
+      spacing={1}
+      sx={{
+        p: {
+          xs: 1.5,
+          sm: 2,
+        },
+      }}
+    >
       <Link
         component={RouterLink}
         href={linkTo}

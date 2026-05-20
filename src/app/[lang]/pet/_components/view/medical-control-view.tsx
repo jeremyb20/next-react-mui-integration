@@ -1,8 +1,10 @@
 import { useSnackbar } from 'notistack';
 import { IPetProfile } from '@/types/api';
 import Iconify from '@/components/iconify';
-import React, { useMemo, useState, useCallback } from 'react';
+import { isAfter } from '@/utils/format-time';
+import { useTranslation } from '@/hooks/use-translation';
 import { useSettingsContext } from '@/components/settings';
+import React, { useMemo, useState, useCallback } from 'react';
 import CardComponent from '@/sections/_examples/card-component';
 import FilterToolbar from '@/components/filters/filter-toolbar';
 import { useMedicalRecordForm } from '@/hooks/user-medical-record-form';
@@ -21,9 +23,9 @@ import {
   Button,
   Container,
   Typography,
+  CardContent,
+  CircularProgress,
 } from '@mui/material';
-
-import { isAfter } from '@/utils/format-time';
 
 import VaccinesList from './vaccines-list';
 import DewormingList from './deworming-list';
@@ -34,14 +36,17 @@ type MedicalRecordType = 'vaccine' | 'deworming' | 'medical_visit';
 
 export default function MedicalControlView({
   currentPet,
+  memberPetId,
 }: {
   currentPet: IPetProfile | undefined;
+  memberPetId: string;
 }) {
+  const { t } = useTranslation();
+
   const [currentTab, setCurrentTab] = useState(0);
   const [refetchTrigger, setRefetchTrigger] = useState(0);
   const settings = useSettingsContext();
   const { enqueueSnackbar } = useSnackbar();
-
   const {
     open,
     currentType,
@@ -55,7 +60,7 @@ export default function MedicalControlView({
   const [activeFilters, setActiveFilters] = useState<Partial<UserQueryParams>>({
     page: 1,
     limit: 10,
-    petId: currentPet?.memberPetId,
+    petId: memberPetId,
   });
 
   const dateError = useMemo(() => {
@@ -114,7 +119,7 @@ export default function MedicalControlView({
     type: 'vaccine' | 'deworming' | 'medical_visit',
     record: any
   ) => {
-    editRecord(type, record, currentPet?.memberPetId || '');
+    editRecord(type, record, memberPetId || '');
   };
 
   const handleFiltersChange = useCallback(
@@ -141,13 +146,13 @@ export default function MedicalControlView({
     const clearedFilters = {
       page: 1,
       limit: 10,
-      petId: currentPet?.memberPetId,
+      petId: memberPetId,
       type: getTypeFromTab(currentTab),
     };
 
     setActiveFilters(clearedFilters);
     enqueueSnackbar('Filtros limpiados', { variant: 'info' });
-  }, [currentTab, enqueueSnackbar, currentPet?.memberPetId]);
+  }, [currentTab, enqueueSnackbar, memberPetId]);
 
   // Filtrar datos según la pestaña actual
   const getFilteredData = () => {
@@ -180,6 +185,8 @@ export default function MedicalControlView({
       nextVaccineDate: record.nextDate,
       vaccineName: record.name,
       observations: record.observations,
+      emailNotificationEnabled: record.emailNotificationEnabled,
+      notificationDaysBefore: record.notificationDaysBefore,
     }));
 
   const transformToDewormingData = (records: any[]) =>
@@ -189,6 +196,8 @@ export default function MedicalControlView({
       nextDewormingDate: record.nextDate,
       dewormerName: record.name,
       observations: record.observations,
+      emailNotificationEnabled: record.emailNotificationEnabled,
+      notificationDaysBefore: record.notificationDaysBefore,
     }));
 
   const transformToMedicalVisitData = (records: any[]) =>
@@ -198,6 +207,8 @@ export default function MedicalControlView({
       reasonForVisit: record.name,
       veterinarianName: record.veterinarianName,
       observations: record.observations,
+      emailNotificationEnabled: record.emailNotificationEnabled,
+      notificationDaysBefore: record.notificationDaysBefore,
     }));
 
   const filteredData = getFilteredData();
@@ -257,7 +268,7 @@ export default function MedicalControlView({
   }
 
   return (
-    <CardComponent title="Medical Control">
+    <CardComponent title={t('Medical Control')}>
       <Box sx={{ mb: 3, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
         <Button
           variant="contained"
@@ -317,7 +328,6 @@ export default function MedicalControlView({
         currentRecord={currentRecord}
         refetch={refetchMedicalRecords}
         onSubmitSuccess={(data) => {
-          console.log('Registro guardado:', data);
           refetchMedicalRecords();
         }}
       />
@@ -337,7 +347,16 @@ export default function MedicalControlView({
 
       <Box sx={{ py: 3 }}>
         {isFetching ? (
-          <Alert severity="info">Cargando registros médicos...</Alert>
+          <Card>
+            <CardContent>
+              <Box textAlign="center" py={5}>
+                <CircularProgress />
+                <Typography variant="h6" color="text.secondary" sx={{ mt: 2 }}>
+                  Cargando registros médicos...
+                </Typography>
+              </Box>
+            </CardContent>
+          </Card>
         ) : (
           React.cloneElement(TABS[currentTab].component, {
             onEdit: handleEditRecord,

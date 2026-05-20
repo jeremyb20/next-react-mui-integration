@@ -1,13 +1,12 @@
 import { m } from 'framer-motion';
 import Iconify from '@/components/iconify';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/hooks/use-translation';
+import { varFade, MotionViewport } from '@/components/animate';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-
-import { varFade, MotionViewport } from '@/components/animate';
 
 export default function HomePetTracking() {
   const { t } = useTranslation();

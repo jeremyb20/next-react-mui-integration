@@ -1,12 +1,26 @@
 'use client';
 
 import * as Yup from 'yup';
+import dynamic from 'next/dynamic';
+import { paths } from '@/routes/paths';
+import Image from '@/components/image';
 import { useForm } from 'react-hook-form';
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { countries } from '@/assets/data';
+import Iconify from '@/components/iconify';
 import useIPInfo from '@/hooks/use-ip-info';
+import { useAuthContext } from '@/auth/hooks';
+import { RouterLink } from '@/routes/components';
+import { useBoolean } from '@/hooks/use-boolean';
+import { useRef, useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from '@/hooks/use-translation';
 import { useSettingsContext } from '@/components/settings';
+import { useRouter, useSearchParams } from '@/routes/hooks';
+import { SITEKEY, PATH_AFTER_LOGIN } from '@/config-global';
+import FormProvider, {
+  RHFTextField,
+  RHFAutocomplete,
+} from '@/components/hook-form';
 import PrivacyPolicyModal from '@/app/[lang]/privacy-policy/_components/privacy-policy-modal';
 import TermsAndConditionsModal from '@/app/[lang]/terms-and-conditions/_components/terms-and-condition-modal';
 import {
@@ -15,7 +29,6 @@ import {
   simplePhoneValidation,
 } from '@/utils/phone-validation';
 
-import { Box } from '@mui/material';
 import Link from '@mui/material/Link';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
@@ -23,43 +36,43 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
 import InputAdornment from '@mui/material/InputAdornment';
-
-import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-import { useRouter, useSearchParams } from '@/routes/hooks';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { countries } from '@/assets/data';
-import { useAuthContext } from '@/auth/hooks';
-import { PATH_AFTER_LOGIN } from '@/config-global';
-
-import Iconify from '@/components/iconify';
-import FormProvider, {
-  RHFTextField,
-  RHFAutocomplete,
-} from '@/components/hook-form';
+import { Box, Container, CircularProgress } from '@mui/material';
 
 // ----------------------------------------------------------------------
-
+const Turnstile = dynamic(
+  () => import('@marsidev/react-turnstile').then((mod) => mod.Turnstile),
+  {
+    ssr: false,
+    loading: () => (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 1,
+          minHeight: '65px',
+        }}
+      >
+        <CircularProgress size={20} />
+        <Typography variant="caption" color="text.secondary">
+          Loading security verification...
+        </Typography>
+      </Box>
+    ),
+  }
+);
 export default function JwtRegisterView() {
   const { register } = useAuthContext();
-
   const { t } = useTranslation();
-
   const router = useRouter();
-
   const [errorMsg, setErrorMsg] = useState('');
-
   const searchParams = useSearchParams();
-
   const returnTo = searchParams.get('returnTo');
-
   const password = useBoolean();
-
   const { ipData } = useIPInfo();
-
   const settings = useSettingsContext();
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<any>(null);
 
   const RegisterSchema = Yup.object().shape({
     firstName: Yup.string().required(t('First name is required')),
@@ -100,6 +113,8 @@ export default function JwtRegisterView() {
   } = methods;
   const watchCountry = watch('country');
   const watchPhone = watch('phone');
+  const watchedPassword = watch('password');
+
   const [openTerms, setOpenTerms] = useState(false);
   const [openPrivacyPolicy, setOpenPrivacyPolicy] = useState(false);
 
@@ -125,6 +140,15 @@ export default function JwtRegisterView() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      setErrorMsg('');
+
+      // Validar que el token de Turnstile existe
+      if (!turnstileToken) {
+        setErrorMsg(t('Please verify that you are not a robot'));
+        return;
+      }
+
+      // Enviar el token junto con los datos de registro
       await register?.(
         data.email,
         data.password,
@@ -132,15 +156,26 @@ export default function JwtRegisterView() {
         data.lastName,
         data.country,
         data.phone,
-        settings
+        settings,
+        turnstileToken // Enviar token de Turnstile
       );
 
       router.push(returnTo || PATH_AFTER_LOGIN);
     } catch (error) {
       console.error(error);
-      const errorMessage =
-        error instanceof Error ? error.message : 'Login failed';
-      setErrorMsg(errorMessage);
+      setErrorMsg(
+        typeof error === 'string'
+          ? error
+          : error instanceof Error
+            ? error.message
+            : 'Error saving user information'
+      );
+      // Resetear Turnstile en caso de error
+      setValue('password', '');
+      // if (turnstileRef.current) {
+      //   turnstileRef.current.reset();
+      // }
+      // setTurnstileToken(null);
     }
   });
 
@@ -151,22 +186,27 @@ export default function JwtRegisterView() {
   }, [ipData, setValue]);
 
   const renderHead = (
-    <Stack spacing={2} sx={{ mb: 5, position: 'relative' }}>
-      <Typography variant="h4">{t('Get started absolutely free.')}</Typography>
-      <Stack direction="row" spacing={0.5}>
-        <Typography variant="body2">
-          {' '}
-          {t('Already have an account?')}{' '}
-        </Typography>
-
-        <Link
-          href={paths.auth.login}
-          component={RouterLink}
-          variant="subtitle2"
-        >
-          {t('Sign in')}
-        </Link>
+    <Stack
+      spacing={1}
+      sx={{ mb: 2, position: 'relative', textAlign: 'center' }}
+    >
+      <Stack>
+        <Image
+          src="/assets/images/home/pets.png"
+          alt={t('Lets Get Started')}
+          sx={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            borderRadius: 1.5,
+          }}
+        />
       </Stack>
+      <Typography variant="h2">{t('Lets Get Started')}</Typography>
+
+      <Typography variant="body1">
+        {t('Create an account and manage your pets profile')}{' '}
+      </Typography>
     </Stack>
   );
 
@@ -225,7 +265,7 @@ export default function JwtRegisterView() {
           name="phone"
           label={t('Phone number')}
           placeholder={getPhonePlaceholder(watchCountry, t('Phone number'))}
-          helperText={getPhoneHelperText(watchCountry, watchPhone)}
+          helperText={getPhoneHelperText(watchCountry, watchPhone, t)}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -279,6 +319,35 @@ export default function JwtRegisterView() {
         }}
       />
 
+      {/* Widget de Cloudflare Turnstile */}
+      {SITEKEY && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
+          <Turnstile
+            ref={turnstileRef}
+            siteKey={SITEKEY}
+            onSuccess={(token) => {
+              console.log('✅ Turnstile verification successful');
+              setTurnstileToken(token);
+            }}
+            onExpire={() => {
+              console.log('⏰ Turnstile token expired');
+              setTurnstileToken(null);
+            }}
+            onError={() => {
+              console.error('❌ Turnstile error');
+              setErrorMsg(
+                t('Security verification failed. Please refresh the page.')
+              );
+              setTurnstileToken(null);
+            }}
+            options={{
+              theme: 'light',
+              size: 'normal',
+              action: 'login_submit',
+            }}
+          />
+        </Box>
+      )}
       <LoadingButton
         fullWidth
         color="inherit"
@@ -286,24 +355,45 @@ export default function JwtRegisterView() {
         type="submit"
         variant="contained"
         loading={isSubmitting}
+        disabled={!turnstileToken || !watchedPassword} // Deshabilitar hasta que se complete el captcha
         endIcon={<Iconify icon="eva:arrow-ios-forward-fill" />}
         sx={{ justifyContent: 'space-between', pl: 2, pr: 1.5 }}
       >
         {t('Create Account')}
       </LoadingButton>
+
+      <Stack
+        direction="row"
+        spacing={0.5}
+        sx={{ textAlign: 'center', justifyContent: 'center' }}
+      >
+        <Typography variant="body2">
+          {' '}
+          {t('Already have an account?')}{' '}
+        </Typography>
+
+        <Link
+          href={paths.auth.signIn}
+          component={RouterLink}
+          variant="subtitle2"
+        >
+          {t('Sign in')}
+        </Link>
+      </Stack>
     </Stack>
   );
 
   return (
-    <>
-      {renderHead}
+    <Container maxWidth="xs">
+      <Box sx={{ py: 4 }}>
+        {renderHead}
 
-      <FormProvider methods={methods} onSubmit={onSubmit}>
-        {renderForm}
-      </FormProvider>
+        <FormProvider methods={methods} onSubmit={onSubmit}>
+          {renderForm}
+        </FormProvider>
 
-      {renderTerms}
-
+        {renderTerms}
+      </Box>
       {!!errorMsg && (
         <Alert severity="error" sx={{ m: 3 }} onClose={() => setErrorMsg('')}>
           {t(errorMsg)}
@@ -321,6 +411,6 @@ export default function JwtRegisterView() {
         onClose={handleClosePrivacyPolicy}
         onAccept={handleAcceptPrivacyPolicy}
       />
-    </>
+    </Container>
   );
 }

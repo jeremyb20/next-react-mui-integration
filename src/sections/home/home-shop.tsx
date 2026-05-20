@@ -3,20 +3,20 @@ import { isEqual } from 'lodash';
 import { m } from 'framer-motion';
 import orderBy from 'lodash/orderBy';
 import { paths } from '@/routes/paths';
-import { useTranslation } from 'react-i18next';
+import { useRouter } from '@/routes/hooks';
 import EmptyContent from '@/components/empty-content';
 import { useGetProductsPublished } from '@/api/product';
+import { useTranslation } from '@/hooks/use-translation';
+import { UserQueryParams } from '@/hooks/use-fetch-paginated';
+import { varFade, MotionViewport } from '@/components/animate';
 import { IProductItem, IProductFilters } from '@/types/product';
+import { getSortOrder, getSortByField } from '@/utils/constants';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-
-import { useRouter } from '@/routes/hooks';
-
-import { varFade, MotionViewport } from '@/components/animate';
 
 import ProductList from '../product/product-list';
 
@@ -35,7 +35,12 @@ export default function HomeShop() {
   const [sortBy] = useState('newest');
   const router = useRouter();
   const { t } = useTranslation();
-
+  const [activeFilters, setActiveFilters] = useState<Partial<UserQueryParams>>({
+    page: 1,
+    limit: 10,
+    sortBy: getSortByField('featured'),
+    sortOrder: getSortOrder('featured'),
+  });
   const dataFiltered = applyFilter({
     inputData: products.slice(0, 4),
     filters,
@@ -54,7 +59,7 @@ export default function HomeShop() {
           <Typography variant="h2"> {t('Affiliate Store')}</Typography>
         </m.div>
         <m.div variants={varFade().inUp}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h5" color="text.secondary">
             {t('Exclusive discounts on products for your pet')}
           </Typography>
         </m.div>
@@ -68,7 +73,13 @@ export default function HomeShop() {
       >
         <m.div variants={varFade().inUp}>
           {(notFound || productsEmpty) && renderNotFound}
-          <ProductList products={dataFiltered} loading={productsLoading} />
+          <ProductList
+            products={dataFiltered}
+            loading={productsLoading}
+            activeFilters={activeFilters}
+            setActiveFilters={setActiveFilters}
+            pagination={null}
+          />
         </m.div>
       </Stack>
 

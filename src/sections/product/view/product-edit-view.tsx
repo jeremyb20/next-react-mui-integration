@@ -1,13 +1,11 @@
 'use client';
 
-import Container from '@mui/material/Container';
-
 import { paths } from '@/routes/paths';
-
 import { useGetProduct } from '@/api/product';
-
 import { useSettingsContext } from '@/components/settings';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
+
+import Container from '@mui/material/Container';
 
 import ProductNewEditForm from '../product-new-edit-form';
 
@@ -27,7 +25,7 @@ export default function ProductEditView({ id }: Props) {
       <CustomBreadcrumbs
         heading="Edit"
         links={[
-          { name: 'Dashboard', href: paths.dashboard.root },
+          { name: 'Inicio', href: paths.dashboard.root },
           {
             name: 'Product',
             href: paths.dashboard.product.root,

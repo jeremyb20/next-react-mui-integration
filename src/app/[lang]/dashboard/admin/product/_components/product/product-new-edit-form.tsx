@@ -55,6 +55,7 @@ import FormProvider, {
 } from '@/components/hook-form';
 
 import { IProductItem } from '@/types/product';
+import { useTranslation } from '@/hooks/use-translation';
 
 // ----------------------------------------------------------------------
 
@@ -80,6 +81,8 @@ export default function ProductNewEditForm({ currentProduct }: Props) {
   const [includeTaxes, setIncludeTaxes] = useState(false);
 
   const { ipData } = useIPInfo();
+
+  const { t } = useTranslation();
 
   const NewProductSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
@@ -279,11 +282,13 @@ export default function ProductNewEditForm({ currentProduct }: Props) {
       router.push(paths.dashboard.admin.product.root);
     } catch (error) {
       console.error(error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-      const errorDetails = error && typeof error === 'object' && 'errors' in error 
-        ? (error as any).errors?.join(', ') 
-        : errorMessage;
-      
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorDetails =
+        error && typeof error === 'object' && 'errors' in error
+          ? (error as any).errors?.join(', ')
+          : errorMessage;
+
       enqueueSnackbar(
         `Error ${isEdit ? 'updating' : 'creating'} product: ${errorDetails}`,
         {
@@ -681,7 +686,7 @@ export default function ProductNewEditForm({ currentProduct }: Props) {
                 name="sellerWhatsApp"
                 label="Phone Number"
                 placeholder={getPhonePlaceholder(watchCountry, 'Phone number')}
-                helperText={getPhoneHelperText(watchCountry, sellerWhatsApp)}
+                helperText={getPhoneHelperText(watchCountry, sellerWhatsApp, t)}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">

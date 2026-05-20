@@ -3,25 +3,32 @@
 'use client';
 
 import * as Yup from 'yup';
+import dynamic from 'next/dynamic';
 import { useSnackbar } from 'notistack';
 import { endpoints } from '@/utils/axios';
+import { useRouter } from '@/routes/hooks';
 import Iconify from '@/components/iconify';
-import { useTranslation } from 'react-i18next';
 import { OptionType } from '@/types/global';
 import { useAuthContext } from '@/auth/hooks';
 import { fData } from '@/utils/format-number';
 import { useBoolean } from '@/hooks/use-boolean';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState, useEffect, useCallback } from 'react';
 import { getValidationCode } from '@/hooks/use-fetch';
-import { HOST_API, PATH_AFTER_LOGIN } from '@/config-global';
+import { useTranslation } from '@/hooks/use-translation';
 import UploadAvatar from '@/components/upload/upload-avatar';
 import { PetAgeCalculator } from '@/utils/pet-age-calculator';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { BreedOptions, GENDER_OPTIONS } from '@/utils/constants';
+import { SITEKEY, HOST_API, PATH_AFTER_LOGIN } from '@/config-global';
 import useCelebrationConfetti from '@/hooks/use-celebration-confetti';
 import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 import { getDogSizeFromBreed, getSpeciesFromBreed } from '@/utils/pet-utils';
+import FormProvider, {
+  RHFSelect,
+  RHFTextField,
+  RHFAutocomplete,
+} from '@/components/hook-form';
 
 import Box from '@mui/material/Box';
 import Step from '@mui/material/Step';
@@ -43,15 +50,8 @@ import {
   ButtonGroup,
   CardContent,
   InputAdornment,
+  CircularProgress,
 } from '@mui/material';
-
-import { useRouter } from '@/routes/hooks';
-
-import FormProvider, {
-  RHFSelect,
-  RHFTextField,
-  RHFAutocomplete,
-} from '@/components/hook-form';
 
 // ----------------------------------------------------------------------
 
@@ -73,6 +73,30 @@ const steps = [
     description: 'Review all information before completing registration',
   },
 ];
+
+// Importar Turnstile dinámicamente para evitar errores de hidratación
+const Turnstile = dynamic(
+  () => import('@marsidev/react-turnstile').then((mod) => mod.Turnstile),
+  {
+    ssr: false,
+    loading: () => (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 1,
+          minHeight: '65px',
+        }}
+      >
+        <CircularProgress size={20} />
+        <Typography variant="caption" color="text.secondary">
+          Loading security verification...
+        </Typography>
+      </Box>
+    ),
+  }
+);
 
 interface PetRegistrationExistingUserProps {
   code?: string;
@@ -103,6 +127,8 @@ export function PetRegistrationExistingUser({
 
   const [petPhoto, setPetPhoto] = useState<File | null>(null);
   const [petPhotoPreview, setPetPhotoPreview] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<any>(null);
 
   // Esquema de validación para el código - 6 dígitos
   const CodeSchema = Yup.object().shape({
@@ -192,8 +218,9 @@ export function PetRegistrationExistingUser({
   const {
     handleSubmit: handleLoginSubmit,
     formState: { isSubmitting: isLoginSubmitting },
+    setValue: setLoginValue,
+    watch: watchLogin,
   } = loginMethods;
-
   const {
     handleSubmit: handlePetSubmit,
     setValue: setPetValue,
@@ -203,6 +230,8 @@ export function PetRegistrationExistingUser({
   } = petMethods;
 
   const watchCodeValue = watchCode('code');
+  const watchedEmail = watchLogin('email');
+  const watchedPassword = watchLogin('password');
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -293,12 +322,17 @@ export function PetRegistrationExistingUser({
   const onLoginSubmit = handleLoginSubmit(async (data) => {
     try {
       setErrorMsg('');
-      await login?.(data.email, data.password);
+      await login?.(data.email, data.password, turnstileToken);
       setUserData(data);
       handleNext();
     } catch (error: any) {
       console.error('Login error:', error);
       setErrorMsg(error.message || 'Invalid email or password');
+      setLoginValue('password', '');
+      // if (turnstileRef.current) {
+      //   turnstileRef.current.reset();
+      // }
+      // setTurnstileToken(null);
     }
   });
 
@@ -408,11 +442,35 @@ export function PetRegistrationExistingUser({
 
         {code && (
           <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-            Code provided: {code}
+            {t('Code provided:')} {code}
           </Typography>
         )}
       </Box>
     </FormProvider>
+  );
+
+  const renderAgeResult = (
+    <>
+      {ageResult && (
+        <Paper sx={{ p: 2, mb: 3 }}>
+          <Typography variant="h6" gutterBottom>
+            {t('Pet Age Information')}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            <strong>{t('Species')}:</strong> {t(ageResult.species)}
+            {ageResult.size &&
+              ageResult.species === 'dog' &&
+              ` (${ageResult.size})`}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {ageResult.years} {t('years and')} {ageResult.months} {t('months')}
+          </Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>
+            {t(ageResult.description)}
+          </Typography>
+        </Paper>
+      )}
+    </>
   );
 
   // Renderizar paso de login
@@ -421,23 +479,23 @@ export function PetRegistrationExistingUser({
       <Box sx={{ mt: 2 }}>
         {!!errorMsg && (
           <Alert severity="error" sx={{ mb: 2 }}>
-            {errorMsg}
+            {t(errorMsg)}
           </Alert>
         )}
 
         <Typography variant="body1" sx={{ mb: 3, color: 'success.main' }}>
-          ✓ Code validated successfully
+          ✓ {t('Code validated successfully')}
         </Typography>
 
         <Typography variant="body1" sx={{ mb: 3 }}>
-          Please sign in to your account to add a new pet.
+          {t('Please sign in to your account to add a new pet.')}
         </Typography>
 
-        <RHFTextField name="email" label="Email address" sx={{ mb: 2 }} />
+        <RHFTextField name="email" label={t('Email address')} sx={{ mb: 2 }} />
 
         <RHFTextField
           name="password"
-          label="Password"
+          label={t('Password')}
           type={password.value ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
@@ -455,16 +513,47 @@ export function PetRegistrationExistingUser({
             ),
           }}
         />
+        {/* Widget de Cloudflare Turnstile */}
+        {SITEKEY && (
+          <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
+            <Turnstile
+              ref={turnstileRef}
+              siteKey={SITEKEY}
+              onSuccess={(token) => {
+                console.log('✅ Turnstile verification successful');
+                setTurnstileToken(token);
+              }}
+              onExpire={() => {
+                console.log('⏰ Turnstile token expired');
+                setTurnstileToken(null);
+              }}
+              onError={() => {
+                console.error('❌ Turnstile error');
+                setErrorMsg(
+                  t('Security verification failed. Please refresh the page.')
+                );
+                setTurnstileToken(null);
+              }}
+              options={{
+                theme: 'light',
+                size: 'normal',
+                action: 'login_submit',
+              }}
+            />
+          </Box>
+        )}
 
-        <Box sx={{ mt: 3 }}>
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            loading={isLoginSubmitting}
-          >
-            Sign In
-          </LoadingButton>
-        </Box>
+        <LoadingButton
+          fullWidth
+          color="inherit"
+          size="large"
+          type="submit"
+          variant="contained"
+          loading={isLoginSubmitting}
+          disabled={!turnstileToken || !watchedPassword} // Deshabilitar hasta que se complete el captcha
+        >
+          {t('Sign In')}
+        </LoadingButton>
       </Box>
     </FormProvider>
   );
@@ -480,12 +569,12 @@ export function PetRegistrationExistingUser({
         )}
 
         <Typography variant="body1" sx={{ mb: 3, color: 'success.main' }}>
-          ✓ Signed in as {userData?.email}
+          ✓ {t('Signed in as')} {userData?.email}
         </Typography>
 
         {/* Sección de Foto de la Mascota */}
         <Card sx={{ mb: 3 }}>
-          <CardHeader title="Pet Photo (Optional)" />
+          <CardHeader title={t('Pet Photo (Optional)')} />
           <CardContent>
             <UploadAvatar
               file={petPhotoPreview}
@@ -502,7 +591,7 @@ export function PetRegistrationExistingUser({
                 if (!allowedTypes.includes(fileData.type)) {
                   return {
                     code: 'invalid-file-type',
-                    message: 'Only JPEG, JPG, PNG or GIF images are allowed',
+                    message: t('Only JPEG, JPG, PNG or GIF images are allowed'),
                   };
                 }
 
@@ -510,7 +599,7 @@ export function PetRegistrationExistingUser({
                 if (fileData.size > 2 * 1024 * 1024) {
                   return {
                     code: 'file-too-large',
-                    message: `Image is too large. Maximum ${fData(
+                    message: `${t('Image is too large. Maximum')} ${fData(
                       2 * 1024 * 1024
                     )}`,
                   };
@@ -529,8 +618,8 @@ export function PetRegistrationExistingUser({
                     color: 'text.disabled',
                   }}
                 >
-                  Allowed *.jpeg, *.jpg, *.png, *.gif
-                  <br /> max size of {fData(2 * 1024 * 1024)}
+                  {t('Allowed *.jpeg, *.jpg, *.png, *.gif')}
+                  <br /> {t('max size of')} {fData(2 * 1024 * 1024)}
                 </Typography>
               }
             />
@@ -544,12 +633,14 @@ export function PetRegistrationExistingUser({
             gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
           }}
         >
-          <RHFTextField name="petName" label="Pet Name" />
+          <RHFTextField name="petName" label={t('Pet Name')} />
           <RHFAutocomplete
             name="breed"
-            label="Raza de la mascota"
+            label={t('Breed')}
+            placeholder={t('Choose breed')}
             options={BreedOptions.todos}
             getOptionLabel={(option: OptionType | string) => {
+              if (!option) return t('Choose breed');
               if (typeof option === 'string') {
                 const foundOption = BreedOptions.todos.find(
                   (opt) => opt.value === option
@@ -580,21 +671,21 @@ export function PetRegistrationExistingUser({
             }}
             renderOption={(props, option) => (
               <li {...props} key={option.value}>
-                {option.label}
+                {t(option.label)}
               </li>
             )}
           />
-          <RHFSelect name="genderSelected" label="Gender">
+          <RHFSelect name="genderSelected" label={t('Gender')}>
             {GENDER_OPTIONS.map((gender) => (
               <MenuItem key={gender.value} value={gender.value}>
-                {gender.label}
+                {t(gender.label)}
               </MenuItem>
             ))}
           </RHFSelect>
 
           <RHFTextField
             name="weight"
-            label="Weight"
+            label={t('Weight')}
             type="number"
             inputProps={{ step: '0.1' }}
             InputProps={{
@@ -630,7 +721,7 @@ export function PetRegistrationExistingUser({
               return (
                 <DatePicker
                   views={['year', 'month', 'day']}
-                  label="Birth Date"
+                  label={t('Birth Date')}
                   minDate={new Date('2000-03-01')}
                   maxDate={new Date()}
                   value={field.value ? new Date(field.value) : null}
@@ -646,6 +737,7 @@ export function PetRegistrationExistingUser({
                   slotProps={{
                     textField: {
                       fullWidth: true,
+                      margin: 'normal',
                       error: !!error,
                       helperText: error?.message,
                     },
@@ -657,52 +749,18 @@ export function PetRegistrationExistingUser({
         </Box>
 
         {/* Mostrar resultado de edad */}
-        {ageResult && (
-          <Paper sx={{ p: 2, mt: 2 }}>
-            <Typography variant="h6" gutterBottom>
-              Edad de la Mascota
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <strong>Especie:</strong>{' '}
-              {ageResult.species === 'dog' ? 'Perro' : 'Gato'}
-              {ageResult.size &&
-                ageResult.species === 'dog' &&
-                ` (${ageResult.size})`}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {ageResult.years} años y {ageResult.months} meses
-            </Typography>
-            <Typography variant="body2" sx={{ mt: 1 }}>
-              {ageResult.description}
-            </Typography>
-
-            {recommendations.length > 0 && (
-              <Box sx={{ mt: 2 }}>
-                <Typography variant="subtitle2" gutterBottom>
-                  Recomendaciones:
-                </Typography>
-                <ul style={{ margin: 0, paddingLeft: '20px' }}>
-                  {recommendations.map((rec, index) => (
-                    <li key={index}>
-                      <Typography variant="body2">{rec}</Typography>
-                    </li>
-                  ))}
-                </ul>
-              </Box>
-            )}
-          </Paper>
-        )}
+        {renderAgeResult}
 
         <RHFTextField
           name="favoriteActivities"
-          label="Favorite Activities"
+          label={t('Favorite Activities')}
           multiline
           rows={2}
           sx={{ mt: 2 }}
         />
         <RHFTextField
           name="healthAndRequirements"
-          label="Health & Requirements"
+          label={t('Health & Requirements')}
           multiline
           rows={2}
           sx={{ mt: 2 }}
@@ -710,14 +768,14 @@ export function PetRegistrationExistingUser({
 
         <Box sx={{ mt: 3 }}>
           <Button onClick={handleBack} sx={{ mr: 1 }}>
-            Back
+            {t('Back')}
           </Button>
           <LoadingButton
             type="submit"
             variant="contained"
             loading={isPetSubmitting}
           >
-            Continue
+            {t('Continue')}
           </LoadingButton>
         </Box>
       </Box>
@@ -729,31 +787,42 @@ export function PetRegistrationExistingUser({
     <Box sx={{ mt: 2 }}>
       <Paper sx={{ p: 3, mb: 3, bgcolor: 'background.neutral' }}>
         <Typography variant="h6" gutterBottom>
-          Code Information
+          {t('Code Information')}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <strong>Invitation Code:</strong> {validatedCode}
+          <strong>{t('Invitation Code')}:</strong> {watchCodeValue}
         </Typography>
       </Paper>
 
       <Paper sx={{ p: 3, mb: 3, bgcolor: 'background.neutral' }}>
         <Typography variant="h6" gutterBottom>
-          User Information
+          {t('User Information')}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <strong>Email:</strong> {userData?.email}
+          <strong>{t('Name')}:</strong> {userData?.firstName}{' '}
+          {userData?.lastName}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Email address')}:</strong> {userData?.email}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Phone Number')}:</strong> {userData?.phone}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Country')}:</strong> {userData?.country}
         </Typography>
       </Paper>
 
       <Paper sx={{ p: 3, bgcolor: 'background.neutral' }}>
         <Typography variant="h6" gutterBottom>
-          Pet Information
+          {t('Pet Information')}
         </Typography>
+
         {/* Mostrar preview de la foto si existe */}
         {petPhotoPreview && (
           <Box sx={{ mb: 2, textAlign: 'center' }}>
             <Typography variant="subtitle2" gutterBottom>
-              Pet Photo:
+              {t('Pet Photo')}:
             </Typography>
             <Box
               component="img"
@@ -771,31 +840,39 @@ export function PetRegistrationExistingUser({
         )}
 
         <Typography variant="body2" color="text.secondary">
-          <strong>Name:</strong> {petData?.petName}
+          <strong>{t('Pet Name')}:</strong> {petData?.petName}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <strong>Breed:</strong> {petData?.breed}
+          <strong>{t('Breed')}: </strong>
+          {BreedOptions.todos.find((breed) => breed.value === petData?.breed)
+            ?.label || 'Unknown breed'}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <strong>Gender:</strong> {petData?.genderSelected}
+          <strong>{t('Gender')}:</strong>{' '}
+          {t(
+            GENDER_OPTIONS.find(
+              (gender) => gender.value === petData?.genderSelected
+            )?.label || ''
+          )}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <strong>Weight:</strong> {petData?.weight} {weightUnit}
+          <strong>{t('Weight')}:</strong> {petData?.weight} {weightUnit}
         </Typography>
-        {petData?.birthDate && (
-          <Typography variant="body2" color="text.secondary">
-            <strong>Birth Date:</strong>{' '}
-            {new Date(petData.birthDate).toLocaleDateString()}
-          </Typography>
-        )}
+        <Typography variant="body2" color="text.secondary">
+          <strong>{t('Birth Date')}:</strong>{' '}
+          {petData?.birthDate
+            ? new Date(petData.birthDate).toLocaleDateString()
+            : t('Not specified')}
+        </Typography>
         {petData?.favoriteActivities && (
           <Typography variant="body2" color="text.secondary">
-            <strong>Favorite Activities:</strong> {petData.favoriteActivities}
+            <strong>{t('Favorite Activities')}:</strong>{' '}
+            {petData.favoriteActivities}
           </Typography>
         )}
         {petData?.healthAndRequirements && (
           <Typography variant="body2" color="text.secondary">
-            <strong>Health & Requirements:</strong>{' '}
+            <strong>{t('Health & Requirements')}:</strong>{' '}
             {petData.healthAndRequirements}
           </Typography>
         )}
@@ -804,44 +881,62 @@ export function PetRegistrationExistingUser({
       {ageResult && (
         <Paper sx={{ p: 2, mt: 2 }}>
           <Typography variant="h6" gutterBottom>
-            Edad de la Mascota
+            {t('Pets Age')}
           </Typography>
           <Typography variant="body2">
-            <strong>Edad humana:</strong> {ageResult.humanYears} años
+            <strong>{t('Human age')}:</strong> {ageResult.humanYears}{' '}
+            {t('years')}
           </Typography>
           <Typography variant="body2">
-            <strong>Edad de mascota:</strong> {ageResult.petYears} años
+            <strong>{t('Pet age')}:</strong> {ageResult.petYears} {t('years')}
           </Typography>
           <Typography variant="body2">
-            <strong>Categoría:</strong> {ageResult.ageCategory}
+            <strong>{t('Category')}:</strong> {t(ageResult.ageCategory)}
           </Typography>
           <Typography variant="body2" sx={{ mt: 1 }}>
-            {ageResult.description}
+            {t(ageResult.description)}
           </Typography>
+
+          {recommendations.length > 0 && (
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="subtitle2" gutterBottom>
+                {t('Recommendations')}:
+              </Typography>
+              <ul style={{ margin: 0, paddingLeft: '20px' }}>
+                {recommendations.map((rec, index) => (
+                  <li key={index}>
+                    <Typography variant="body2">{t(rec)}</Typography>
+                  </li>
+                ))}
+              </ul>
+            </Box>
+          )}
         </Paper>
       )}
-
       {!!errorMsg && (
         <Alert severity="error" sx={{ my: 2 }}>
-          {errorMsg}
+          {t(errorMsg)}
         </Alert>
       )}
       <Box sx={{ mt: 3 }}>
         <Button onClick={handleBack} sx={{ mr: 1 }}>
-          Back
+          {t('Back')}
         </Button>
-
         <LoadingButton
           type="submit"
           variant="contained"
           loading={isSubmitting}
           onClick={handleCompleteRegistration}
         >
-          Complete Registration
+          {t('Complete Registration')}
         </LoadingButton>
       </Box>
     </Box>
   );
+
+  useEffect(() => {
+    setErrorMsg('');
+  }, [watchedEmail]);
 
   // Efecto para calcular edad cuando cambia la raza o fecha de nacimiento
   useEffect(() => {
@@ -868,15 +963,15 @@ export function PetRegistrationExistingUser({
             <StepLabel
               optional={
                 index === steps.length - 1 ? (
-                  <Typography variant="caption">Last step</Typography>
+                  <Typography variant="caption">{t('Last step')}</Typography>
                 ) : null
               }
             >
-              {step.label}
+              {t(step.label)}
             </StepLabel>
             <StepContent>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                {step.description}
+                {t(step.description)}
               </Typography>
 
               {index === 0 && renderCodeStep()}
@@ -897,10 +992,10 @@ export function PetRegistrationExistingUser({
           }}
         >
           <Typography sx={{ mb: 2 }}>
-            Registration completed successfully!
+            {t('Registration completed successfully!')}
           </Typography>
           <Button variant="contained" onClick={goToLogin}>
-            Redirect to login
+            {t('Redirect to login')}
           </Button>
         </Paper>
       )}

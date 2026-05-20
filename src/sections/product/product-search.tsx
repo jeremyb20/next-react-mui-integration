@@ -1,5 +1,9 @@
+import { useRouter } from '@/routes/hooks';
+import Iconify from '@/components/iconify';
+import { IProductItem } from '@/types/product';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
+import SearchNotFound from '@/components/search-not-found';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -7,13 +11,6 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
-
-import { useRouter } from '@/routes/hooks';
-
-import Iconify from '@/components/iconify';
-import SearchNotFound from '@/components/search-not-found';
-
-import { IProductItem } from '@/types/product';
 
 // ----------------------------------------------------------------------
 
@@ -44,8 +41,7 @@ export default function ProductSearch({
         const selectItem = results.filter(
           (product) => product.name === query
         )[0];
-
-        handleClick(selectItem.id);
+        handleClick(selectItem.productId);
       }
     }
   };
@@ -60,7 +56,9 @@ export default function ProductSearch({
       onInputChange={(event, newValue) => onSearch(newValue)}
       getOptionLabel={(option) => option.name}
       noOptionsText={<SearchNotFound query={query} sx={{ bgcolor: 'unset' }} />}
-      isOptionEqualToValue={(option, value) => option.id === value.id}
+      isOptionEqualToValue={(option, value) =>
+        option.productId === value.productId
+      }
       slotProps={{
         popper: {
           placement: 'bottom-start',
@@ -110,11 +108,11 @@ export default function ProductSearch({
           <Box
             component="li"
             {...props}
-            onClick={() => handleClick(product.id)}
-            key={product.id}
+            onClick={() => handleClick(product.productId)}
+            key={product.productId}
           >
             <Avatar
-              key={product.id}
+              key={product.productId}
               alt={product.name}
               src={product.coverUrl}
               variant="rounded"

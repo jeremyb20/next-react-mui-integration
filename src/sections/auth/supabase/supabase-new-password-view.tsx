@@ -2,8 +2,15 @@
 
 import * as Yup from 'yup';
 import { useState } from 'react';
+import { paths } from '@/routes/paths';
 import { useForm } from 'react-hook-form';
+import { useRouter } from '@/routes/hooks';
+import Iconify from '@/components/iconify';
+import { useAuthContext } from '@/auth/hooks';
+import { useBoolean } from '@/hooks/use-boolean';
+import { NewPasswordIcon } from '@/assets/icons';
 import { yupResolver } from '@hookform/resolvers/yup';
+import FormProvider, { RHFTextField } from '@/components/hook-form';
 
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
@@ -11,17 +18,6 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import InputAdornment from '@mui/material/InputAdornment';
-
-import { paths } from '@/routes/paths';
-import { useRouter } from '@/routes/hooks';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { useAuthContext } from '@/auth/hooks';
-import { NewPasswordIcon } from '@/assets/icons';
-
-import Iconify from '@/components/iconify';
-import FormProvider, { RHFTextField } from '@/components/hook-form';
 
 // ----------------------------------------------------------------------
 
@@ -68,9 +64,13 @@ export default function SupabaseNewPasswordView() {
     } catch (error) {
       console.error(error);
       reset();
-      const errorMessage =
-        error instanceof Error ? error.message : 'Login failed';
-      setErrorMsg(errorMessage);
+      setErrorMsg(
+        typeof error === 'string'
+          ? error
+          : error instanceof Error
+            ? error.message
+            : 'Error saving user information'
+      );
     }
   });
 

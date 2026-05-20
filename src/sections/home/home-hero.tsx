@@ -1,6 +1,12 @@
-import { m, useScroll } from 'framer-motion';
+import { paths } from '@/routes/paths';
+import Iconify from '@/components/iconify';
 import { APP_NAME } from '@/config-global';
-import { useTranslation } from 'react-i18next';
+import { m, useScroll } from 'framer-motion';
+import { RouterLink } from '@/routes/components';
+import { HEADER } from '@/layouts/config-layout';
+import { bgGradient, textGradient } from '@/theme/css';
+import { useTranslation } from '@/hooks/use-translation';
+import { varFade, MotionContainer } from '@/components/animate';
 import { useRef, useState, useEffect, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
@@ -10,15 +16,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { alpha, styled } from '@mui/material/styles';
-
-import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import { HEADER } from '@/layouts/config-layout';
-import { bgGradient, textGradient } from '@/theme/css';
-
-import Iconify from '@/components/iconify';
-import { varFade, MotionContainer } from '@/components/animate';
 
 // ----------------------------------------------------------------------
 
@@ -109,7 +106,7 @@ export default function HomeHero() {
         },
       }}
     >
-      <m.div variants={varFade().in as any} initial={false}>
+      <m.div variants={varFade().in} initial={false}>
         <Typography
           component="h1"
           variant="h1"
@@ -126,7 +123,7 @@ export default function HomeHero() {
         </Typography>
       </m.div>
 
-      <m.div variants={varFade().in as any} initial={false}>
+      <m.div variants={varFade().in} initial={false}>
         <StyledTextGradient
           animate={{ backgroundPosition: '200% center' }}
           transition={{
@@ -140,7 +137,7 @@ export default function HomeHero() {
         </StyledTextGradient>
       </m.div>
 
-      <m.div variants={varFade().in as any} initial={false}>
+      <m.div variants={varFade().in} initial={false}>
         <Typography variant="body2" sx={{ textAlign: 'center', py: 2 }}>
           {/* Registra hasta 10 mascotas, gestiona su salud, agenda citas y disfruta
           de descuentos exclusivos */}
@@ -150,7 +147,7 @@ export default function HomeHero() {
         </Typography>
       </m.div>
 
-      <m.div variants={varFade().in as any} initial={false}>
+      <m.div variants={varFade().in} initial={false}>
         <Stack
           spacing={1.5}
           direction={{ xs: 'column-reverse', sm: 'row' }}
@@ -159,7 +156,7 @@ export default function HomeHero() {
           <Stack alignItems="center" spacing={2}>
             <Button
               component={RouterLink}
-              href={paths.auth.register}
+              href={paths.auth.signUp}
               color="primary"
               size="large"
               variant="contained"
@@ -167,21 +164,6 @@ export default function HomeHero() {
             >
               {t('Get Started')}
             </Button>
-
-            {/* <Link
-              component={RouterLink}
-              href={paths.auth.login}
-              variant="caption"
-              sx={{
-                color: 'common.white',
-                textDecoration: 'underline',
-                display: 'inline-flex',
-                alignItems: 'center',
-              }}
-            >
-              <Iconify icon="mdi:login" width={16} sx={{ mr: 0.5 }} />
-              Ya tengo cuenta
-            </Link> */}
           </Stack>
 
           <Button
@@ -190,7 +172,7 @@ export default function HomeHero() {
             variant="outlined"
             startIcon={<Iconify icon="mdi:vet" width={24} />}
             component={RouterLink}
-            href={paths.auth.login}
+            href={paths.auth.signIn}
           >
             {t('I have an account')}
           </Button>
@@ -215,10 +197,10 @@ export default function HomeHero() {
               <Grid size={{ xs: 12, md: 12 }}>{renderDescription}</Grid>
 
               {/* {mdUp && (
-                <Grid size={{ xs: 12, md: 6 }}>
+                <Grid md={6}>
                   <Box
                     component={m.img}
-                    variants={varFade().in as any}
+                    variants={varFade().in}
                     src="https://res.cloudinary.com/ensamble/image/upload/v1617140707/ni3pp5dtrusbht2tu7ht.jpg"
                     sx={{
                       maxWidth: '100%',

@@ -29,14 +29,12 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 // import { fData } from '@/utils/format-number';
 
-import { useTranslation } from 'react-i18next';
+import { countries } from '@/assets/data';
 import { useAuthContext } from '@/auth/hooks';
 import { useBoolean } from '@/hooks/use-boolean';
-import StyledAvatar from '@/components/avatar/styled-avatar';
-
-import { countries } from '@/assets/data';
-
 import { useSnackbar } from '@/components/snackbar';
+import { useTranslation } from '@/hooks/use-translation';
+import StyledAvatar from '@/components/avatar/styled-avatar';
 import FormProvider, {
   RHFSwitch,
   RHFTextField,
@@ -45,6 +43,7 @@ import FormProvider, {
 } from '@/components/hook-form';
 
 import AccountSelectionModal from './account-selection-modal';
+import AccountChangePassword from './account-change-password';
 
 // ----------------------------------------------------------------------
 
@@ -207,21 +206,6 @@ export default function AccountGeneral() {
     }
   });
 
-  // const handleDrop = useCallback(
-  //   (acceptedFiles: File[]) => {
-  //     const file = acceptedFiles[0];
-
-  //     const newFile = Object.assign(file, {
-  //       preview: URL.createObjectURL(file),
-  //     });
-
-  //     if (file) {
-  //       setValue('photoURL', newFile, { shouldValidate: true });
-  //     }
-  //   },
-  //   [setValue]
-  // );
-
   const handleSelectAvatar = async (avatarSrc: string) => {
     setValue('avatarProfile', avatarSrc, { shouldValidate: true });
     try {
@@ -242,7 +226,7 @@ export default function AccountGeneral() {
     <>
       <FormProvider methods={methods} onSubmit={onSubmit}>
         <Grid container spacing={3}>
-          <Grid size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12, md: 12 }}>
             <Card
               sx={{
                 pt: 10,
@@ -254,26 +238,6 @@ export default function AccountGeneral() {
                 flexDirection: 'column',
               }}
             >
-              {/* <RHFUploadAvatar
-              name="photoURL"
-              maxSize={3145728}
-              onDrop={handleDrop}
-              helperText={
-                <Typography
-                  variant="caption"
-                  sx={{
-                    mt: 3,
-                    mx: 'auto',
-                    display: 'block',
-                    textAlign: 'center',
-                    color: 'text.disabled',
-                  }}
-                >
-                  Allowed *.jpeg, *.jpg, *.png, *.gif
-                  <br /> max size of {fData(3145728)}
-                </Typography>
-              }
-            /> */}
               <StyledAvatar
                 src={user?.photoURL}
                 alt={user?.displayName}
@@ -297,7 +261,7 @@ export default function AccountGeneral() {
             </Card>
           </Grid>
 
-          <Grid size={{ xs: 12, md: 8 }}>
+          <Grid size={{ xs: 12, md: 12 }}>
             <Card sx={{ p: 3 }}>
               <Box
                 rowGap={3}
@@ -309,7 +273,11 @@ export default function AccountGeneral() {
                 }}
               >
                 <RHFTextField name="displayName" label={t('Name')} />
-                <RHFTextField name="email" label={t('Email address')} />
+                <RHFTextField
+                  name="email"
+                  disabled
+                  label={t('Email address')}
+                />
                 <RHFAutocomplete
                   name="country"
                   type="country"
@@ -326,7 +294,7 @@ export default function AccountGeneral() {
                     watchCountry,
                     'Phone number'
                   )}
-                  helperText={getPhoneHelperText(watchCountry, watchPhone)}
+                  helperText={getPhoneHelperText(watchCountry, watchPhone, t)}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -385,6 +353,11 @@ export default function AccountGeneral() {
           </Grid>
         </Grid>
       </FormProvider>
+      <Grid container spacing={3}>
+        <Grid size={{ xs: 12, md: 12 }}>
+          <AccountChangePassword />
+        </Grid>
+      </Grid>
 
       <AccountSelectionModal
         avatarDialog={avatarDialog}

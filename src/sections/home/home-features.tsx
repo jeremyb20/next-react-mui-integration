@@ -1,6 +1,7 @@
 import { m } from 'framer-motion';
 import Iconify from '@/components/iconify';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/hooks/use-translation';
+import { varFade, MotionViewport } from '@/components/animate';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -8,8 +9,6 @@ import Stack from '@mui/material/Stack';
 import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-
-import { varFade, MotionViewport } from '@/components/animate';
 
 // ----------------------------------------------------------------------
 
@@ -110,7 +109,7 @@ export default function HomeFeatures() {
                 sx={{ mx: 'auto', width: 64, height: 64 }}
               />
 
-              <Typography variant="h5" sx={{ mt: 8, mb: 2 }}>
+              <Typography variant="h3" sx={{ mt: 8, mb: 2 }}>
                 {t(feature.title)}
               </Typography>
 

@@ -1,8 +1,8 @@
-import Grid from '@mui/material/Grid';
-
 import { IPaymentCard } from '@/types/payment';
 import { IAddressItem } from '@/types/address';
 import { IUserAccountBillingHistory } from '@/types/user';
+
+import Grid from '@mui/material/Grid';
 
 import AccountBillingPlan from './account-billing-plan';
 import AccountBillingPayment from './account-billing-payment';

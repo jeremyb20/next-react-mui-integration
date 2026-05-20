@@ -1,16 +1,13 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
+import { paths } from '@/routes/paths';
 import { AccountView } from '@/sections/account/view';
 import { useManagerUser } from '@/hooks/use-manager-user';
-
-import Container from '@mui/material/Container';
-
-import { paths } from '@/routes/paths';
-
-import Iconify from '@/components/iconify';
 import { useSettingsContext } from '@/components/settings';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
+
+import Container from '@mui/material/Container';
 
 // import ProfileFriends from '../_components/profile-friends';
 // import ProfileGallery from '../_components/profile-gallery';
@@ -19,33 +16,33 @@ import UserPetCardsView from '../_components/user-pets-cards-view';
 
 // ----------------------------------------------------------------------
 
-const TABS = [
-  {
-    value: 'myPets',
-    label: 'My Pets',
-    icon: <Iconify icon="tabler:paw" width={24} />,
-  },
-  {
-    value: 'profile',
-    label: 'Profile',
-    icon: <Iconify icon="solar:user-id-bold" width={24} />,
-  },
-  // {
-  //   value: 'followers',
-  //   label: 'Followers',
-  //   icon: <Iconify icon="solar:heart-bold" width={24} />,
-  // },
-  // {
-  //   value: 'friends',
-  //   label: 'Friends',
-  //   icon: <Iconify icon="solar:users-group-rounded-bold" width={24} />,
-  // },
-  // {
-  //   value: 'gallery',
-  //   label: 'Gallery',
-  //   icon: <Iconify icon="solar:gallery-wide-bold" width={24} />,
-  // },
-];
+// const TABS = [
+//   {
+//     value: 'myPets',
+//     label: 'My Pets',
+//     icon: <Iconify icon="tabler:paw" width={24} />,
+//   },
+//   {
+//     value: 'profile',
+//     label: 'Profile',
+//     icon: <Iconify icon="solar:user-id-bold" width={24} />,
+//   },
+//   // {
+//   //   value: 'followers',
+//   //   label: 'Followers',
+//   //   icon: <Iconify icon="solar:heart-bold" width={24} />,
+//   // },
+//   // {
+//   //   value: 'friends',
+//   //   label: 'Friends',
+//   //   icon: <Iconify icon="solar:users-group-rounded-bold" width={24} />,
+//   // },
+//   // {
+//   //   value: 'gallery',
+//   //   label: 'Gallery',
+//   //   icon: <Iconify icon="solar:gallery-wide-bold" width={24} />,
+//   // },
+// ];
 
 // ----------------------------------------------------------------------
 
@@ -54,30 +51,30 @@ export default function UserProfileView() {
 
   const { user } = useManagerUser();
 
-  const [searchFriends, setSearchFriends] = useState('');
+  // const [searchFriends, setSearchFriends] = useState('');
 
-  const [currentTab, setCurrentTab] = useState('myPets');
+  const [currentTab] = useState('myPets');
 
-  const handleChangeTab = useCallback(
-    (event: React.SyntheticEvent, newValue: string) => {
-      setCurrentTab(newValue);
-    },
-    []
-  );
+  // const handleChangeTab = useCallback(
+  //   (event: React.SyntheticEvent, newValue: string) => {
+  //     setCurrentTab(newValue);
+  //   },
+  //   []
+  // );
 
-  const handleSearchFriends = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchFriends(event.target.value);
-    },
-    []
-  );
+  // const handleSearchFriends = useCallback(
+  //   (event: React.ChangeEvent<HTMLInputElement>) => {
+  //     setSearchFriends(event.target.value);
+  //   },
+  //   []
+  // );
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs
         heading="Profile"
         links={[
-          { name: 'Dashboard', href: paths.dashboard.root },
+          { name: 'Inicio', href: paths.dashboard.root },
           { name: 'User', href: paths.dashboard.user.root },
           { name: user?.displayName },
         ]}

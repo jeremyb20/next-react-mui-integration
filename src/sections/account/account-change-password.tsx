@@ -1,9 +1,13 @@
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { endpoints } from '@/utils/axios';
+import Iconify from '@/components/iconify';
 import { HOST_API } from '@/config-global';
-import { useTranslation } from 'react-i18next';
+import { useBoolean } from '@/hooks/use-boolean';
+import { useSnackbar } from '@/components/snackbar';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from '@/hooks/use-translation';
+import FormProvider, { RHFTextField } from '@/components/hook-form';
 import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 
 import Card from '@mui/material/Card';
@@ -11,12 +15,6 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import InputAdornment from '@mui/material/InputAdornment';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
-import Iconify from '@/components/iconify';
-import { useSnackbar } from '@/components/snackbar';
-import FormProvider, { RHFTextField } from '@/components/hook-form';
 
 // ----------------------------------------------------------------------
 
@@ -77,7 +75,6 @@ export default function AccountChangePassword() {
       });
       reset();
       enqueueSnackbar('Update success!');
-      console.info('DATA', data);
     } catch (error) {
       console.error(error);
     }
@@ -89,7 +86,7 @@ export default function AccountChangePassword() {
         <RHFTextField
           name="oldPassword"
           type={password.value ? 'text' : 'password'}
-          label="Old Password"
+          label={t('Old Password')}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -109,7 +106,7 @@ export default function AccountChangePassword() {
 
         <RHFTextField
           name="newPassword"
-          label="New Password"
+          label={t('New Password')}
           type={password.value ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
@@ -129,7 +126,9 @@ export default function AccountChangePassword() {
           helperText={
             <Stack component="span" direction="row" alignItems="center">
               <Iconify icon="eva:info-fill" width={16} sx={{ mr: 0.5 }} />{' '}
-              Password must be minimum 6+
+              {t(
+                'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'
+              )}
             </Stack>
           }
         />
@@ -137,7 +136,7 @@ export default function AccountChangePassword() {
         <RHFTextField
           name="confirmNewPassword"
           type={password.value ? 'text' : 'password'}
-          label="Confirm New Password"
+          label={t('Confirm New Password')}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -161,7 +160,7 @@ export default function AccountChangePassword() {
           loading={isSubmitting}
           sx={{ ml: 'auto' }}
         >
-          Save Changes
+          {t('Save Changes')}
         </LoadingButton>
       </Stack>
     </FormProvider>

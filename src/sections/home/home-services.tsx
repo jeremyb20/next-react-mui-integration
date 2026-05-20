@@ -1,7 +1,7 @@
-'use client';
 import { m } from 'framer-motion';
 import Iconify from '@/components/iconify';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/hooks/use-translation';
+import { varFade, MotionViewport } from '@/components/animate';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -9,9 +9,6 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
-
-import { varFade, MotionViewport } from '@/components/animate';
 
 const SERVICES = [
   {
@@ -36,12 +33,6 @@ const SERVICES = [
 
 export default function HomeServices() {
   const { t } = useTranslation();
-  const theme = useTheme();
-
-  const customShadows = theme.customShadows || {
-    z8: '0px 8px 16px rgba(0, 0, 0, 0.1)',
-    z24: '0px 24px 48px rgba(0, 0, 0, 0.2)',
-  };
 
   return (
     <Container component={MotionViewport} sx={{ py: { xs: 10, md: 15 } }}>
@@ -50,7 +41,7 @@ export default function HomeServices() {
           <Typography variant="h2">{t('Available Services')}</Typography>
         </m.div>
         <m.div variants={varFade().inUp}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h4" color="text.secondary">
             {t('Everything you need for your well-being in one place')}
           </Typography>
         </m.div>
@@ -70,9 +61,9 @@ export default function HomeServices() {
               sx={{
                 p: 5,
                 textAlign: 'center',
-                boxShadow: customShadows.z8,
+                boxShadow: (theme) => theme.customShadows.z8,
                 '&:hover': {
-                  boxShadow: customShadows.z24,
+                  boxShadow: (theme) => theme.customShadows.z24,
                 },
               }}
             >

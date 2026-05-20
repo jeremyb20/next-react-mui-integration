@@ -2,21 +2,29 @@ import * as Yup from 'yup';
 import { useMemo } from 'react';
 import { IUser } from '@/types/api';
 import { useForm } from 'react-hook-form';
+import { countries } from '@/assets/data';
 import { endpoints } from '@/utils/axios';
 import Iconify from '@/components/iconify';
 import { HOST_API } from '@/config-global';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useSnackbar } from '@/components/snackbar';
 import { IPInfoResponse } from '@/hooks/use-ip-info';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from '@/hooks/use-translation';
 import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
+import {
+  USER_ROLE_OPTIONS,
+  USER_STATUS_OPTIONS,
+} from '@/components/filters/filter-constants';
 import {
   CountryCode,
   isValidPhoneNumber,
   parsePhoneNumberFromString,
 } from 'libphonenumber-js';
-import {
-  USER_ROLE_OPTIONS,
-  USER_STATUS_OPTIONS,
-} from '@/components/filters/filter-constants';
+import FormProvider, {
+  RHFSelect,
+  RHFTextField,
+  RHFAutocomplete,
+} from '@/components/hook-form';
 import {
   getPhoneHelperText,
   getPhonePlaceholder,
@@ -34,15 +42,6 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-
-import { countries } from '@/assets/data';
-
-import { useSnackbar } from '@/components/snackbar';
-import FormProvider, {
-  RHFSelect,
-  RHFTextField,
-  RHFAutocomplete,
-} from '@/components/hook-form';
 
 // ----------------------------------------------------------------------
 
@@ -64,7 +63,7 @@ type FormValues = {
   status?: string;
 };
 
-export default function UserQuickEditForm({
+export default function UserQuickEditModalForm({
   currentUser,
   open,
   onClose,
@@ -73,6 +72,7 @@ export default function UserQuickEditForm({
 }: Props) {
   const { enqueueSnackbar } = useSnackbar();
   const { mutateAsync } = useCreateGenericMutation();
+  const { t } = useTranslation();
 
   const userStatus = USER_STATUS_OPTIONS.find(
     (option) => option.value === currentUser?.userStatus.toString()
@@ -240,7 +240,7 @@ export default function UserQuickEditForm({
               name="phone"
               label="Phone Number"
               placeholder={getPhonePlaceholder(watchCountry, 'Phone number')}
-              helperText={getPhoneHelperText(watchCountry, watchPhone)}
+              helperText={getPhoneHelperText(watchCountry, watchPhone, t)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

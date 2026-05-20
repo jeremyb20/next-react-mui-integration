@@ -1,3 +1,10 @@
+import Label from '@/components/label';
+import { IUserItem } from '@/types/user';
+import Iconify from '@/components/iconify';
+import { useBoolean } from '@/hooks/use-boolean';
+import { ConfirmDialog } from '@/components/custom-dialog';
+import CustomPopover, { usePopover } from '@/components/custom-popover';
+
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
@@ -8,16 +15,7 @@ import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 
-import { useBoolean } from '@/hooks/use-boolean';
-
-import Label from '@/components/label';
-import Iconify from '@/components/iconify';
-import { ConfirmDialog } from '@/components/custom-dialog';
-import CustomPopover, { usePopover } from '@/components/custom-popover';
-
-import { IUserItem } from '@/types/user';
-
-import UserQuickEditForm from './user-quick-edit-form';
+import UserQuickEditModalForm from './user-quick-edit-modal-form';
 
 // ----------------------------------------------------------------------
 
@@ -104,7 +102,7 @@ export default function UserTableRow({
         </TableCell>
       </TableRow>
 
-      <UserQuickEditForm
+      <UserQuickEditModalForm
         currentUser={row}
         open={quickEdit.value}
         onClose={quickEdit.onFalse}

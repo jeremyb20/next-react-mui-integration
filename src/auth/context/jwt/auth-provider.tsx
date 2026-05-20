@@ -1,0 +1,343 @@
+'use client';
+
+import { DeviceInfo } from '@/types/api';
+import { STORAGE_KEY } from '@/config-global';
+import axios, { endpoints } from '@/utils/axios';
+import { SettingsValueProps } from '@/components/settings';
+import { useRef, useMemo, useEffect, useReducer, useCallback } from 'react';
+
+import { AuthContext } from './auth-context';
+import { setSession, isValidToken } from './utils';
+import { AuthUserType, ActionMapType, AuthStateType } from '../../types';
+
+// ----------------------------------------------------------------------
+/**
+ * NOTE:
+ * We only build demo at basic level.
+ * Customer will need to do some extra handling yourself if you want to extend the logic and other features...
+ */
+// ----------------------------------------------------------------------
+
+enum Types {
+  INITIAL = 'INITIAL',
+  LOGIN = 'LOGIN',
+  REGISTER = 'REGISTER',
+  LOGOUT = 'LOGOUT',
+  UPDATE_USER = 'UPDATE_USER',
+}
+
+type Payload = {
+  [Types.INITIAL]: {
+    user: AuthUserType;
+  };
+  [Types.LOGIN]: {
+    user: AuthUserType;
+  };
+  [Types.REGISTER]: {
+    user: AuthUserType;
+  };
+  [Types.UPDATE_USER]: {
+    user: Partial<AuthUserType>;
+  };
+  [Types.LOGOUT]: undefined;
+};
+
+type ActionsType = ActionMapType<Payload>[keyof ActionMapType<Payload>];
+
+// ----------------------------------------------------------------------
+
+const initialState: AuthStateType = {
+  user: null,
+  loading: true,
+};
+
+const reducer = (state: AuthStateType, action: ActionsType) => {
+  if (action.type === Types.INITIAL) {
+    return {
+      loading: false,
+      user: action.payload.user,
+    };
+  }
+  if (action.type === Types.LOGIN) {
+    return {
+      ...state,
+      user: action.payload.user,
+    };
+  }
+  if (action.type === Types.REGISTER) {
+    return {
+      ...state,
+      user: action.payload.user,
+    };
+  }
+  if (action.type === Types.LOGOUT) {
+    return {
+      ...state,
+      user: null,
+    };
+  }
+  if (action.type === Types.UPDATE_USER) {
+    return {
+      ...state,
+      user: state.user ? { ...state.user, ...action.payload.user } : null,
+    };
+  }
+  return state;
+};
+
+// ----------------------------------------------------------------------
+
+type Props = {
+  children: React.ReactNode;
+};
+
+export function AuthProvider({ children }: Props) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const initializedRef = useRef(false);
+  const initialize = useCallback(async () => {
+    if (initializedRef.current) return;
+    initializedRef.current = true;
+    try {
+      const accessToken = localStorage.getItem(STORAGE_KEY);
+      if (accessToken && isValidToken(accessToken)) {
+        setSession(accessToken);
+        const res = await axios.get(endpoints.auth.me);
+
+        const { payload: user } = res.data;
+        dispatch({
+          type: Types.INITIAL,
+          payload: {
+            user: {
+              ...user,
+              accessToken,
+            },
+          },
+        });
+      } else {
+        dispatch({
+          type: Types.INITIAL,
+          payload: {
+            user: null,
+          },
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      dispatch({
+        type: Types.INITIAL,
+        payload: {
+          user: null,
+        },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    initialize();
+  }, [initialize]);
+
+  // LOGIN
+
+  const login = useCallback(
+    async (
+      email: string,
+      password: string,
+      turnstileToken: string | null,
+      twoFactorCode?: string,
+      deviceInfo?: DeviceInfo | undefined
+    ) => {
+      try {
+        const data: any = {
+          email,
+          password,
+          turnstileToken,
+          deviceInfo,
+        };
+
+        // Si se proporciona código 2FA, incluirlo en la petición
+        if (twoFactorCode) {
+          data.twoFactorCode = twoFactorCode;
+        }
+
+        const loginRes = await axios.post(endpoints.auth.signIn, data);
+
+        // Verificar si se requiere 2FA
+        if (loginRes.data.requiresTwoFactor) {
+          // Retornar información de 2FA para que el componente la maneje
+          return {
+            requiresTwoFactor: true,
+            method: loginRes.data.method,
+            tempToken: loginRes.data.tempToken,
+            message: loginRes.data.message,
+          };
+        }
+
+        // Verificar si la respuesta es exitosa
+        if (!loginRes.data.success) {
+          throw new Error(loginRes.data.message || 'Login failed');
+        }
+
+        const { token: accessToken } = loginRes.data;
+
+        setSession(accessToken);
+
+        const meRes = await axios.get(endpoints.auth.me);
+        const { payload: user } = meRes.data;
+
+        dispatch({
+          type: Types.LOGIN,
+          payload: {
+            user: {
+              ...user,
+              accessToken,
+            },
+          },
+        });
+
+        return {
+          success: true,
+          user,
+          accessToken,
+        };
+      } catch (error: any) {
+        // Manejar errores de axios o del servidor
+        if (error.response) {
+          // El servidor respondió con un código de error
+          const errorMessage = error.response.data?.message || 'Login failed';
+          throw new Error(errorMessage);
+        } else if (error.request) {
+          // La petición fue hecha pero no se recibió respuesta
+          throw new Error('Network error. Please try again.');
+        } else {
+          // Algo pasó al configurar la petición
+          throw new Error(error.message || 'An error occurred');
+        }
+      }
+    },
+    []
+  );
+
+  // REGISTER
+  const register = useCallback(
+    async (
+      email: string,
+      password: string,
+      firstName: string,
+      lastName: string,
+      country: string,
+      phone: string,
+      settings: Record<string, any>,
+      turnstileToken: string | null
+    ) => {
+      try {
+        const defaultTheme: SettingsValueProps = {
+          fontSizeScale: settings.fontSizeScale || 1,
+          themeColorPresets: settings.themeColorPresets || 'default',
+          themeContrast: settings.themeContrast || 'default',
+          themeDirection: settings.themeDirection || 'ltr',
+          themeLayout: settings.themeLayout || 'vertical',
+          themeMode: settings.themeMode || 'dark',
+          themeStretch: settings.themeStretch || false,
+        };
+
+        const data = {
+          email,
+          password,
+          firstName,
+          lastName,
+          phone,
+          country,
+          settings: defaultTheme,
+          turnstileToken,
+        };
+
+        const registerRes = await axios.post(
+          endpoints.auth.registerAccountWithEmail,
+          data
+        );
+
+        // Verificar si la respuesta es exitosa
+        if (!registerRes.data.success) {
+          throw new Error(registerRes.data.message || 'Registration failed');
+        }
+
+        const { token: accessToken } = registerRes.data.data;
+        // Guardar el token en sesión (igual que en login)
+        setSession(accessToken);
+
+        // Llamar al endpoint 'me' para obtener información del usuario
+        const meRes = await axios.get(endpoints.auth.me);
+        const { payload: user } = meRes.data;
+
+        dispatch({
+          type: Types.REGISTER,
+          payload: {
+            user: {
+              ...user,
+              accessToken,
+            },
+          },
+        });
+
+        return registerRes.data; // Retornar la respuesta
+      } catch (error: any) {
+        // Manejar errores de axios o del servidor (igual que en login)
+        if (error.response) {
+          const errorMessage =
+            error.response.data?.message || 'Registration failed';
+          throw new Error(errorMessage);
+        } else if (error.request) {
+          throw new Error('Network error. Please try again.');
+        } else {
+          throw new Error(error.message || 'An error occurred');
+        }
+      }
+    },
+    []
+  );
+
+  // LOGOUT
+  const logout = useCallback(async () => {
+    setSession(null);
+    dispatch({
+      type: Types.LOGOUT,
+    });
+  }, []);
+
+  const updateUser = useCallback((userData: Partial<AuthUserType>) => {
+    dispatch({
+      type: Types.UPDATE_USER,
+      payload: {
+        user: userData,
+      },
+    });
+  }, []);
+
+  // ----------------------------------------------------------------------
+
+  const checkAuthenticated = state.user ? 'authenticated' : 'unauthenticated';
+
+  const status = state.loading ? 'loading' : checkAuthenticated;
+
+  const memoizedValue = useMemo(
+    () => ({
+      user: state.user,
+      method: 'jwt',
+      loading: status === 'loading',
+      authenticated: status === 'authenticated',
+      unauthenticated: status === 'unauthenticated',
+      //
+      login,
+      register,
+      logout,
+      updateUser,
+    }),
+    [login, logout, register, state.user, status, updateUser]
+  );
+
+  return (
+    <AuthContext.Provider value={memoizedValue}>
+      {children}
+    </AuthContext.Provider>
+  );
+}

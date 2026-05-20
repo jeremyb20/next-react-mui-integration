@@ -5,22 +5,30 @@ import { countries } from '@/assets/data';
 import { HOST_API } from '@/config-global';
 import Iconify from '@/components/iconify';
 import { OptionType } from '@/types/global';
+import { PetFormValues } from '@/types/pet';
 import { fData } from '@/utils/format-number';
 import { IUser, IPetProfile } from '@/types/api';
+import { useSnackbar } from '@/components/snackbar';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from '@/hooks/use-translation';
 import UploadAvatar from '@/components/upload/upload-avatar';
-import { useMemo, useState, useEffect, useCallback } from 'react';
 import CardComponent from '@/sections/_examples/card-component';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
 import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
-import MedicalControlView from '@/app/[lang]/pet/_components/view/medical-control-view';
 import { parseWeight, BreedOptions, GENDER_OPTIONS } from '@/utils/constants';
 import {
   getPhoneHelperText,
   getPhonePlaceholder,
   simplePhoneValidation,
 } from '@/utils/phone-validation';
+import FormProvider, {
+  RHFSelect,
+  RHFSwitch,
+  RHFTextField,
+  RHFAutocomplete,
+} from '@/components/hook-form';
 
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
@@ -36,51 +44,15 @@ import {
   Tab,
   Tabs,
   Stack,
+  useTheme,
   Typography,
   IconButton,
   ButtonGroup,
+  useMediaQuery,
   InputAdornment,
 } from '@mui/material';
-import { useTheme, Breakpoint } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useSnackbar } from '@/components/snackbar';
-import FormProvider, {
-  RHFSelect,
-  RHFSwitch,
-  RHFTextField,
-  RHFAutocomplete,
-} from '@/components/hook-form';
 
 // ----------------------------------------------------------------------
-
-type FormValues = {
-  petName: string;
-  genderSelected: string;
-  breed: string;
-  weight: string;
-  address: string;
-  phone: string;
-  ownerPetName: string;
-  petStatus: string;
-  birthDate: string;
-  favoriteActivities: string;
-  healthAndRequirements: string;
-  phoneVeterinarian: string;
-  veterinarianContact: string;
-  // Permissions fields
-  showPhoneInfo: boolean;
-  showLinkTwitter: boolean;
-  showLinkFacebook: boolean;
-  showLinkInstagram: boolean;
-  showOwnerPetName: boolean;
-  showBirthDate: boolean;
-  showAddressInfo: boolean;
-  showVeterinarianContact: boolean;
-  showPhoneVeterinarian: boolean;
-  showHealthAndRequirements: boolean;
-  showFavoriteActivities: boolean;
-  showLocationInfo: boolean;
-};
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -118,6 +90,7 @@ type Props = {
   currentPet?: IPetProfile;
   currentUser?: IUser;
   refetch: () => void;
+  isAdmin?: boolean;
 };
 
 export default function PetQuickEditForm({
@@ -126,6 +99,7 @@ export default function PetQuickEditForm({
   open,
   onClose,
   refetch,
+  isAdmin,
 }: Props) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -134,6 +108,7 @@ export default function PetQuickEditForm({
   const [tabValue, setTabValue] = useState(0);
   const [weightUnit, setWeightUnit] = useState<'kg' | 'lb'>('kg');
   const popover = usePopover();
+  const { t } = useTranslation();
 
   const [petPhoto, setPetPhoto] = useState<File | null>(null);
   const [petPhotoPreview, setPetPhotoPreview] = useState<string | null>(
@@ -190,6 +165,8 @@ export default function PetQuickEditForm({
 
   const NewPetSchema = Yup.object().shape({
     petName: Yup.string().required('Pet name is required'),
+    petFirstSurname: Yup.string().optional().default(''),
+    petSecondSurname: Yup.string().optional().default(''),
     petStatus: Yup.string().required('Status is required'),
     genderSelected: Yup.string().optional().default(''),
     breed: Yup.string().optional().default(''),
@@ -218,23 +195,28 @@ export default function PetQuickEditForm({
     ownerPetName: Yup.string().optional().default(''),
     // Permissions fields - todos son booleanos opcionales
     showPhoneInfo: Yup.boolean().optional().default(true),
-    showLinkTwitter: Yup.boolean().optional().default(true),
-    showLinkFacebook: Yup.boolean().optional().default(true),
-    showLinkInstagram: Yup.boolean().optional().default(true),
     showOwnerPetName: Yup.boolean().optional().default(true),
     showBirthDate: Yup.boolean().optional().default(true),
     showAddressInfo: Yup.boolean().optional().default(true),
+    showEmailInfo: Yup.boolean().optional().default(true),
     showVeterinarianContact: Yup.boolean().optional().default(true),
     showPhoneVeterinarian: Yup.boolean().optional().default(true),
     showHealthAndRequirements: Yup.boolean().optional().default(true),
     showFavoriteActivities: Yup.boolean().optional().default(true),
     showLocationInfo: Yup.boolean().optional().default(true),
+    showLocationConsent: Yup.boolean().optional().default(true),
+    showBreedInfo: Yup.boolean().optional().default(true),
+    showWeightInfo: Yup.boolean().optional().default(true),
+    showGenderInfo: Yup.boolean().optional().default(true),
+    notes: Yup.string().optional().default(''),
   });
 
-  const defaultValues: FormValues = useMemo(() => {
+  const defaultValues: PetFormValues = useMemo(() => {
     const parsedWeight = parseWeight(currentPet?.weight);
     return {
       petName: currentPet?.petName || '',
+      petFirstSurname: currentPet?.petFirstSurname || '',
+      petSecondSurname: currentPet?.petSecondSurname || '',
       genderSelected: currentPet?.genderSelected || '',
       breed: currentPet?.breed || '',
       weight: parsedWeight.value,
@@ -252,9 +234,7 @@ export default function PetQuickEditForm({
       petStatus: currentPet?.petStatus || 'active',
       // Permissions defaults
       showPhoneInfo: currentPet?.permissions?.showPhoneInfo ?? true,
-      showLinkTwitter: currentPet?.permissions?.showLinkTwitter ?? true,
-      showLinkFacebook: currentPet?.permissions?.showLinkFacebook ?? true,
-      showLinkInstagram: currentPet?.permissions?.showLinkInstagram ?? true,
+      showEmailInfo: currentPet?.permissions?.showEmailInfo ?? true,
       showOwnerPetName: currentPet?.permissions?.showOwnerPetName ?? true,
       showBirthDate: currentPet?.permissions?.showBirthDate ?? true,
       showAddressInfo: currentPet?.permissions?.showAddressInfo ?? true,
@@ -267,10 +247,17 @@ export default function PetQuickEditForm({
       showFavoriteActivities:
         currentPet?.permissions?.showFavoriteActivities ?? true,
       showLocationInfo: currentPet?.permissions?.showLocationInfo ?? true,
+      isDigitalIdentificationActive:
+        currentPet?.isDigitalIdentificationActive || false,
+      notes: currentPet?.notes || '',
+      showLocationConsent: currentPet?.permissions?.showLocationConsent ?? true,
+      showBreedInfo: currentPet?.permissions?.showBreedInfo ?? true,
+      showWeightInfo: currentPet?.permissions?.showWeightInfo ?? true,
+      showGenderInfo: currentPet?.permissions?.showGenderInfo ?? true,
     };
   }, [currentPet]);
 
-  const methods = useForm<FormValues>({
+  const methods = useForm<PetFormValues>({
     resolver: yupResolver(NewPetSchema),
     defaultValues,
   });
@@ -290,7 +277,7 @@ export default function PetQuickEditForm({
     setWeightUnit(unit);
   };
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = async (data: PetFormValues) => {
     try {
       const weightWithUnit = data.weight ? `${data.weight} ${weightUnit}` : '';
       const userPetId = currentUser?._id || '';
@@ -299,6 +286,7 @@ export default function PetQuickEditForm({
         id: currentPet?._id,
         weight: weightWithUnit,
         genderSelected: data.genderSelected,
+
         // Si el usuario eliminó la foto, agregar flag para eliminar
         ...(photoIdToDelete &&
           !petPhoto &&
@@ -308,9 +296,6 @@ export default function PetQuickEditForm({
         // Estructura para las permissions
         permissions: {
           showPhoneInfo: data.showPhoneInfo,
-          showLinkTwitter: data.showLinkTwitter,
-          showLinkFacebook: data.showLinkFacebook,
-          showLinkInstagram: data.showLinkInstagram,
           showOwnerPetName: data.showOwnerPetName,
           showBirthDate: data.showBirthDate,
           showAddressInfo: data.showAddressInfo,
@@ -319,6 +304,9 @@ export default function PetQuickEditForm({
           showHealthAndRequirements: data.showHealthAndRequirements,
           showFavoriteActivities: data.showFavoriteActivities,
           showLocationInfo: data.showLocationInfo,
+          showLocationConsent: data.showLocationConsent,
+          showBreedInfo: data.showBreedInfo,
+          showWeightInfo: data.showWeightInfo,
         },
       };
 
@@ -358,7 +346,7 @@ export default function PetQuickEditForm({
       console.error(error);
       enqueueSnackbar('Error updating pet', { variant: 'error' });
     }
-  });
+  };
   // Reemplaza useMemo por useEffect para weightUnit
   useEffect(() => {
     if (currentPet?.weight) {
@@ -389,18 +377,18 @@ export default function PetQuickEditForm({
   return (
     <Dialog
       fullWidth
-      maxWidth={false}
+      maxWidth="md"
       open={open}
-      onClose={onClose}
-      PaperProps={{
-        sx: { maxWidth: 720 },
+      onClose={() => {
+        setPetPhotoPreview(null);
+        onClose();
       }}
+      fullScreen={isMobile}
       scroll="paper"
     >
-      <FormProvider methods={methods} onSubmit={onSubmit}>
-        <DialogTitle>Edit {currentPet?.petName}</DialogTitle>
-
-        <DialogContent dividers>
+      <DialogTitle>
+        <Stack direction="row" alignItems="center" spacing={2}>
+          Edit {currentPet?.petName}
           {petStatus && (
             <Alert
               variant="outlined"
@@ -411,12 +399,26 @@ export default function PetQuickEditForm({
                     ? 'warning'
                     : 'info'
               }
-              sx={{ mb: 3 }}
             >
-              Pet is currently {petStatus.label}
+              {petStatus.label}
             </Alert>
           )}
-
+        </Stack>
+      </DialogTitle>
+      <IconButton
+        aria-label="close"
+        onClick={onClose}
+        sx={(themes) => ({
+          position: 'absolute',
+          right: 8,
+          top: 8,
+          color: themes.palette.grey[500],
+        })}
+      >
+        <Iconify icon="mingcute:close-line" />
+      </IconButton>
+      <DialogContent dividers sx={{ p: 1 }}>
+        <FormProvider methods={methods}>
           <Tabs
             value={tabValue}
             onChange={handleTabChange}
@@ -450,12 +452,6 @@ export default function PetQuickEditForm({
                 label: 'Location',
                 icon: 'solar:point-on-map-outline',
               },
-              {
-                id: 3,
-                value: 'medicalControl',
-                label: 'Medical Control',
-                icon: 'hugeicons:injection',
-              },
             ].map((tab) => (
               <Tab
                 key={tab.value}
@@ -469,56 +465,63 @@ export default function PetQuickEditForm({
 
           <TabPanel value={tabValue} index={0}>
             <CardComponent sx={{ p: 2 }}>
-              <Box my={3}>
-                <UploadAvatar
-                  file={petPhotoPreview}
-                  onDrop={handleDropPetPhoto}
-                  onDelete={handleRemovePetPhoto}
-                  validator={(fileData) => {
-                    // Validar tipo de archivo
-                    const allowedTypes = [
-                      'image/jpeg',
-                      'image/jpg',
-                      'image/png',
-                      'image/gif',
-                    ];
-                    if (!allowedTypes.includes(fileData.type)) {
-                      return {
-                        code: 'invalid-file-type',
-                        message:
-                          'Only JPEG, JPG, PNG or GIF images are allowed',
-                      };
-                    }
+              <Stack
+                my={1}
+                spacing={1}
+                direction="row"
+                justifyContent="space-around"
+              >
+                <Stack>
+                  <UploadAvatar
+                    file={currentPet?.photo}
+                    onDrop={handleDropPetPhoto}
+                    onDelete={handleRemovePetPhoto}
+                    validator={(fileData) => {
+                      // Validar tipo de archivo
+                      const allowedTypes = [
+                        'image/jpeg',
+                        'image/jpg',
+                        'image/png',
+                        'image/gif',
+                      ];
+                      if (!allowedTypes.includes(fileData.type)) {
+                        return {
+                          code: 'invalid-file-type',
+                          message:
+                            'Only JPEG, JPG, PNG or GIF images are allowed',
+                        };
+                      }
 
-                    // Validar tamaño (2MB máximo)
-                    if (fileData.size > 2 * 1024 * 1024) {
-                      return {
-                        code: 'file-too-large',
-                        message: `Image is too large. Maximum ${fData(
-                          2 * 1024 * 1024
-                        )}`,
-                      };
-                    }
+                      // Validar tamaño (2MB máximo)
+                      if (fileData.size > 2 * 1024 * 1024) {
+                        return {
+                          code: 'file-too-large',
+                          message: `${t('Image is too large. Maximum')} ${fData(
+                            2 * 1024 * 1024
+                          )}`,
+                        };
+                      }
 
-                    return null;
-                  }}
-                  helperText={
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        mt: 2,
-                        mx: 'auto',
-                        display: 'block',
-                        textAlign: 'center',
-                        color: 'text.disabled',
-                      }}
-                    >
-                      Allowed *.jpeg, *.jpg, *.png, *.gif
-                      <br /> max size of {fData(2 * 1024 * 1024)}
-                    </Typography>
-                  }
-                />
-              </Box>
+                      return null;
+                    }}
+                    helperText={
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          mt: 2,
+                          mx: 'auto',
+                          display: 'block',
+                          textAlign: 'center',
+                          color: 'text.disabled',
+                        }}
+                      >
+                        {t('Allowed *.jpeg, *.jpg, *.png, *.gif')}
+                        <br /> {t('max size of')} {fData(2 * 1024 * 1024)}
+                      </Typography>
+                    }
+                  />
+                </Stack>
+              </Stack>
 
               <Box
                 rowGap={3}
@@ -529,6 +532,19 @@ export default function PetQuickEditForm({
                   sm: 'repeat(2, 1fr)',
                 }}
               >
+                {isAdmin && (
+                  <RHFSwitch
+                    name="isDigitalIdentificationActive"
+                    labelPlacement="start"
+                    label="Digital ID Active"
+                    sx={{
+                      justifyContent: 'space-between',
+                      flexDirection: 'row-reverse',
+                      width: '100%',
+                      mx: 0,
+                    }}
+                  />
+                )}
                 <RHFSelect name="petStatus" label="Status">
                   {PET_STATUS_OPTIONS.map((status) => (
                     <MenuItem key={status.value} value={status.value}>
@@ -536,7 +552,6 @@ export default function PetQuickEditForm({
                     </MenuItem>
                   ))}
                 </RHFSelect>
-
                 <RHFSelect name="genderSelected" label="Gender">
                   {GENDER_OPTIONS.map((gender) => (
                     <MenuItem key={gender.value} value={gender.value}>
@@ -544,10 +559,10 @@ export default function PetQuickEditForm({
                     </MenuItem>
                   ))}
                 </RHFSelect>
-
                 <RHFTextField name="petName" label="Pet Name" />
+                <RHFTextField name="petFirstSurname" label="First Surname" />
+                <RHFTextField name="petSecondSurname" label="Second Surname" />
                 {/* <RHFTextField name="breed" label="Breed" /> */}
-
                 <RHFAutocomplete
                   name="breed"
                   label="Raza de la mascota"
@@ -622,7 +637,6 @@ export default function PetQuickEditForm({
                     ),
                   }}
                 />
-
                 <Controller
                   name="birthDate"
                   control={control}
@@ -640,7 +654,6 @@ export default function PetQuickEditForm({
                       slotProps={{
                         textField: {
                           fullWidth: true,
-                          margin: 'normal',
                         },
                       }}
                     />
@@ -656,7 +669,8 @@ export default function PetQuickEditForm({
                   )}
                   helperText={getPhoneHelperText(
                     currentUser?.profile?.country || '',
-                    watchPhone
+                    watchPhone,
+                    t
                   )}
                   InputProps={{
                     startAdornment: (
@@ -692,7 +706,6 @@ export default function PetQuickEditForm({
                     ),
                   }}
                 />
-
                 <CustomPopover
                   open={popover.open}
                   onClose={popover.onClose}
@@ -709,7 +722,6 @@ export default function PetQuickEditForm({
                     <Iconify icon="line-md:phone" />
                   </MenuItem>
                 </CustomPopover>
-
                 <RHFTextField
                   name="favoriteActivities"
                   label="Favorite Activities"
@@ -722,7 +734,6 @@ export default function PetQuickEditForm({
                   multiline
                   rows={2}
                 />
-
                 <RHFTextField
                   name="veterinarianContact"
                   label="Veterinarian Name"
@@ -736,7 +747,8 @@ export default function PetQuickEditForm({
                   )}
                   helperText={getPhoneHelperText(
                     currentUser?.profile?.country || '',
-                    watchPhoneVeterinarian
+                    watchPhoneVeterinarian,
+                    t
                   )}
                   InputProps={{
                     startAdornment: (
@@ -970,31 +982,23 @@ export default function PetQuickEditForm({
               </Stack>
             </Box>
           </TabPanel>
-          <TabPanel value={tabValue} index={2}>
-            <Box sx={{ maxHeight: '55vh', overflow: 'auto' }}>
-              Location Goes here
-              {/* <MapView />; */}
-            </Box>
-          </TabPanel>
-          <TabPanel value={tabValue} index={3}>
-            <MedicalControlView currentPet={currentPet} />
-          </TabPanel>
-        </DialogContent>
+        </FormProvider>
+      </DialogContent>
 
-        <DialogActions>
-          <Button variant="outlined" onClick={onClose}>
-            Cancel
-          </Button>
+      <DialogActions>
+        <Button variant="outlined" onClick={onClose}>
+          Cancel
+        </Button>
 
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            loading={isSubmitting}
-          >
-            Update Pet
-          </LoadingButton>
-        </DialogActions>
-      </FormProvider>
+        <LoadingButton
+          type="submit"
+          onClick={handleSubmit(onSubmit)}
+          variant="contained"
+          loading={isSubmitting}
+        >
+          Update Pet
+        </LoadingButton>
+      </DialogActions>
     </Dialog>
   );
 }
