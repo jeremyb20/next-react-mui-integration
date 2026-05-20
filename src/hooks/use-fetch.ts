@@ -1,7 +1,10 @@
 import axiosInstance, { endpoints } from '@/utils/axios';
+import { IUserCalendarResponse } from '@/types/calendar';
+import { DeviceSuscriptions } from '@/types/service-worker';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import {
   IQRStats,
+  IPetStats,
   ApiResponse,
   IPetProfile,
   QueryOptions,
@@ -71,13 +74,39 @@ export const useGetQRStats = () => {
   );
 };
 
+export const useGetUserPetStats = () => {
+  const { authenticated } = useAuthContext();
+  return useFetch<IPetStats>('useGetQRStats', endpoints.pet.getUserPetStats, {
+    staleTime: 5 * 60 * 1000,
+    retry: 2,
+    enabled: authenticated,
+  });
+};
+
 export const useGetPetProfileById = (identifier: string | undefined) =>
-  useFetch<IPetProfile[]>(
+  useFetch<IPetProfile>(
     'useGetPetProfileById',
     `${endpoints.pet.getProfileById}/${identifier}`,
     {
-      staleTime: 5 * 60 * 1000,
-      retry: 2,
+      refetchOnMount: true,
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true,
+      staleTime: 0, // Siempre refrescar al volver
+      gcTime: 0, // Mantener en caché 5 minutos
+      retry: 0,
+    }
+  );
+export const useGetPublicProfilebById = (identifier: string | undefined) =>
+  useFetch<IPetProfile>(
+    'useGetPublicProfilebById',
+    `${endpoints.pet.getPublicProfileById}/${identifier}`,
+    {
+      refetchOnMount: true,
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true,
+      staleTime: 0, // Siempre refrescar al volver
+      gcTime: 0, // Mantener en caché 5 minutos
+      retry: 0,
     }
   );
 
@@ -178,3 +207,44 @@ export const useGetProductGrowth = () => {
     }
   );
 };
+
+export const useGetSecurityConfig = () => {
+  const { authenticated } = useAuthContext();
+  return useFetch<Partial<any>>(
+    'useGetSecurityConfig',
+    endpoints.user.getSecurityConfig,
+    {
+      staleTime: 5 * 60 * 1000,
+      retry: 2,
+      enabled: authenticated,
+    }
+  );
+};
+
+export const useGetSubscriptionDevices = () => {
+  const { authenticated } = useAuthContext();
+  return useFetch<Partial<DeviceSuscriptions[]>>(
+    'useGetSubscriptionDevices',
+    endpoints.notification.getSubscriptionDevices,
+    {
+      staleTime: 5 * 60 * 1000,
+      retry: 2,
+      enabled: authenticated,
+    }
+  );
+};
+
+export const useGetCalendarEvents = (userId: string | undefined) => {
+  const { authenticated } = useAuthContext();
+  return useFetch<Partial<IUserCalendarResponse>>(
+    'useGetSubscriptionDevices',
+    `${endpoints.calendarEvents.getAllMedicalAppointmentsByUser}/${userId}`,
+    {
+      staleTime: 5 * 60 * 1000,
+      retry: 2,
+      enabled: authenticated,
+    }
+  );
+}
+
+

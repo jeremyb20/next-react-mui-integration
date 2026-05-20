@@ -1,6 +1,5 @@
 // use-manager-user.ts
 import { useCallback } from 'react';
-
 import { useAuthContext } from '@/auth/hooks';
 
 import { LOGO } from '../config-global';
@@ -21,12 +20,12 @@ export function useManagerUser() {
 
   const user = {
     id: authUser?._id,
+    _id: authUser?.id,
     displayName: fullName,
     email: authUser?.email,
     photoURL: `/assets/images/avatars/avatar-${avatarProfile}.webp` || LOGO,
-    coverUrl: `https://picsum.photos/seed/picsum/${isMobile ? '300' : '1800'}/${
-      isMobile ? '300' : '500'
-    }`,
+    coverUrl: `https://picsum.photos/seed/picsum/${isMobile ? '300' : '1800'}/${isMobile ? '300' : '500'
+      }`,
     memberId: authUser?.memberId,
     phoneNumber: authUser?.profile?.phone,
     phone: authUser?.profile?.phone,
@@ -45,6 +44,7 @@ export function useManagerUser() {
     configuration: authUser?.configuration,
     profile: authUser?.profile,
     avatarProfile: authUser?.profile?.avatarProfile || 2,
+    security: authUser?.security,
   };
 
   // Función específica para actualizar el perfil - CON useCallback

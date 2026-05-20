@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios';
-
 import { HOST_API, STORAGE_KEY } from '@/config-global';
 
 // ----------------------------------------------------------------------
@@ -41,7 +40,7 @@ export const fetcher = async (args: string | [string, AxiosRequestConfig]) => {
 export const endpoints = {
   auth: {
     me: '/api/user/me',
-    login: '/api/user/email/sign-in',
+    signIn: '/api/user/email/sign-in',
     registerAccountWithEmail: '/api/user/email/registerAccountWithEmail',
   },
   notification: {
@@ -51,6 +50,10 @@ export const endpoints = {
     unsubscribe: '/api/notifications/unsubscribe',
     delete: '/api/notifications/delete',
     send: '/api/notifications/send',
+    sendToAdmin: '/api/notifications/sendToAdmin',
+    markAsRead: '/api/notifications/markAsRead',
+    getSubscriptionDevices: '/api/notifications/getSubscriptionDevices',
+    deleteAllSubscriptions: '/api/notifications/deleteAllSubscriptions'
   },
   admin: {
     users: {
@@ -84,9 +87,17 @@ export const endpoints = {
       deleteSeo: '/api/admin/deleteSeo',
       updateSeoById: '/api/admin/updateSeoById',
     },
+    promotions: {
+      getAllPromotions: '/api/admin/getAllPromotions',
+      createPromotion: '/api/admin/createPromotion',
+      updatePromotion: '/api/admin/updatePromotion',
+      deletePromotion: '/api/admin/deletePromotion',
+      getPromotionById: '/api/admin/getPromotionById',
+    },
   },
   pet: {
     getProfileById: '/api/pet/getProfileById',
+    getPublicProfileById: '/api/pet/getPublicProfileById',
     updatePetById: '/api/pet/updatePetById',
     createPet: '/api/pet/createPet',
     deletePet: '/api/pet/deletePet',
@@ -94,6 +105,10 @@ export const endpoints = {
     getMedicalRecordsByPet: '/api/pet/getMedicalRecordsByPet',
     updateMedicalRecord: '/api/pet/updateMedicalRecord',
     createMedicalRecord: '/api/pet/createMedicalRecord',
+    getUserPetStats: '/api/pet/getUserPetStats',
+    getUserUpcomingAppointments: '/api/pet/upcoming-appointments',
+    getUserUpcomingAppointmentsGrouped:
+      '/api/pet/upcoming-appointments/grouped',
   },
   user: {
     getAllPetsByUser: '/api/user/getAllPetsByUser',
@@ -111,6 +126,28 @@ export const endpoints = {
     updatePassword: '/api/user/updatePassword',
     forgotPassword: '/api/user/forgotPassword',
     resetPassword: '/api/user/resetPassword',
+    searchProducts: '/api/user/searchProducts',
+    registerPetView: '/api/user/registerPetView',
+    promotions: {
+      getActivePromotions: '/api/user/getActivePromotions',
+      getFeaturedPromotion: '/api/user/getFeaturedPromotion',
+      validatePromoCode: '/api/user/validatePromoCode',
+      usePromoCode: '/api/user/usePromoCode',
+    },
+    getSecurityConfig: '/api/user/getSecurityConfig',
+    updateSecurityConfig: '/api/user/updateSecurityConfig',
+    enable2FA: '/api/user/enable2FA',
+    verify2FACode: '/api/user/verify2FACode',
+    resend2FACode: '/api/user/resend2FACode',
+    disable2FA: '/api/user/disable2FA',
+    getDevices: '/api/user/getDevices',
+    registerDevice: '/api/user/registerDevice',
+    removeDevice: '/api/user/removeDevice',
+    signOutAllDevices: '/api/user/signOutAllDevices',
+    sendEmailVerification: '/api/user/sendEmailVerification',
+    verifyEmailCode: '/api/user/verifyEmailCode',
+    resendEmailVerification: '/api/user/resendEmailVerification',
+    resend2FACodeForReset: '/api/user/resend2FACodeForReset'
   },
   mail: {
     list: '/api/mail/list',
@@ -126,13 +163,16 @@ export const endpoints = {
   product: {
     list: '/api/product/list',
     details: '/api/product/details',
-    search: '/api/product/search',
   },
   chat: '/api/chat',
   kanban: '/api/kanban',
   calendar: '/api/calendar',
+  calendarEvents: {
+    getAllMedicalAppointmentsByUser: '/api/user/getAllMedicalAppointmentsByUser',
+  },
   petsmarket: {
     listPublished: '/api/user/getAllPublishedProductList',
     getProductPublishedById: '/api/user/getProductPublishedById',
   },
+  getIpInfo: '/api/public/ip-info',
 };

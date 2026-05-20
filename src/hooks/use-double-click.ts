@@ -9,10 +9,10 @@ type Props = {
 };
 
 export function useDoubleClick({ click, doubleClick, timeout = 250 }: Props) {
-  const clickTimeout = useRef<NodeJS.Timeout | null>(null);
+  const clickTimeout = useRef<any>();
 
   const clearClickTimeout = () => {
-    if (clickTimeout.current) {
+    if (clickTimeout) {
       clearTimeout(clickTimeout.current);
       clickTimeout.current = null;
     }

@@ -138,11 +138,11 @@ export const BreedCatsOptions = [
 // export const BreedOptions = [...BreedDogsOptions, ...BreedCatsOptions];
 export const groupedOptions = [
   {
-    group: 'Perros',
+    group: 'dog',
     options: BreedDogsOptions,
   },
   {
-    group: 'Gatos',
+    group: 'cat',
     options: BreedCatsOptions,
   },
 ];
@@ -157,6 +157,14 @@ export const GENDER_OPTIONS = [
   { value: 'male', label: 'Male' },
   { value: 'female', label: 'Female' },
   { value: 'unknown', label: 'Unknown' },
+];
+
+// Opciones para los selects
+export const PET_STATUS_OPTIONS = [
+  { value: 'active', label: 'Active' },
+  { value: 'inactive', label: 'Inactive' },
+  { value: 'lost', label: 'Lost' },
+  { value: 'deceased', label: 'Deceased' },
 ];
 
 export const inventoryStatusOptions = [
@@ -238,4 +246,82 @@ export const LANGUAGE_NORMALIZATION_MAP: Record<string, string> = {
 
   // Vietnamita (vi)
   'vi-VN': 'vi',
+};
+
+export function getSortByField(sortValue: string): string {
+  switch (sortValue) {
+    case 'priceAsc':
+    case 'priceDesc':
+      return 'price';
+    case 'newest':
+      return 'createdAt';
+    case 'featured':
+      return 'totalSold';
+    default:
+      return 'createdAt';
+  }
+}
+
+export function getSortOrder(sortValue: string): 'asc' | 'desc' {
+  switch (sortValue) {
+    case 'priceAsc':
+      return 'asc';
+    case 'priceDesc':
+    case 'newest':
+    case 'featured':
+      return 'desc';
+    default:
+      return 'desc';
+  }
+}
+
+// Determinar color según nivel de seguridad
+export const getSecurityColor = (percentage: number) => {
+  if (percentage >= 80) return '#4caf50';
+  if (percentage >= 50) return '#ff9800';
+  return '#f44336';
+};
+
+// Determinar texto del nivel
+export const getSecurityLevelText = (percentage: number, t: (key: string) => string) => {
+  if (percentage >= 80) return t('High Security');
+  if (percentage >= 50) return t('Medium Security');
+  return t('Low Security');
+};
+
+export const isUpcoming = (dateString: string) => {
+  const date = new Date(dateString);
+  const today = new Date();
+  const next30Days = new Date();
+  next30Days.setDate(today.getDate() + 30);
+  return date >= today && date <= next30Days;
+};
+
+export const isOverdue = (dateString: string) => new Date(dateString) < new Date();
+
+export const getDateColor = (dateString: string) => {
+  if (isOverdue(dateString)) return 'error.main';
+  if (isUpcoming(dateString)) return 'warning.main';
+  return 'inherit';
+};
+
+export const getDaysLabel = (days: number, t: (key: string, params?: Record<string, unknown>) => string) => {
+  if (days === 0) return t('Today');
+  if (days === 1) return t('Tomorrow');
+  return t('in {{days}} days', { days });
+};
+
+export const getDaysUntil = (dateString: string) => {
+  const date = new Date(dateString);
+  const today = new Date();
+  const diffTime = date.getTime() - today.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24));
+  return diffDays;
+};
+
+
+export const getProgressBarColor = (days: number, notifDays: number) => {
+  if (days > notifDays) return 'info.main';
+  if (days <= 3) return 'error.main';
+  return 'warning.main';
 };

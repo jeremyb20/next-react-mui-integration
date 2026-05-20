@@ -1,3 +1,4 @@
+import { IProductItem } from '@/types/product';
 import axiosInstance, { endpoints } from '@/utils/axios';
 import {
   useQuery,
@@ -8,11 +9,14 @@ import {
   ISeo,
   IUser,
   IQrCode,
+  IPromotions,
   ApiResponse,
   QueryParams,
   IPetProfile,
   UsePaginatedOptions,
   IMedicalRecordResponse,
+  IUpcomingAppointmentsResponse,
+  IUpcomingAppointmentsGroupedResponse,
 } from '@/types/api';
 
 interface UsePaginatedQueryProps<T> {
@@ -31,12 +35,14 @@ export const useFetchPaginated = <T>({
   transformResponse,
 }: UsePaginatedQueryProps<T>) => {
   const {
-    refetchOnMount = false,
-    refetchOnWindowFocus = false,
-    staleTime = 5 * 60 * 1000,
+    refetchOnMount = true, // Cambiar a true por defecto
+    refetchOnWindowFocus = true, // Cambiar a true por defecto
+    refetchOnReconnect = true, // Agregar y cambiar a true
+    staleTime = 0, // Cambiar a 0 para siempre refrescar
     retry = 2,
     enabled = true,
     placeholderData = keepPreviousData,
+    gcTime = 10 * 60 * 1000, // 10 minutos
   } = options || {};
 
   // Construir URL con parámetros de paginación como query params
@@ -91,9 +97,11 @@ export const useFetchPaginated = <T>({
     placeholderData,
     refetchOnMount,
     refetchOnWindowFocus,
+    refetchOnReconnect,
     staleTime,
     retry,
     enabled: enabled && params.page !== undefined,
+    gcTime,
   };
 
   return useQuery<ApiResponse<T>, Error>(queryOptions);
@@ -132,6 +140,13 @@ export const useGetAllPetsByUser = (params: Partial<UserQueryParams> = {}) =>
       limit: 10,
       ...params,
     },
+    options: {
+      refetchOnMount: true,
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true,
+      staleTime: 0, // Siempre refrescar al volver
+      gcTime: 5 * 60 * 1000, // Mantener en caché 5 minutos
+    },
   });
 
 export const useGetAllQrCodeList = (params: Partial<UserQueryParams> = {}) =>
@@ -162,6 +177,90 @@ export const useGetMedicalRecordsByPet = (
   useFetchPaginated<IMedicalRecordResponse[]>({
     queryKey: ['useGetMedicalRecordsByPet'],
     endpoint: endpoints.pet.getMedicalRecordsByPet,
+    params: {
+      page: 1,
+      limit: 10,
+      ...params,
+    },
+  });
+
+export const useGetAllProductList = (params: Partial<UserQueryParams> = {}) =>
+  useFetchPaginated<IProductItem[]>({
+    queryKey: ['productList'],
+    endpoint: endpoints.admin.product.list,
+    options: {
+      refetchOnMount: true,
+      refetchOnWindowFocus: true,
+      staleTime: 30 * 1000,
+    },
+    params: {
+      page: 1,
+      limit: 10,
+      ...params,
+    },
+  });
+
+export const useGetAllPublishedProducts = (
+  params: Partial<UserQueryParams> = {}
+) =>
+  useFetchPaginated<IProductItem[]>({
+    queryKey: ['listPublishedProducts'],
+    endpoint: endpoints.petsmarket.listPublished,
+    options: {
+      refetchOnMount: true,
+      refetchOnWindowFocus: true,
+      staleTime: 30 * 1000,
+    },
+    params: {
+      page: 1,
+      limit: 10,
+      ...params,
+    },
+  });
+
+export const useGetUserUpcomingAppointments = (
+  params: Partial<UserQueryParams> = {}
+) =>
+  useFetchPaginated<IUpcomingAppointmentsResponse>({
+    queryKey: ['useGetUserUpcomingAppointments'],
+    endpoint: endpoints.pet.getUserUpcomingAppointments,
+    params: {
+      page: 1,
+      limit: 10,
+      ...params,
+    },
+  });
+
+export const useGetUserUpcomingAppointmentsGrouped = (
+  params: Partial<UserQueryParams> = {}
+) =>
+  useFetchPaginated<IUpcomingAppointmentsGroupedResponse[]>({
+    queryKey: ['useGetUserUpcomingAppointmentsGrouped'],
+    endpoint: endpoints.pet.getUserUpcomingAppointmentsGrouped,
+    params: {
+      page: 1,
+      limit: 10,
+      ...params,
+    },
+  });
+
+export const useGetAllPromotionsList = (
+  params: Partial<UserQueryParams> = {}
+) =>
+  useFetchPaginated<IPromotions[]>({
+    queryKey: ['useGetAllPromotionsList'],
+    endpoint: endpoints.admin.promotions.getAllPromotions,
+    params: {
+      page: 1,
+      limit: 10,
+      ...params,
+    },
+  });
+
+export const useGetActivePromotions = (params: Partial<UserQueryParams> = {}) =>
+  useFetchPaginated<IPromotions[]>({
+    queryKey: ['useGetActivePromotions'],
+    endpoint: endpoints.user.promotions.getActivePromotions,
     params: {
       page: 1,
       limit: 10,

@@ -9,7 +9,7 @@ export interface FilterParams {
   [key: string]: any;
 }
 
-export interface QueryParams extends PaginationParams, FilterParams {}
+export interface QueryParams extends PaginationParams, FilterParams { }
 export interface UsePaginatedOptions {
   refetchOnMount?: boolean;
   refetchOnWindowFocus?: boolean;
@@ -17,6 +17,8 @@ export interface UsePaginatedOptions {
   retry?: number;
   enabled?: boolean;
   placeholderData?: any;
+  refetchOnReconnect?: boolean;
+  gcTime?: number;
 }
 
 export interface ApiResponse<T> {
@@ -40,6 +42,8 @@ export interface Ipagination {
 export interface QueryOptions {
   refetchOnMount?: boolean;
   refetchOnWindowFocus?: boolean;
+  refetchOnReconnect?: boolean;
+  gcTime?: number;
   staleTime?: number;
   retry?: number;
   enabled?: boolean;
@@ -49,11 +53,13 @@ export interface QueryOptions {
 export interface BaseApiResponse {
   status: string;
   message: string;
-  payload?: unknown; // Opcional por si incluye datos adicionales
+  success?: boolean;
+  payload?: any; // Opcional por si incluye datos adicionales
 }
 
 // external interfaces
 export interface NotificationData {
+  image: string;
   _id: string;
   user: string;
   type: string;
@@ -99,6 +105,7 @@ export interface NotificationFormData {
   date: string;
   time: string;
   scheduledTime?: string;
+  image: string;
 }
 
 // Interface para el perfil del usuario
@@ -152,13 +159,48 @@ export interface IUser {
   profile: IUserProfile;
   // [key: string]: any; // Para permitir propiedades adicionales
 }
+export interface INotificationSettings {
+  emailNotificationEnabled: boolean;
+  lastNotificationSent: Date | null;
+  notificationDaysBefore: number;
+}
+
+// Interfaz base para registros médicos
+export interface IBaseMedicalRecord {
+  observations: string;
+  _id?: string;
+}
+
+// Vacunas con notificaciones
+export interface IVaccinesControl extends IBaseMedicalRecord, INotificationSettings {
+  dateOfApplication: string;
+  nextVaccineDate: string;
+  vaccineName: string;
+}
+
+// Desparasitaciones con notificaciones
+export interface IDewormingControl extends IBaseMedicalRecord, INotificationSettings {
+  dateOfApplication: string;
+  nextDewormingDate: string;
+  dewormerName: string;
+}
+
+// Visitas médicas con notificaciones
+export interface IMedicalVisits extends IBaseMedicalRecord, INotificationSettings {
+  visitDate: string;
+  reasonForVisit: string;
+  veterinarianName: string;
+}
+
+export interface IMedicalRecord {
+  vaccines: IVaccinesControl[]; // ← Array para historial de vacunas
+  deworming: IDewormingControl[]; // ← Array para historial de desparasitación
+  datesOfMedicalVisits: IMedicalVisits[]; // ← Array para historial de visitas médicas
+}
 
 interface IPetPermissions {
   showPhoneInfo: boolean;
   showEmailInfo: boolean;
-  showLinkTwitter: boolean;
-  showLinkFacebook: boolean;
-  showLinkInstagram: boolean;
   showOwnerPetName: boolean;
   showBirthDate: boolean;
   showAddressInfo: boolean;
@@ -168,6 +210,10 @@ interface IPetPermissions {
   showHealthAndRequirements: boolean;
   showFavoriteActivities: boolean;
   showLocationInfo: boolean;
+  showLocationConsent: boolean;
+  showBreedInfo: boolean;
+  showWeightInfo: boolean;
+  showGenderInfo: boolean;
 }
 
 export interface IPetProfile {
@@ -187,6 +233,8 @@ export interface IPetProfile {
   address: string;
   idParental: string;
   petName: string;
+  petFirstSurname?: string;
+  petSecondSurname?: string;
   phone: string;
   photo: string;
   birthDate: string;
@@ -198,6 +246,8 @@ export interface IPetProfile {
   permissions: IPetPermissions;
   type?: string;
   owner?: IUserProfile;
+  medicalRecord?: IMedicalRecord;
+  notes?: string;
 }
 
 interface ILocation {
@@ -232,6 +282,30 @@ export interface IQRStats {
   totalCodes: number;
   totalRevenue: number;
   byStatus: ByStatu[];
+}
+
+export interface UpcomingBirthDays {
+  memberPetId: string
+  petName: string
+  birthDate: string
+  nextBirthday: string
+  daysUntil: number
+  age: number
+  photo: string;
+  petStatus?: string;
+}
+
+export interface IPetStats {
+  appointmentsCount: number;
+  date: string;
+  petsCount: number;
+  petsNeedingVaccination: number;
+  totalPetCareSpent: number;
+  upcomingAppointments: number;
+  vaccinationsCount: number;
+  vetVisitsCount: number;
+  upcomingBirthdays: UpcomingBirthDays[]
+  upcomingBirthdaysNext30Days: UpcomingBirthDays[]
 }
 
 export interface ByStatu {
@@ -302,4 +376,93 @@ export interface IUserSettingsResponse {
     showEmailInfo: boolean;
     showPersonalInfo: boolean;
   };
+}
+
+export interface IUpcomingAppointment {
+  id: string;
+  petId: string;
+  petName: string;
+  petPhoto?: string;
+  type: 'vaccine' | 'deworming' | 'medical_visit';
+  title: string;
+  description: string;
+  date: string;
+  time?: string;
+  location?: string;
+  veterinarian?: string;
+  veterinarianPhone?: string;
+  status: 'upcoming' | 'overdue' | 'today';
+  daysUntil: number;
+}
+
+export interface IUpcomingAppointmentsResponse {
+  appointments: IUpcomingAppointment[];
+  stats: {
+    total: number;
+    today: number;
+    upcoming: number;
+    overdue: number;
+    byType: {
+      vaccine: number;
+      deworming: number;
+      medical_visit: number;
+    };
+  };
+  filters: {
+    days: number;
+    includePast: boolean;
+    limit: number;
+    petId: string;
+  };
+  date: string;
+}
+
+export interface IUpcomingAppointmentsGroupedResponse {
+  pets: {
+    petId: string;
+    petName: string;
+    petPhoto?: string;
+    petStatus: string;
+    totalAppointments: number;
+    appointments: IUpcomingAppointment[];
+  }[];
+  totalPets: number;
+  totalAppointments: number;
+  date: string;
+}
+
+export interface IPromotions {
+  id: string;
+  _id: string;
+  title: string;
+  description: string;
+  discount: number;
+  validFrom: string;
+  validUntil: string;
+  urlImage?: string;
+  urlImageId?: string;
+  icon?: string;
+  status: 'active' | 'inactive' | 'expired';
+  priority: number;
+  type: 'vaccine' | 'grooming' | 'consultation' | 'products' | 'general';
+  termsAndConditions?: string;
+  applicableTo?: string[];
+  code?: string;
+  usageLimit?: number;
+  usedCount: number;
+  createdAt: string;
+  updatedAt: string;
+  link: string;
+  customIMG?: string;
+  isExternalLink: boolean;
+  buttonTextRedirect: string;
+}
+
+
+export interface DeviceInfo {
+  name: string;
+  deviceType: 'mobile' | 'desktop' | 'tablet';
+  location: string;
+  userAgent: string;
+  ipAddress?: string;
 }
