@@ -34,9 +34,10 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -457,14 +458,14 @@ export default function ProductNewEditForm({ currentProduct }: Props) {
           sx={{ flexGrow: 1, pl: 3 }}
         />
 
-        <LoadingButton
+        <Button
           type="submit"
           variant="contained"
           size="large"
           loading={isSubmitting}
         >
           {!currentProduct ? 'Create Product' : 'Save Changes'}
-        </LoadingButton>
+        </Button>
       </Grid>
     </>
   );

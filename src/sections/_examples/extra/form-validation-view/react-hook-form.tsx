@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Backdrop from '@mui/material/Backdrop';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import Stack, { StackProps } from '@mui/material/Stack';
 import InputAdornment from '@mui/material/InputAdornment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -411,7 +411,7 @@ export default function ReactHookForm({ debug }: Props) {
               <RHFSlider name="sliderRange" />
             </Block>
 
-            <LoadingButton
+            <Button
               fullWidth
               color="info"
               size="large"
@@ -420,7 +420,7 @@ export default function ReactHookForm({ debug }: Props) {
               loading={isSubmitting}
             >
               Submit to Check
-            </LoadingButton>
+            </Button>
           </Stack>
         </Box>
 

@@ -14,8 +14,9 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import InputAdornment from '@mui/material/InputAdornment';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -113,7 +114,7 @@ export default function ClassicNewPasswordView() {
         }}
       />
 
-      <LoadingButton
+      <Button
         fullWidth
         size="large"
         type="submit"
@@ -121,7 +122,7 @@ export default function ClassicNewPasswordView() {
         loading={isSubmitting}
       >
         Update Password
-      </LoadingButton>
+      </Button>
 
       <Typography variant="body2">
         {`Don’t have a code? `}

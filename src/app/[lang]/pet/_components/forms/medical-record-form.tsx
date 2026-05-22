@@ -21,7 +21,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import MenuItem from '@mui/material/MenuItem';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -783,13 +783,9 @@ export default function MedicalRecordForm({
             Cancelar
           </Button>
 
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            loading={isSubmitting}
-          >
+          <Button type="submit" variant="contained" loading={isSubmitting}>
             {t(currentRecord ? 'Update' : 'Create')}
-          </LoadingButton>
+          </Button>
         </DialogActions>
       </FormProvider>
     </Dialog>

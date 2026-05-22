@@ -34,9 +34,9 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import InputAdornment from '@mui/material/InputAdornment';
-import { Box, Container, CircularProgress } from '@mui/material';
+import { Box, Container, CircularProgress, Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 const Turnstile = dynamic(
@@ -349,7 +349,7 @@ export default function JwtRegisterView() {
           />
         </Box>
       )}
-      <LoadingButton
+      <Button
         fullWidth
         color="inherit"
         size="large"
@@ -361,7 +361,7 @@ export default function JwtRegisterView() {
         sx={{ justifyContent: 'space-between', pl: 2, pr: 1.5 }}
       >
         {t('Create Account')}
-      </LoadingButton>
+      </Button>
 
       <Stack
         direction="row"

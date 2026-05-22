@@ -4,10 +4,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
-import LoadingButton from '@mui/lab/LoadingButton';
 
 import Iconify from '@/components/iconify';
 import FormProvider, { RHFTextField } from '@/components/hook-form';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -72,13 +72,9 @@ export default function PostCommentForm() {
             </IconButton>
           </Stack>
 
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            loading={isSubmitting}
-          >
+          <Button type="submit" variant="contained" loading={isSubmitting}>
             Post comment
-          </LoadingButton>
+          </Button>
         </Stack>
       </Stack>
     </FormProvider>

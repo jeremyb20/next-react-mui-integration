@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import DialogActions from '@mui/material/DialogActions';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 
@@ -198,14 +198,14 @@ export default function CalendarForm({
           Cancel
         </Button>
 
-        <LoadingButton
+        <Button
           type="submit"
           variant="contained"
           loading={isSubmitting}
           disabled={dateError}
         >
           Save Changes
-        </LoadingButton>
+        </Button>
       </DialogActions>
     </FormProvider>
   );

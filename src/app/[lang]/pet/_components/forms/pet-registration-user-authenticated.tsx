@@ -23,7 +23,7 @@ import Alert from '@mui/material/Alert';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import {
   Card,
@@ -508,13 +508,13 @@ export function PetRegistrationUserAuthenticated({
             </Button>
           )}
 
-          <LoadingButton
+          <Button
             type="submit"
             variant="contained"
             loading={isSubmitting || isPetSubmitting}
           >
             {t('Add New Pet')}
-          </LoadingButton>
+          </Button>
         </Box>
       </FormProvider>
     </Box>

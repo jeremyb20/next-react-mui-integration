@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { paths } from '@/routes/paths';
@@ -289,7 +289,7 @@ export default function PostNewEditForm({ currentPost }: Props) {
           Preview
         </Button>
 
-        <LoadingButton
+        <Button
           type="submit"
           variant="contained"
           size="large"
@@ -297,7 +297,7 @@ export default function PostNewEditForm({ currentPost }: Props) {
           sx={{ ml: 2 }}
         >
           {!currentPost ? 'Create Post' : 'Save Changes'}
-        </LoadingButton>
+        </Button>
       </Grid>
     </>
   );

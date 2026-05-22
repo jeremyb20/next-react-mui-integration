@@ -24,7 +24,7 @@ import Stack from '@mui/material/Stack';
 import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
@@ -495,7 +495,7 @@ export default function ModernResetPasswordView({
         />
       </Box>
 
-      <LoadingButton
+      <Button
         fullWidth
         size="large"
         type="submit"
@@ -504,7 +504,7 @@ export default function ModernResetPasswordView({
         disabled={!turnstileToken}
       >
         {t('Reset Password')}
-      </LoadingButton>
+      </Button>
 
       <Link
         component={RouterLink}
@@ -619,14 +619,14 @@ export default function ModernResetPasswordView({
         >
           {t('Cancel')}
         </Button>
-        <LoadingButton
+        <Button
           onClick={handleVerify2FA}
           variant="contained"
           loading={isVerifying2FA}
           disabled={!twoFactorCode || twoFactorCode.length !== 6}
         >
           {t('Verify & Reset Password')}
-        </LoadingButton>
+        </Button>
       </DialogActions>
     </Dialog>
   );

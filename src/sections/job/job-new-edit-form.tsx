@@ -14,7 +14,7 @@ import Grid from '@mui/material/Grid';
 import ButtonBase from '@mui/material/ButtonBase';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import InputAdornment from '@mui/material/InputAdornment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -46,6 +46,7 @@ import FormProvider, {
 } from '@/components/hook-form';
 
 import { IJobItem } from '@/types/job';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -421,7 +422,7 @@ export default function JobNewEditForm({ currentJob }: Props) {
           sx={{ flexGrow: 1, pl: 3 }}
         />
 
-        <LoadingButton
+        <Button
           type="submit"
           variant="contained"
           size="large"
@@ -429,7 +430,7 @@ export default function JobNewEditForm({ currentJob }: Props) {
           sx={{ ml: 2 }}
         >
           {!currentJob ? 'Create Job' : 'Save Changes'}
-        </LoadingButton>
+        </Button>
       </Grid>
     </>
   );

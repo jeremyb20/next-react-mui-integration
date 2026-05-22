@@ -13,8 +13,9 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import InputAdornment from '@mui/material/InputAdornment';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -104,7 +105,7 @@ export default function ClassicLoginView() {
         Forgot password?
       </Link>
 
-      <LoadingButton
+      <Button
         fullWidth
         color="inherit"
         size="large"
@@ -113,7 +114,7 @@ export default function ClassicLoginView() {
         loading={isSubmitting}
       >
         Login
-      </LoadingButton>
+      </Button>
     </Stack>
   );
 

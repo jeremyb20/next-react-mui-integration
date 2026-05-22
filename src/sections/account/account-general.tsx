@@ -25,7 +25,6 @@ import Button from '@mui/material/Button';
 import { InputAdornment } from '@mui/material';
 import Grid from '@mui/material/Grid';
 // import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
 
 // import { fData } from '@/utils/format-number';
 
@@ -341,13 +340,13 @@ export default function AccountGeneral() {
                   label={t('Address')}
                 />
 
-                <LoadingButton
+                <Button
                   type="submit"
                   variant="contained"
                   loading={isSubmitting}
                 >
                   {t('Save Changes')}
-                </LoadingButton>
+                </Button>
               </Stack>
             </Card>
           </Grid>

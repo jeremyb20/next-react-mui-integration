@@ -12,7 +12,7 @@ import FormProvider, { RHFCode, RHFTextField } from '@/components/hook-form';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ export default function ModernVerifyView() {
 
       <RHFCode name="code" />
 
-      <LoadingButton
+      <Button
         fullWidth
         size="large"
         type="submit"
@@ -70,7 +70,7 @@ export default function ModernVerifyView() {
         loading={isSubmitting}
       >
         Verify
-      </LoadingButton>
+      </Button>
 
       <Typography variant="body2">
         {`Don’t have a code? `}

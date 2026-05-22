@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import Masonry from '@mui/lab/Masonry';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import Button, { buttonClasses } from '@mui/material/Button';
 
 import Iconify from '@/components/iconify';
@@ -83,15 +83,15 @@ export default function ButtonVariant({ variant = 'text' }: Props) {
           Icon Right
         </Button>
 
-        <LoadingButton loading variant={variant}>
+        <Button loading variant={variant}>
           Submit
-        </LoadingButton>
+        </Button>
 
-        <LoadingButton loading loadingIndicator="Loading..." variant={variant}>
+        <Button loading loadingIndicator="Loading..." variant={variant}>
           Fetch data
-        </LoadingButton>
+        </Button>
 
-        <LoadingButton
+        <Button
           loading
           size="large"
           loadingPosition="start"
@@ -99,9 +99,9 @@ export default function ButtonVariant({ variant = 'text' }: Props) {
           variant={variant}
         >
           Start
-        </LoadingButton>
+        </Button>
 
-        <LoadingButton
+        <Button
           loading
           size="large"
           loadingPosition="end"
@@ -109,7 +109,7 @@ export default function ButtonVariant({ variant = 'text' }: Props) {
           variant={variant}
         >
           End
-        </LoadingButton>
+        </Button>
       </ComponentBlock>
 
       <ComponentBlock title="Sizes" spacing={1}>
@@ -122,7 +122,7 @@ export default function ButtonVariant({ variant = 'text' }: Props) {
         <Box sx={{ width: 1, height: 16 }} />
 
         {SIZES.map((size) => (
-          <LoadingButton
+          <Button
             key={size}
             loading
             size={size}
@@ -131,13 +131,13 @@ export default function ButtonVariant({ variant = 'text' }: Props) {
             variant={variant}
           >
             {size}
-          </LoadingButton>
+          </Button>
         ))}
 
         <Box sx={{ width: 1, height: 16 }} />
 
         {SIZES.map((size) => (
-          <LoadingButton
+          <Button
             key={size}
             loading
             size={size}
@@ -146,7 +146,7 @@ export default function ButtonVariant({ variant = 'text' }: Props) {
             variant={variant}
           >
             {size}
-          </LoadingButton>
+          </Button>
         ))}
       </ComponentBlock>
     </Masonry>

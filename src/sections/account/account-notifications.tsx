@@ -6,11 +6,12 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Grid from '@mui/material/Grid';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import ListItemText from '@mui/material/ListItemText';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 import AccountSubscriptionNotification from './account-subscription-notification';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -132,14 +133,14 @@ export default function AccountNotifications() {
             </Grid>
           ))}
 
-          <LoadingButton
+          <Button
             type="submit"
             variant="contained"
             loading={isSubmitting}
             sx={{ ml: 'auto' }}
           >
             Save Changes
-          </LoadingButton>
+          </Button>
         </Stack>
       </FormProvider>
       <AccountSubscriptionNotification />

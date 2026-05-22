@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import Stack, { StackProps } from '@mui/material/Stack';
 
 import { RouterLink } from '@/routes/components';
@@ -72,7 +72,7 @@ export default function PostDetailsToolbar({
           </IconButton>
         </Tooltip>
 
-        <LoadingButton
+        <Button
           color="inherit"
           variant="contained"
           loading={!publish}
@@ -82,7 +82,7 @@ export default function PostDetailsToolbar({
           sx={{ textTransform: 'capitalize' }}
         >
           {publish}
-        </LoadingButton>
+        </Button>
       </Stack>
 
       <CustomPopover

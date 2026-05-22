@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -147,13 +147,9 @@ export default function AddressNewForm({ open, onClose, onCreate }: Props) {
             Cancel
           </Button>
 
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            loading={isSubmitting}
-          >
+          <Button type="submit" variant="contained" loading={isSubmitting}>
             Deliver to this Address
-          </LoadingButton>
+          </Button>
         </DialogActions>
       </FormProvider>
     </Dialog>

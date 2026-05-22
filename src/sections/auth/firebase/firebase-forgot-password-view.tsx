@@ -14,7 +14,7 @@ import FormProvider, { RHFTextField } from '@/components/hook-form';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ export default function FirebaseForgotPasswordView() {
     <Stack spacing={3} alignItems="center">
       <RHFTextField name="email" label="Email address" />
 
-      <LoadingButton
+      <Button
         fullWidth
         size="large"
         type="submit"
@@ -70,7 +70,7 @@ export default function FirebaseForgotPasswordView() {
         loading={isSubmitting}
       >
         Send Request
-      </LoadingButton>
+      </Button>
 
       <Link
         component={RouterLink}

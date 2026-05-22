@@ -21,8 +21,8 @@ import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { Box, Alert, CircularProgress } from '@mui/material';
+
+import { Box, Alert, CircularProgress, Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 const Turnstile = dynamic(
@@ -147,7 +147,7 @@ export default function ModernForgotPasswordView() {
           />
         </Box>
       )}
-      <LoadingButton
+      <Button
         fullWidth
         size="large"
         type="submit"
@@ -158,7 +158,7 @@ export default function ModernForgotPasswordView() {
         sx={{ justifyContent: 'space-between', pl: 2, pr: 1.5 }}
       >
         {t('Send Request')}
-      </LoadingButton>
+      </Button>
 
       <Link
         component={RouterLink}

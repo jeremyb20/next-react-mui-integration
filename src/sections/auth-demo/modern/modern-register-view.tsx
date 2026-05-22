@@ -13,8 +13,9 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import InputAdornment from '@mui/material/InputAdornment';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -124,7 +125,7 @@ export default function ModernRegisterView() {
         }}
       />
 
-      <LoadingButton
+      <Button
         fullWidth
         color="inherit"
         size="large"
@@ -135,7 +136,7 @@ export default function ModernRegisterView() {
         sx={{ justifyContent: 'space-between', pl: 2, pr: 1.5 }}
       >
         Create account
-      </LoadingButton>
+      </Button>
     </Stack>
   );
 

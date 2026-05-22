@@ -15,13 +15,14 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import InputAdornment from '@mui/material/InputAdornment';
 
 // import { useAuthContext } from '@/auth/hooks';
 
 import Iconify from '@/components/iconify';
 import FormProvider, { RHFTextField } from '@/components/hook-form';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -181,7 +182,7 @@ export default function FirebaseRegisterView() {
         }}
       />
 
-      <LoadingButton
+      <Button
         fullWidth
         color="inherit"
         size="large"
@@ -190,7 +191,7 @@ export default function FirebaseRegisterView() {
         loading={isSubmitting}
       >
         Create account
-      </LoadingButton>
+      </Button>
     </Stack>
   );
 

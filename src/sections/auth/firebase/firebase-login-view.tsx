@@ -19,8 +19,9 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import InputAdornment from '@mui/material/InputAdornment';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -155,7 +156,7 @@ export default function FirebaseLoginView() {
         Forgot password?
       </Link>
 
-      <LoadingButton
+      <Button
         fullWidth
         color="inherit"
         size="large"
@@ -164,7 +165,7 @@ export default function FirebaseLoginView() {
         loading={isSubmitting}
       >
         Login
-      </LoadingButton>
+      </Button>
     </Stack>
   );
 

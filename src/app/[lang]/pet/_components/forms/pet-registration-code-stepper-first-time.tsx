@@ -42,7 +42,7 @@ import Stepper from '@mui/material/Stepper';
 import { alpha } from '@mui/material/styles';
 import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import StepContent from '@mui/material/StepContent';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import {
@@ -329,7 +329,13 @@ export default function PetRegistrationCodeStepperFirstTime({
       handleNext();
     } catch (error) {
       console.error(error);
-      setErrorMsg(typeof error === 'string' ? error : error instanceof Error ? error.message : 'Error saving user information');
+      setErrorMsg(
+        typeof error === 'string'
+          ? error
+          : error instanceof Error
+            ? error.message
+            : 'Error saving user information'
+      );
     }
   });
 
@@ -390,7 +396,10 @@ export default function PetRegistrationCodeStepperFirstTime({
       setActiveStep(4);
     } catch (error) {
       console.error(error);
-      const errMsg = error instanceof Error ? error.message : 'Error completing registration';
+      const errMsg =
+        error instanceof Error
+          ? error.message
+          : 'Error completing registration';
       setErrorMsg(errMsg);
       enqueueSnackbar(t(errMsg), { variant: 'error' });
       setIsSubmitting(false);
@@ -483,14 +492,14 @@ export default function PetRegistrationCodeStepperFirstTime({
           <Button onClick={onBackToSelection} sx={{ mr: 1 }}>
             {t('Back')}
           </Button>
-          <LoadingButton
+          <Button
             type="submit"
             variant="contained"
             loading={isCodeSubmitting}
             disabled={!watchCodeValue}
           >
             {t('Validate Code')}
-          </LoadingButton>
+          </Button>
         </Box>
 
         {code && (
@@ -610,13 +619,9 @@ export default function PetRegistrationCodeStepperFirstTime({
           <Button onClick={handleBack} sx={{ mr: 1 }}>
             {t('Back')}
           </Button>
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            loading={isUserSubmitting}
-          >
+          <Button type="submit" variant="contained" loading={isUserSubmitting}>
             {t('Continue')}
-          </LoadingButton>
+          </Button>
         </Box>
       </Box>
     </FormProvider>
@@ -828,13 +833,9 @@ export default function PetRegistrationCodeStepperFirstTime({
           <Button onClick={handleBack} sx={{ mr: 1 }}>
             {t('Back')}
           </Button>
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            loading={isPetSubmitting}
-          >
+          <Button type="submit" variant="contained" loading={isPetSubmitting}>
             {t('Continue')}
-          </LoadingButton>
+          </Button>
         </Box>
       </Box>
     </FormProvider>
@@ -980,14 +981,14 @@ export default function PetRegistrationCodeStepperFirstTime({
         <Button onClick={handleBack} sx={{ mr: 1 }}>
           {t('Back')}
         </Button>
-        <LoadingButton
+        <Button
           type="submit"
           variant="contained"
           loading={isSubmitting}
           onClick={handleCompleteRegistration}
         >
           {t('Complete Registration')}
-        </LoadingButton>
+        </Button>
       </Box>
     </Box>
   );

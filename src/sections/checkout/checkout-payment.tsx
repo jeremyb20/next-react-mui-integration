@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import LoadingButton from '@mui/lab/LoadingButton';
 
 import Iconify from '@/components/iconify';
 import FormProvider from '@/components/hook-form';
@@ -137,7 +136,7 @@ export default function CheckoutPayment() {
             onEdit={() => checkout.onGotoStep(0)}
           />
 
-          <LoadingButton
+          <Button
             fullWidth
             size="large"
             type="submit"
@@ -145,7 +144,7 @@ export default function CheckoutPayment() {
             loading={isSubmitting}
           >
             Complete Order
-          </LoadingButton>
+          </Button>
         </Grid>
       </Grid>
     </FormProvider>

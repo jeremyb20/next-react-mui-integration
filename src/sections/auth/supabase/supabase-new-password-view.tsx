@@ -16,8 +16,9 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import InputAdornment from '@mui/material/InputAdornment';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -128,7 +129,7 @@ export default function SupabaseNewPasswordView() {
         }}
       />
 
-      <LoadingButton
+      <Button
         fullWidth
         type="submit"
         size="large"
@@ -136,7 +137,7 @@ export default function SupabaseNewPasswordView() {
         loading={isSubmitting}
       >
         Update Password
-      </LoadingButton>
+      </Button>
     </Stack>
   );
 

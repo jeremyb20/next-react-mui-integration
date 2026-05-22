@@ -13,8 +13,9 @@ import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import InputAdornment from '@mui/material/InputAdornment';
+import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -154,14 +155,14 @@ export default function AccountChangePassword() {
           }}
         />
 
-        <LoadingButton
+        <Button
           type="submit"
           variant="contained"
           loading={isSubmitting}
           sx={{ ml: 'auto' }}
         >
           {t('Save Changes')}
-        </LoadingButton>
+        </Button>
       </Stack>
     </FormProvider>
   );

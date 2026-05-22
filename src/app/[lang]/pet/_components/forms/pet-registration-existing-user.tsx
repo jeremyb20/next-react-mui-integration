@@ -39,7 +39,7 @@ import Stepper from '@mui/material/Stepper';
 import { alpha } from '@mui/material/styles';
 import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import StepContent from '@mui/material/StepContent';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import {
@@ -430,14 +430,14 @@ export function PetRegistrationExistingUser({
           <Button onClick={onBackToSelection} sx={{ mr: 1 }}>
             Back
           </Button>
-          <LoadingButton
+          <Button
             type="submit"
             variant="contained"
             loading={isCodeSubmitting}
             disabled={!watchCodeValue || watchCodeValue.length !== 6}
           >
             Validate Code
-          </LoadingButton>
+          </Button>
         </Box>
 
         {code && (
@@ -543,7 +543,7 @@ export function PetRegistrationExistingUser({
           </Box>
         )}
 
-        <LoadingButton
+        <Button
           fullWidth
           color="inherit"
           size="large"
@@ -553,7 +553,7 @@ export function PetRegistrationExistingUser({
           disabled={!turnstileToken || !watchedPassword} // Deshabilitar hasta que se complete el captcha
         >
           {t('Sign In')}
-        </LoadingButton>
+        </Button>
       </Box>
     </FormProvider>
   );
@@ -770,13 +770,9 @@ export function PetRegistrationExistingUser({
           <Button onClick={handleBack} sx={{ mr: 1 }}>
             {t('Back')}
           </Button>
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            loading={isPetSubmitting}
-          >
+          <Button type="submit" variant="contained" loading={isPetSubmitting}>
             {t('Continue')}
-          </LoadingButton>
+          </Button>
         </Box>
       </Box>
     </FormProvider>
@@ -922,14 +918,14 @@ export function PetRegistrationExistingUser({
         <Button onClick={handleBack} sx={{ mr: 1 }}>
           {t('Back')}
         </Button>
-        <LoadingButton
+        <Button
           type="submit"
           variant="contained"
           loading={isSubmitting}
           onClick={handleCompleteRegistration}
         >
           {t('Complete Registration')}
-        </LoadingButton>
+        </Button>
       </Box>
     </Box>
   );

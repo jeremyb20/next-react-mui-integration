@@ -29,7 +29,7 @@ import Dialog from '@mui/material/Dialog';
 import { LinearProgress } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
@@ -631,7 +631,7 @@ export default function AccountSecurity() {
                 {t('Email address verified')}
               </Typography>
               {!isEmailVerified && (
-                <LoadingButton
+                <Button
                   size="small"
                   loading={isSendingEmailCode}
                   variant="outlined"
@@ -639,7 +639,7 @@ export default function AccountSecurity() {
                   sx={{ ml: 'auto' }}
                 >
                   {t('Verify now')}
-                </LoadingButton>
+                </Button>
               )}
             </Stack>
 

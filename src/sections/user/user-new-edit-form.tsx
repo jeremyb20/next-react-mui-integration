@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { paths } from '@/routes/paths';
@@ -262,13 +262,9 @@ export default function UserNewEditForm({ currentUser }: Props) {
             </Box>
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
-              <LoadingButton
-                type="submit"
-                variant="contained"
-                loading={isSubmitting}
-              >
+              <Button type="submit" variant="contained" loading={isSubmitting}>
                 {!currentUser ? 'Create User' : 'Save Changes'}
-              </LoadingButton>
+              </Button>
             </Stack>
           </Card>
         </Grid>
