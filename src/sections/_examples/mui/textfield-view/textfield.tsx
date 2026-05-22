@@ -214,7 +214,7 @@ export default function Textfield({ variant }: Props) {
           type="number"
           label="Number"
           defaultValue={0}
-          InputLabelProps={{ shrink: true }}
+          slotProps={{ inputLabel: { shrink: true } }}
         />
 
         <TextField variant={variant} fullWidth label="Search" type="search" />

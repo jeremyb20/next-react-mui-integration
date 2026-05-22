@@ -176,7 +176,7 @@ const ScheduleNotificationForm = ({
             type="date"
             value={formData.date}
             onChange={handleFormChange('date')}
-            InputLabelProps={{ shrink: true }}
+            slotProps={{ inputLabel: { shrink: true } }}
             inputProps={{ min: getMinDate() }} // Establecer fecha mínima como hoy
             fullWidth
             required
@@ -188,7 +188,7 @@ const ScheduleNotificationForm = ({
             type="time"
             value={formData.time}
             onChange={handleFormChange('time')}
-            InputLabelProps={{ shrink: true }}
+            slotProps={{ inputLabel: { shrink: true } }}
             inputProps={{
               min: getMinTime(), // Si la fecha es hoy, establecer hora mínima
             }}

@@ -71,7 +71,7 @@ export default function ModernNewPasswordView() {
         name="email"
         label="Email"
         placeholder="example@gmail.com"
-        InputLabelProps={{ shrink: true }}
+        slotProps={{ inputLabel: { shrink: true } }}
       />
 
       <RHFCode name="code" />

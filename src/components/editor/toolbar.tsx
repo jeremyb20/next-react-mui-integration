@@ -16,7 +16,6 @@ export const formats = [
   'background',
   'blockquote',
   'bold',
-  'bullet',
   'code',
   'code-block',
   'color',
@@ -38,7 +37,7 @@ export const formats = [
 ];
 
 type EditorToolbarProps = {
-  id: string;
+  id?: string;
   simple?: boolean;
 };
 

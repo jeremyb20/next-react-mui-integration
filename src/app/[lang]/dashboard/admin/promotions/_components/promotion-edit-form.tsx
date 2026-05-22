@@ -338,14 +338,14 @@ export default function PromotionEditForm({
                 label="Valid From"
                 type="datetime-local"
                 required
-                InputLabelProps={{ shrink: true }}
+                slotProps={{ inputLabel: { shrink: true } }}
               />
               <RHFTextField
                 name="validUntil"
                 label="Valid Until"
                 type="datetime-local"
                 required
-                InputLabelProps={{ shrink: true }}
+                slotProps={{ inputLabel: { shrink: true } }}
               />
             </Box>
 

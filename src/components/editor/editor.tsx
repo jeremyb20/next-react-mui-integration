@@ -1,15 +1,12 @@
 import dynamic from 'next/dynamic';
-
 import { alpha } from '@mui/material/styles';
 import Skeleton from '@mui/material/Skeleton';
 
-import '@/utils/highlight';
-
 import { EditorProps } from './types';
+import type { ComponentType } from 'react';
 import { StyledEditor } from './styles';
-import Toolbar, { formats } from './toolbar';
 
-const ReactQuill = dynamic(() => import('react-quill-new'), {
+const ClientEditor = dynamic<EditorProps>(() => import('./clientEditor').then(m => m as { default: ComponentType<EditorProps> }), {
   ssr: false,
   loading: () => (
     <Skeleton
@@ -26,8 +23,6 @@ const ReactQuill = dynamic(() => import('react-quill-new'), {
   ),
 });
 
-// ----------------------------------------------------------------------
-
 export default function Editor({
   id = 'minimal-quill',
   error,
@@ -36,21 +31,6 @@ export default function Editor({
   sx,
   ...other
 }: EditorProps) {
-  const modules = {
-    toolbar: {
-      container: `#${id}`,
-    },
-    history: {
-      delay: 500,
-      maxStack: 100,
-      userOnly: true,
-    },
-    syntax: true,
-    clipboard: {
-      matchVisual: false,
-    },
-  };
-
   return (
     <>
       <StyledEditor
@@ -64,16 +44,8 @@ export default function Editor({
           ...sx,
         }}
       >
-        <Toolbar id={id} simple={simple} />
-
-        <ReactQuill
-          modules={modules}
-          formats={formats}
-          placeholder="Write something awesome..."
-          {...other}
-        />
+        <ClientEditor id={id} simple={simple} {...other} />
       </StyledEditor>
-
       {helperText && helperText}
     </>
   );

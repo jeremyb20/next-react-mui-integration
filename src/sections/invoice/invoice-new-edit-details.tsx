@@ -190,21 +190,21 @@ export default function InvoiceNewEditDetails() {
                 size="small"
                 name={`items[${index}].title`}
                 label="Title"
-                InputLabelProps={{ shrink: true }}
+                slotProps={{ inputLabel: { shrink: true } }}
               />
 
               <RHFTextField
                 size="small"
                 name={`items[${index}].description`}
                 label="Description"
-                InputLabelProps={{ shrink: true }}
+                slotProps={{ inputLabel: { shrink: true } }}
               />
 
               <RHFSelect
                 name={`items[${index}].service`}
                 size="small"
                 label="Service"
-                InputLabelProps={{ shrink: true }}
+                slotProps={{ inputLabel: { shrink: true } }}
                 sx={{
                   maxWidth: { md: 160 },
                 }}
@@ -237,7 +237,7 @@ export default function InvoiceNewEditDetails() {
                 label="Quantity"
                 placeholder="0"
                 onChange={(event) => handleChangeQuantity(event, index)}
-                InputLabelProps={{ shrink: true }}
+                slotProps={{ inputLabel: { shrink: true } }}
                 sx={{ maxWidth: { md: 96 } }}
               />
 

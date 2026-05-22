@@ -30,7 +30,7 @@ export default function InvoiceNewEditStatusDate() {
         fullWidth
         name="status"
         label="Status"
-        InputLabelProps={{ shrink: true }}
+        slotProps={{ inputLabel: { shrink: true } }}
         PaperPropsSx={{ textTransform: 'capitalize' }}
       >
         {['paid', 'pending', 'overdue', 'draft'].map((option) => (

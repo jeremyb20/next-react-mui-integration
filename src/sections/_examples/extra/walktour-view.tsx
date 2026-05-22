@@ -92,7 +92,7 @@ export default function WalktourView() {
               fullWidth
               label="Email"
               placeholder="example@gmail.com"
-              InputLabelProps={{ shrink: true }}
+              slotProps={{ inputLabel: { shrink: true } }}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">

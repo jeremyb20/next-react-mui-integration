@@ -438,14 +438,14 @@ export default function ProductNewEditForm({ currentProduct }: Props) {
                 label="Quantity"
                 placeholder="0"
                 type="number"
-                InputLabelProps={{ shrink: true }}
+                slotProps={{ inputLabel: { shrink: true } }}
               />
 
               <RHFSelect
                 native
                 name="category"
                 label="Category"
-                InputLabelProps={{ shrink: true }}
+                slotProps={{ inputLabel: { shrink: true } }}
               >
                 {PRODUCT_CATEGORY_GROUP_OPTIONS.map((category) => (
                   <optgroup key={category.group} label={category.group}>
@@ -486,7 +486,7 @@ export default function ProductNewEditForm({ currentProduct }: Props) {
                   {option}
                 </li>
               )}
-              renderTags={(selected, getTagProps) =>
+              renderValue={(selected, getTagProps) =>
                 selected.map((option, index) => (
                   <Chip
                     {...getTagProps({ index })}
@@ -560,7 +560,7 @@ export default function ProductNewEditForm({ currentProduct }: Props) {
               label="Regular Price"
               placeholder={formatCurrency(0.0)}
               type="number"
-              InputLabelProps={{ shrink: true }}
+              slotProps={{ inputLabel: { shrink: true } }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -577,7 +577,7 @@ export default function ProductNewEditForm({ currentProduct }: Props) {
               label="Sale Price"
               placeholder={formatCurrency(0.0)}
               type="number"
-              InputLabelProps={{ shrink: true }}
+              slotProps={{ inputLabel: { shrink: true } }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -627,7 +627,7 @@ export default function ProductNewEditForm({ currentProduct }: Props) {
                 label="Tax (%)"
                 placeholder="0.00"
                 type="number"
-                InputLabelProps={{ shrink: true }}
+                slotProps={{ inputLabel: { shrink: true } }}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">

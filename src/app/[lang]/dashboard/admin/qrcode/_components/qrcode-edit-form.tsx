@@ -158,7 +158,7 @@ export default function QrCodeEditForm({
               <RHFSelect
                 name="status"
                 label="Status"
-                InputLabelProps={{ shrink: true }}
+                slotProps={{ inputLabel: { shrink: true } }}
               >
                 {statusOptions.map((size) => (
                   <MenuItem
@@ -177,7 +177,7 @@ export default function QrCodeEditForm({
                 name="activationDate"
                 label="Activation Date"
                 type="datetime-local"
-                InputLabelProps={{ shrink: true }}
+                slotProps={{ inputLabel: { shrink: true } }}
               />
             </Box>
 
