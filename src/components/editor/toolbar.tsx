@@ -37,7 +37,7 @@ export const formats = [
 ];
 
 type EditorToolbarProps = {
-  id?: string;
+  id: string;
   simple?: boolean;
 };
 
