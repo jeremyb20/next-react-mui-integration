@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { _contacts } from '@/_mock';
 import Iconify from '@/components/iconify';
 import { fToNow } from '@/utils/format-time';

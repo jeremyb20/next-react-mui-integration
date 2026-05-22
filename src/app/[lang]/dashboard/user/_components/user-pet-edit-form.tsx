@@ -56,7 +56,6 @@ import Box from '@mui/material/Box';
 import { Container } from '@mui/system';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import LoadingButton from '@mui/lab/LoadingButton';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import {
   Tab,
@@ -697,14 +696,14 @@ export default function PetEditForm({ petId }: Props) {
                   {`${t('Edit')} ${currentPet?.petName || 'Pet'}`}
                 </Typography>
               </Box>
-              <LoadingButton
+              <Button
                 type="submit"
                 onClick={handleSubmit(onSubmit)}
                 variant="contained"
                 loading={isSubmitting}
               >
                 {t('Update Pet')}
-              </LoadingButton>
+              </Button>
             </Box>
           </CardContent>
 
@@ -1402,7 +1401,7 @@ export default function PetEditForm({ petId }: Props) {
             },
           }}
         >
-          <LoadingButton
+          <Button
             type="submit"
             onClick={handleSubmit(onSubmit)}
             variant="contained"
@@ -1410,7 +1409,7 @@ export default function PetEditForm({ petId }: Props) {
             loading={isSubmitting}
           >
             {t('Update Pet')}
-          </LoadingButton>
+          </Button>
         </Stack>
       </FormProvider>
     </Container>

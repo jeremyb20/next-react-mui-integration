@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import Iconify from '@/components/iconify';
 import { useTranslation } from '@/hooks/use-translation';
 import { varFade, MotionViewport } from '@/components/animate';

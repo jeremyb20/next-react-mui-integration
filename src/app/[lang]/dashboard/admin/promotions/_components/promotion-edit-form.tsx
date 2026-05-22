@@ -24,7 +24,6 @@ import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
 import { Chip, Button, MenuItem, FormHelperText } from '@mui/material';
 
 // ----------------------------------------------------------------------
@@ -646,14 +645,14 @@ export default function PromotionEditForm({
         <Button variant="outlined" size="large" onClick={() => close(false)}>
           Cancel
         </Button>
-        <LoadingButton
+        <Button
           type="submit"
           variant="contained"
           size="large"
           loading={isSubmitting}
         >
           {currentPromotion?._id ? 'Save Changes' : 'Create Promotion'}
-        </LoadingButton>
+        </Button>
       </Grid>
     </>
   );

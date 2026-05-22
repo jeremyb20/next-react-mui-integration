@@ -19,12 +19,12 @@ export default function UserSecurityLevel() {
   const { t } = useTranslation();
   const { user } = useManagerUser();
   const { security } = user;
-  // ✅ Calcular nivel de seguridad
+
   const securityLevel: SecurityLevel = {
     level: 0,
     items: {
-      emailVerified: security.isEmailVerified,
-      twoFactorEnabled: security.twoFactorEnabled,
+      emailVerified: security?.isEmailVerified,
+      twoFactorEnabled: security?.twoFactorEnabled,
       backupEmailSet: !!security?.backupEmail,
     },
   };

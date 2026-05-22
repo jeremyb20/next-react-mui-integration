@@ -1,5 +1,5 @@
 import { _mock } from '@/_mock';
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { paths } from '@/routes/paths';
 import Label from '@/components/label';
 import Image from '@/components/image';

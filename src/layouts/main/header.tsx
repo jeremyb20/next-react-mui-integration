@@ -25,7 +25,7 @@ import LanguagePopover from '../common/language-popover';
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   return {
     title: '***Plaquitas para mascotas CR***',

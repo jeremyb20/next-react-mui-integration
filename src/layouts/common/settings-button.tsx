@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import Iconify from '@/components/iconify';
 import { varHover } from '@/components/animate';
 import { useSettingsContext } from '@/components/settings';

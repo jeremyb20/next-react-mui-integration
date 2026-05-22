@@ -1,4 +1,4 @@
-import { m, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'motion/react';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';

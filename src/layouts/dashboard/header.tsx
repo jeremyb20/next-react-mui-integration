@@ -100,7 +100,7 @@ export default function Header({ onOpenNav }: Props) {
     >
       <Toolbar
         sx={{
-          height: 1,
+          height: '100vh',
           px: { lg: 5 },
         }}
       >

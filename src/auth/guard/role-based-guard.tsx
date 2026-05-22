@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { useManagerUser } from '@/hooks/use-manager-user';
 
 import Container from '@mui/material/Container';

@@ -1,4 +1,4 @@
-import { m, MotionProps } from 'framer-motion';
+import { m, MotionProps } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 
 import Stack from '@mui/material/Stack';

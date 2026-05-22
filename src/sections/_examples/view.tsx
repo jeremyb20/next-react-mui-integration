@@ -1,6 +1,6 @@
 'use client';
 
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import orderBy from 'lodash/orderBy';
 import { RoleBasedGuard } from '@/auth/guard';
 

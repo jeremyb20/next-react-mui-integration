@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import Image from '@/components/image';
 import { useTranslation } from '@/hooks/use-translation';
 import { varFade, MotionViewport } from '@/components/animate';

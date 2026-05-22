@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -70,7 +70,7 @@ export default function TourDetailsContent({ tour }: Props) {
           variants={{
             hover: { opacity: 0.8 },
           }}
-          transition={varTranHover()}
+          transition={varTranHover() as any}
         >
           <Image
             alt={slides[0].src}
@@ -89,7 +89,7 @@ export default function TourDetailsContent({ tour }: Props) {
               variants={{
                 hover: { opacity: 0.8 },
               }}
-              transition={varTranHover()}
+              transition={varTranHover() as any}
             >
               <Image
                 alt={slide.src}

@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 
 import Paper from '@mui/material/Paper';
 import { alpha } from '@mui/material/styles';
@@ -61,7 +61,7 @@ export default function ComponentCard({ item }: Props) {
           bgcolor: (theme) => alpha(theme.palette.grey[500], 0.04),
         }}
       >
-        <m.div variants={varHover(1.1)} transition={varTranHover()}>
+        <m.div variants={varHover(1.1)} transition={varTranHover() as any}>
           <Image alt={name} src={icon} />
         </m.div>
       </CardActionArea>

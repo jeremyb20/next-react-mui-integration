@@ -10,12 +10,13 @@ import { Box, Container, CircularProgress } from '@mui/material';
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   // Obtener el idioma de los params, asegurando que sea válido
-  const lang = params?.lang?.toUpperCase() || 'ES';
+  const { lang } = await params;
+  const language = lang?.toLowerCase() || 'ES';
   const supportedLanguages = ['ES', 'EN', 'AR', 'VI', 'ZH', 'FR'];
-  const validLang = supportedLanguages.includes(lang) ? lang : 'ES';
+  const validLang = supportedLanguages.includes(lang) ? language : 'ES';
 
   return getSeoMetadata('sign-in', validLang);
 }

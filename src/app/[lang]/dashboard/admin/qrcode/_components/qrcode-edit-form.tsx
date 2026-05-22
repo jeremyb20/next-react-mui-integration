@@ -15,7 +15,6 @@ import Grid from '@mui/material/Grid';
 import { Button, MenuItem } from '@mui/material';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
 
 import { useResponsive } from '@/hooks/use-responsive';
 
@@ -361,14 +360,14 @@ export default function QrCodeEditForm({
         <Button variant="outlined" size="large" onClick={() => close(false)}>
           Cancel
         </Button>
-        <LoadingButton
+        <Button
           type="submit"
           variant="contained"
           size="large"
           loading={isSubmitting}
         >
           Save Changes
-        </LoadingButton>
+        </Button>
       </Grid>
     </>
   );

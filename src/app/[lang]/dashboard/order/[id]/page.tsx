@@ -9,7 +9,7 @@ import { OrderDetailsView } from '@/sections/order/view';
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   console.log('***************params****************', params);
   return {

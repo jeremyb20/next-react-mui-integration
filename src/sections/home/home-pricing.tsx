@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { _homePlans } from '@/_mock';
 import { paths } from '@/routes/paths';
 import Iconify from '@/components/iconify';

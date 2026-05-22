@@ -14,7 +14,6 @@ import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import MenuItem from '@mui/material/MenuItem';
-import LoadingButton from '@mui/lab/LoadingButton';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Chip, InputAdornment } from '@mui/material';
 import DialogActions from '@mui/material/DialogActions';
@@ -656,14 +655,14 @@ export default function SeoQuickEditForm({
             Cancel
           </Button>
 
-          <LoadingButton
+          <Button
             type="submit"
             variant="contained"
             loading={isSubmitting}
             disabled={!isValid} // Deshabilitar si no es válido
           >
             {currentSeo ? 'Update SEO' : 'Create SEO'}
-          </LoadingButton>
+          </Button>
         </DialogActions>
       </FormProvider>
     </Dialog>

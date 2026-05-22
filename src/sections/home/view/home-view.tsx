@@ -2,7 +2,7 @@
 
 import { paths } from '@/routes/paths';
 import MainLayout from '@/layouts/main';
-import { useScroll } from 'framer-motion';
+import { useScroll } from 'motion/react';
 import { useSearchParams } from '@/routes/hooks';
 import { useRouter } from '@/routes/hooks/use-router';
 import { useState, useEffect, useCallback } from 'react';

@@ -2,7 +2,7 @@
 
 'use client';
 
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { IPromotions } from '@/types/api';
 import Iconify from '@/components/iconify';
 import { useTranslation } from 'react-i18next';

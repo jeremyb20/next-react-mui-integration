@@ -1,7 +1,7 @@
 import { paths } from '@/routes/paths';
 import Iconify from '@/components/iconify';
 import { APP_NAME } from '@/config-global';
-import { m, useScroll } from 'framer-motion';
+import { m, useScroll } from 'motion/react';
 import { RouterLink } from '@/routes/components';
 import { HEADER } from '@/layouts/config-layout';
 import { bgGradient, textGradient } from '@/theme/css';

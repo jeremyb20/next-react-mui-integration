@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EMAIL_SUPPORT } from '@/config-global';

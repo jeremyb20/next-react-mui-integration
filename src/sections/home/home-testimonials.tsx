@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import Carousel from 'react-slick';
 import Iconify from '@/components/iconify';
 import { APP_NAME } from '@/config-global';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { EMAIL_SUPPORT } from '@/config-global';
 
 import Box from '@mui/material/Box';

@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { paths } from '@/routes/paths';
 import { bgGradient } from '@/theme/css';
 import Iconify from '@/components/iconify';

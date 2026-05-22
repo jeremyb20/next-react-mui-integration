@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { isEqual } from 'lodash';
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import orderBy from 'lodash/orderBy';
 import { paths } from '@/routes/paths';
 import { useRouter } from '@/routes/hooks';

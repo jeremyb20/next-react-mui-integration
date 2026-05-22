@@ -11,7 +11,7 @@ import Switch from '@mui/material/Switch';
 import Grid from '@mui/material/Grid';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
-import LoadingButton from '@mui/lab/LoadingButton';
+import { Button } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
@@ -381,7 +381,7 @@ export default function TourNewEditForm({ currentTour }: Props) {
           sx={{ flexGrow: 1, pl: 3 }}
         />
 
-        <LoadingButton
+        <Button
           type="submit"
           variant="contained"
           size="large"
@@ -389,7 +389,7 @@ export default function TourNewEditForm({ currentTour }: Props) {
           sx={{ ml: 2 }}
         >
           {!currentTour ? 'Create Tour' : 'Save Changes'}
-        </LoadingButton>
+        </Button>
       </Grid>
     </>
   );

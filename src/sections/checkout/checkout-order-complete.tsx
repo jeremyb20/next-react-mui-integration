@@ -1,4 +1,4 @@
-import { m, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'motion/react';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';

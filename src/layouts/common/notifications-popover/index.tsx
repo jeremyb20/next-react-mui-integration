@@ -1,4 +1,4 @@
-import { m } from 'framer-motion';
+import { m } from 'motion/react';
 import { endpoints } from '@/utils/axios';
 import { HOST_API } from '@/config-global';
 import { NotificationData } from '@/types/api';
