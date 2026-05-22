@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default async function RootLayout({ children }: Props) {
-  const language = 'es';
+  const language: string = 'es';
   const isRTL = language === 'ar';
   return (
     <html lang={language} dir={isRTL ? 'rtl' : 'ltr'} translate="no">
