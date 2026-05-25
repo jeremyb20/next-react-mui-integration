@@ -1,8 +1,9 @@
 import AccordionView from '@/sections/_examples/mui/accordion-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'MUI: Accordion',
 };
 

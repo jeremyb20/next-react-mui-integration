@@ -14,7 +14,7 @@ const nextConfig = {
       },
       {
         source: '/health',
-        destination: 'https://petsqrbackend.fly.dev/health',
+        destination: 'https://petsqrbackend.fly.dev/api/health',
       },
     ];
   },

@@ -3,10 +3,11 @@
 import { paths } from '@/routes/paths';
 
 import { ProductDetailsView } from '../../dashboard/admin/product/_components/product/view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Dashboard: Product Details',
 };
 

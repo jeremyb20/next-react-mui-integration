@@ -79,10 +79,10 @@ const steps = [
 
 export default function PetRegistrationCodeStepperFirstTime({
   code,
-  onBackToSelection,
+  onBackToSelectionAction,
 }: {
   code?: string;
-  onBackToSelection?: () => void;
+  onBackToSelectionAction?: () => void;
 }) {
   const router = useRouter();
   const password = useBoolean();
@@ -489,7 +489,7 @@ export default function PetRegistrationCodeStepperFirstTime({
         />
 
         <Box sx={{ mt: 3 }}>
-          <Button onClick={onBackToSelection} sx={{ mr: 1 }}>
+          <Button onClick={onBackToSelectionAction} sx={{ mr: 1 }}>
             {t('Back')}
           </Button>
           <Button

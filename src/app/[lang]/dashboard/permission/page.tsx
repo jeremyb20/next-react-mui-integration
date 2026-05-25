@@ -1,8 +1,9 @@
 import PermissionDeniedView from '@/sections/permission/view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Dashboard: Permission Denied',
 };
 

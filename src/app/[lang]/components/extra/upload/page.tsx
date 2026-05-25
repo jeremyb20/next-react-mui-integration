@@ -1,8 +1,9 @@
 import UploadView from '@/sections/_examples/extra/upload-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Components: Upload',
 };
 

@@ -1,8 +1,9 @@
 import OrganizationalChartView from '@/sections/_examples/extra/organizational-chart-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Components: Organizational Chart',
 };
 

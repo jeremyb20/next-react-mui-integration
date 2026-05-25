@@ -1,8 +1,9 @@
 import { PaymentView } from '@/sections/payment/view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Payment',
 };
 

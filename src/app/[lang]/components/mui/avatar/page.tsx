@@ -1,8 +1,9 @@
 import AvatarView from '@/sections/_examples/mui/avatar-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'MUI: Avatar',
 };
 

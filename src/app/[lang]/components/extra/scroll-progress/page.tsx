@@ -1,8 +1,9 @@
 import ScrollProgressView from '@/sections/_examples/extra/scroll-progress-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Components: Scroll Progress',
 };
 

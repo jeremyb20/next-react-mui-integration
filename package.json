@@ -94,6 +94,8 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@eslint/js": "^10.0.1",
+    "@next/eslint-plugin-next": "^16.2.6",
     "@types/autosuggest-highlight": "^3.2.3",
     "@types/canvas-confetti": "^1.9.0",
     "@types/lodash": "^4.17.23",

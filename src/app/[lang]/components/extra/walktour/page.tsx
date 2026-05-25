@@ -1,8 +1,9 @@
 import WalktourView from '@/sections/_examples/extra/walktour-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Components: Walktour',
 };
 

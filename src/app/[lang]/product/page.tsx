@@ -1,8 +1,9 @@
 // ----------------------------------------------------------------------
 
 import { ProductShopView } from '@/sections/product/view';
+import { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Product: Shop',
 };
 

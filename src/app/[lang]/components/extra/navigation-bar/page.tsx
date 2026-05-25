@@ -1,8 +1,9 @@
 import NavigationBarView from '@/sections/_examples/extra/navigation-bar-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Components: Navigation Bar',
 };
 

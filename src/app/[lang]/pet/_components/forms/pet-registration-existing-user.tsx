@@ -100,12 +100,12 @@ const Turnstile = dynamic(
 
 interface PetRegistrationExistingUserProps {
   code?: string;
-  onBackToSelection?: () => void;
+  onBackToSelectionAction?: () => void;
 }
 
 export function PetRegistrationExistingUser({
   code,
-  onBackToSelection,
+  onBackToSelectionAction,
 }: PetRegistrationExistingUserProps) {
   const password = useBoolean();
   const router = useRouter();
@@ -427,7 +427,7 @@ export function PetRegistrationExistingUser({
         />
 
         <Box sx={{ mt: 3 }}>
-          <Button onClick={onBackToSelection} sx={{ mr: 1 }}>
+          <Button onClick={onBackToSelectionAction} sx={{ mr: 1 }}>
             Back
           </Button>
           <Button

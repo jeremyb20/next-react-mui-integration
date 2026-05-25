@@ -1,8 +1,9 @@
 import { MailView } from '@/sections/mail/view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Dashboard: Mail',
 };
 

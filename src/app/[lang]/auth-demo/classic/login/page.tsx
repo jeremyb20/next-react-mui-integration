@@ -1,8 +1,9 @@
 import { ClassicLoginView } from '@/sections/auth-demo/classic';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Auth Classic: Login',
 };
 

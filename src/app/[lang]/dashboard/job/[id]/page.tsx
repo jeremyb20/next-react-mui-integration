@@ -1,10 +1,11 @@
 // import { _jobs } from '@/_mock/_job';
 
 import { JobDetailsView } from '@/sections/job/view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Dashboard: Job Details',
 };
 

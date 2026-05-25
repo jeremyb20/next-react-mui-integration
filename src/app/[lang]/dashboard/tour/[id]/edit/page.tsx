@@ -1,10 +1,12 @@
 // import { _tours } from '@/_mock/_tour';
 
+import { Metadata } from 'next';
+
 // import { TourEditView } from '@/sections/tour/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Dashboard: Tour Edit',
 };
 

@@ -1,11 +1,13 @@
 // import { paramCase } from '@/utils/change-case';
 // import axios, { endpoints } from '@/utils/axios';
 
+import { Metadata } from 'next';
+
 // import { PostEditView } from '@/sections/blog/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Dashboard: Post Edit',
 };
 

@@ -1,8 +1,9 @@
 // ----------------------------------------------------------------------
 
 import { ModernForgotPasswordView } from '@/sections/auth-demo/modern';
+import { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Forgot Password',
 };
 

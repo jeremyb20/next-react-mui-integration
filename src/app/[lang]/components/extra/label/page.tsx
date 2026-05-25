@@ -1,8 +1,9 @@
 import LabelView from '@/sections/_examples/extra/label-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Components: Label',
 };
 

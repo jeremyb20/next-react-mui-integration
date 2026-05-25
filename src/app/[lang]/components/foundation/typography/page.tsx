@@ -1,8 +1,9 @@
 import { TypographyView } from '@/sections/_examples/foundation';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Foundations: Typography',
 };
 

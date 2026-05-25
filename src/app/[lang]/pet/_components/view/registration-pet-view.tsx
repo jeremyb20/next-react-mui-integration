@@ -69,13 +69,13 @@ export default function RegistrationPetView({
         {registrationType === 'new' && (
           <PetRegistrationCodeStepperFirstTime
             code={registerPet?.qrCode?.randomCode}
-            onBackToSelection={handleBackToSelection}
+            onBackToSelectionAction={handleBackToSelection}
           />
         )}
         {registrationType === 'existing' && (
           <PetRegistrationExistingUser
             code={registerPet?.qrCode?.randomCode}
-            onBackToSelection={handleBackToSelection}
+            onBackToSelectionAction={handleBackToSelection}
           />
         )}
       </Card>

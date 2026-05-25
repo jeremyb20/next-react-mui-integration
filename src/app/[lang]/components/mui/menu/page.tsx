@@ -1,8 +1,9 @@
 import MenuView from '@/sections/_examples/mui/menu-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'MUI: Menu',
 };
 

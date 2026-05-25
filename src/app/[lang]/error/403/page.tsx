@@ -1,8 +1,9 @@
 import { View403 } from '@/sections/error';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: '403 Forbidden',
 };
 

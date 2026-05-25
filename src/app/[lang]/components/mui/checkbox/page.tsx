@@ -1,8 +1,9 @@
 import CheckboxView from '@/sections/_examples/mui/checkbox-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'MUI: Checkbox',
 };
 

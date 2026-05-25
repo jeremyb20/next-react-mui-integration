@@ -1,8 +1,9 @@
 import { OverviewBankingView } from '@/sections/overview/booking/view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Dashboard: Booking',
 };
 

@@ -1,8 +1,9 @@
 import CarouselView from '@/sections/_examples/extra/carousel-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Components: Carousel',
 };
 

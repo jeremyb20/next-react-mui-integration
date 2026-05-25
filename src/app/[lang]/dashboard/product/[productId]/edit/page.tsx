@@ -1,10 +1,12 @@
 // import axios, { endpoints } from '@/utils/axios';
 
+import { Metadata } from 'next';
+
 // import { ProductEditView } from '@/sections/product/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Dashboard: Product Edit',
 };
 

@@ -1,8 +1,9 @@
 import { JobListView } from '@/sections/job/view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Dashboard: Job List',
 };
 

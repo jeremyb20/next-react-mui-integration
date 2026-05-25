@@ -1,8 +1,9 @@
 import TabsView from '@/sections/_examples/mui/tabs-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'MUI: Tabs',
 };
 

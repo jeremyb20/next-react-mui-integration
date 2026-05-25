@@ -1,8 +1,9 @@
 import AnimateView from '@/sections/_examples/extra/animate-view';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Components: Animate',
 };
 

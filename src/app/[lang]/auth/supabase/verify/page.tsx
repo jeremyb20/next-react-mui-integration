@@ -1,8 +1,9 @@
 import { SupabaseVerifyView } from '@/sections/auth/supabase';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Supabase: Verify',
 };
 

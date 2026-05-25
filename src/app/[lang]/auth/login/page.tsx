@@ -1,8 +1,9 @@
 import { JwtLoginView } from '@/sections/auth/jwt';
+import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Login Page',
 };
 
