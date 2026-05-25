@@ -1,11 +1,11 @@
 'use client';
 
-import Iconify from '@/components/iconify';
-import { useRedirect } from '@/hooks/use-redirect';
-import { useTranslation } from '@/hooks/use-translation';
-import { useState, useEffect, useCallback } from 'react';
-import { useSettingsContext } from '@/components/settings';
+import { Box, IconButton } from '@mui/material';
+import Container from '@mui/material/Container';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect, useCallback } from 'react';
 
 import {
   _userAbout,
@@ -14,19 +14,18 @@ import {
   _userInvoices,
   _userAddressBook,
 } from '@/_mock';
+import { UserProfileCard } from '@/components/cards/user-profile-card';
+import StickyHeader from '@/components/header/sticky-header';
+import Iconify from '@/components/iconify';
+import { useSettingsContext } from '@/components/settings';
+import { useRedirect } from '@/hooks/use-redirect';
+import { useTranslation } from '@/hooks/use-translation';
 
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
-import Container from '@mui/material/Container';
-import { Box, IconButton } from '@mui/material';
-
-import AccountGeneral from '../account-general';
 import AccountBilling from '../account-billing';
+import AccountGeneral from '../account-general';
+import AccountNotifications from '../account-notifications';
 import AccountSecurity from '../account-security';
 import AccountSocialLinks from '../account-social-links';
-import AccountNotifications from '../account-notifications';
-import StickyHeader from '@/components/header/sticky-header';
-import { UserProfileCard } from '@/components/cards/user-profile-card';
 
 // ----------------------------------------------------------------------
 

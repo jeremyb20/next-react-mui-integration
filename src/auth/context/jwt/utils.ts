@@ -1,6 +1,6 @@
-import axios from '@/utils/axios';
-import { paths } from '@/routes/paths';
 import { STORAGE_KEY } from '@/config-global';
+import { paths } from '@/routes/paths';
+import axios from '@/utils/axios';
 
 // ----------------------------------------------------------------------
 
@@ -35,7 +35,6 @@ export const isValidToken = (accessToken: string) => {
 // ----------------------------------------------------------------------
 
 export const tokenExpired = (exp: number) => {
-  // eslint-disable-next-line prefer-const
   let expiredTimer;
 
   const currentTime = Date.now();

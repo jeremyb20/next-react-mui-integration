@@ -1,33 +1,4 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-plusplus */
-
 'use client';
-
-import Image from '@/components/image';
-import { paths } from '@/routes/paths';
-import { IPetProfile } from '@/types/api';
-import Iconify from '@/components/iconify';
-import { fDate } from '@/utils/format-time';
-import { RouterLink } from '@/routes/components';
-import axios, { endpoints } from '@/utils/axios';
-import { useRedirect } from '@/hooks/use-redirect';
-import { useSnackbar } from '@/components/snackbar';
-import { formatPetAge } from '@/utils/pet-age.utils';
-import { useQueryClient } from '@tanstack/react-query';
-import { useTranslation } from '@/hooks/use-translation';
-import { useManagerUser } from '@/hooks/use-manager-user';
-import { useSettingsContext } from '@/components/settings';
-import { BreedOptions, GENDER_OPTIONS } from '@/utils/constants';
-import React, { useRef, useMemo, useState, useEffect } from 'react';
-import SplashScreen from '@/components/loading-screen/splash-screen';
-import { usePetAgeCalculator } from '@/hooks/use-pet-age-calculator';
-import { DOMAIN, EMAIL_SUPPORT, PHONE_SUPPORT } from '@/config-global';
-import ShareDrawerDialog from '@/components/share/share-drawer-dialog';
-import { PetAvatarWithBadge } from '@/components/badge/PetAvatarWithBage';
-import { PetCondolenceMessage } from '@/components/pet/PetCondolenceMessage';
-import PetStickyNote from '@/app/[lang]/pet/_components/view/pet-sticky-note';
-import CostaRicaIDCard from '@/components/country-cards/Costa-Rica/costa-rica-card';
-import PetLocationMap from '../locations/pet-location-map';
 
 import {
   Box,
@@ -44,12 +15,38 @@ import {
   Container,
   Typography,
   IconButton,
-  useMediaQuery,
   CircularProgress,
 } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/system/useMediaQuery';
+import { useQueryClient } from '@tanstack/react-query';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
+
+import PetStickyNote from '@/app/[lang]/pet/_components/view/pet-sticky-note';
+import { PetAvatarWithBadge } from '@/components/badge/PetAvatarWithBage';
+import CostaRicaIDCard from '@/components/country-cards/Costa-Rica/costa-rica-card';
+import Iconify from '@/components/iconify';
+import Image from '@/components/image';
+import SplashScreen from '@/components/loading-screen/splash-screen';
+import { PetCondolenceMessage } from '@/components/pet/PetCondolenceMessage';
+import { useSettingsContext } from '@/components/settings';
+import ShareDrawerDialog from '@/components/share/share-drawer-dialog';
+import { useSnackbar } from '@/components/snackbar';
+import { DOMAIN, EMAIL_SUPPORT, PHONE_SUPPORT } from '@/config-global';
+import { useManagerUser } from '@/hooks/use-manager-user';
+import { usePetAgeCalculator } from '@/hooks/use-pet-age-calculator';
+import { useRedirect } from '@/hooks/use-redirect';
+import { useTranslation } from '@/hooks/use-translation';
+import { RouterLink } from '@/routes/components';
+import { paths } from '@/routes/paths';
+import { IPetProfile } from '@/types/api';
+import axios, { endpoints } from '@/utils/axios';
+import { BreedOptions, GENDER_OPTIONS } from '@/utils/constants';
+import { fDate } from '@/utils/format-time';
+import { formatPetAge } from '@/utils/pet-age.utils';
 
 import LocationConsentOverlay from '../locations/location-consent-overlay';
+import PetLocationMap from '../locations/pet-location-map';
 
 interface Props {
   petProfile: IPetProfile | null;

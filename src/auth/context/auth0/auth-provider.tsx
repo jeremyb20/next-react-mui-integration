@@ -1,6 +1,5 @@
 'use client';
 
-import { useMemo, useState, useCallback } from 'react';
 import {
   AppState,
   useAuth0,
@@ -8,6 +7,7 @@ import {
   LogoutOptions,
   PopupLoginOptions,
 } from '@auth0/auth0-react';
+import { useMemo, useState, useCallback } from 'react';
 
 import { AUTH0_API } from '@/config-global';
 

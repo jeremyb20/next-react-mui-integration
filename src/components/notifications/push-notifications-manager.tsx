@@ -1,12 +1,4 @@
-/* eslint-disable no-nested-ternary */
-
 'use client';
-
-import { endpoints } from '@/utils/axios';
-import { NotificationData } from '@/types/api';
-import { useRef, useState, useEffect, useCallback } from 'react';
-import { getApplicationServerKey } from '@/utils/notifications';
-import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 
 import {
   Box,
@@ -17,10 +9,14 @@ import {
   CardContent,
   CircularProgress,
 } from '@mui/material';
-
-import { HOST_API } from '@/config-global';
+import { useRef, useState, useEffect, useCallback } from 'react';
 
 import Iconify from '@/components/iconify';
+import { HOST_API } from '@/config-global';
+import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
+import { NotificationData } from '@/types/api';
+import { endpoints } from '@/utils/axios';
+import { getApplicationServerKey } from '@/utils/notifications';
 
 interface PushNotificationProps {
   onNotificationScheduled: () => void;
@@ -44,8 +40,9 @@ const PushNotificationManager = ({
   const checkExistingSubscription = useCallback(async () => {
     try {
       const registration = await navigator.serviceWorker.ready;
-      const existingSubscription =
-        await (registration as any).pushManager.getSubscription();
+      const existingSubscription = await (
+        registration as any
+      ).pushManager.getSubscription();
 
       if (existingSubscription) {
         setIsSubscribed(true);
@@ -185,7 +182,9 @@ const PushNotificationManager = ({
   const unsubscribeFromNotifications = useCallback(async () => {
     try {
       const registration = await navigator.serviceWorker.ready;
-      const subscription = await (registration as any).pushManager.getSubscription();
+      const subscription = await (
+        registration as any
+      ).pushManager.getSubscription();
 
       if (subscription) {
         const success = await subscription.unsubscribe();

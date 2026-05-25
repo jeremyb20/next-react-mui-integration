@@ -1,6 +1,7 @@
 import perfectionist from 'eslint-plugin-perfectionist';
 import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
+import unusedImports from 'eslint-plugin-unused-imports';
 
 export default [
   {
@@ -14,6 +15,8 @@ export default [
       '**/*.config.mjs',
       '**/*.config.ts',
       '**/next-env.d.ts',
+       '**/public/sw.js',        
+      '**/public/**/*.js',    
     ],
   },
   {
@@ -32,13 +35,26 @@ export default [
     plugins: {
       '@typescript-eslint': tsPlugin,
       perfectionist,
+      'unused-imports': unusedImports,
     },
     rules: {
       // Reglas básicas de TypeScript
       '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': 'off', // Desactivamos esta regla porque unused-imports la maneja mejor
       
-      // Reglas de Perfectionist - Configuración SIMPLE que funciona
+      // Reglas de unused-imports (para eliminar imports no usados automáticamente)
+      'unused-imports/no-unused-imports': 'error', // Elimina imports no usados
+      'unused-imports/no-unused-vars': [
+        'warn',
+        {
+          vars: 'all',
+          varsIgnorePattern: '^_',
+          args: 'after-used',
+          argsIgnorePattern: '^_',
+        },
+      ],
+      
+      // Reglas de Perfectionist
       'perfectionist/sort-imports': [
         'error',
         {

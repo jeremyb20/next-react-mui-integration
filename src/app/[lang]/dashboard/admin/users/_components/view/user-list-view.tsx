@@ -1,40 +1,25 @@
 'use client';
 
-import { IUser } from '@/types/api';
-import useIPInfo from '@/hooks/use-ip-info';
-import { useMemo, useState, useCallback } from 'react';
-import EmptyContent from '@/components/empty-content';
-import FilterToolbar from '@/components/filters/filter-toolbar';
-import { ADMIN_USER_FILTER_TOOLBAR } from '@/components/filters/filter-constants';
-import {
-  UserQueryParams,
-  useGetAllRegisteredUsers,
-} from '@/hooks/use-fetch-paginated';
-
-import Card from '@mui/material/Card';
-import Table from '@mui/material/Table';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import Container from '@mui/material/Container';
-import TableBody from '@mui/material/TableBody';
-import IconButton from '@mui/material/IconButton';
 import { Box, LinearProgress } from '@mui/material';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
+import Tooltip from '@mui/material/Tooltip';
+import { useMemo, useState, useCallback } from 'react';
 
-import { paths } from '@/routes/paths';
-import { useRouter } from '@/routes/hooks';
-import { RouterLink } from '@/routes/components';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { isAfter, isBetween } from '@/utils/format-time';
-
+import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
+import { ConfirmDialog } from '@/components/custom-dialog';
+import EmptyContent from '@/components/empty-content';
+import { ADMIN_USER_FILTER_TOOLBAR } from '@/components/filters/filter-constants';
+import FilterToolbar from '@/components/filters/filter-toolbar';
 import Iconify from '@/components/iconify';
 import Scrollbar from '@/components/scrollbar';
-import { useSnackbar } from '@/components/snackbar';
-import { ConfirmDialog } from '@/components/custom-dialog';
 import { useSettingsContext } from '@/components/settings';
-import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
+import { useSnackbar } from '@/components/snackbar';
 import {
   useTable,
   TableNoData,
@@ -43,6 +28,17 @@ import {
   TableSelectedAction,
   TablePaginationCustom,
 } from '@/components/table';
+import { useBoolean } from '@/hooks/use-boolean';
+import {
+  UserQueryParams,
+  useGetAllRegisteredUsers,
+} from '@/hooks/use-fetch-paginated';
+import useIPInfo from '@/hooks/use-ip-info';
+import { RouterLink } from '@/routes/components';
+import { useRouter } from '@/routes/hooks';
+import { paths } from '@/routes/paths';
+import { IUser } from '@/types/api';
+import { isAfter, isBetween } from '@/utils/format-time';
 
 import UserTableRow from '../user-table-row';
 
@@ -154,7 +150,7 @@ export default function UserListView() {
 
   const handleDeleteRow = useCallback(
     (id: string) => {
-      enqueueSnackbar('Delete success!');
+      enqueueSnackbar(`Delete success! ${id}`);
     },
     [enqueueSnackbar]
   );

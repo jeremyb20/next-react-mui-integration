@@ -1,36 +1,28 @@
 'use client';
 
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import { alpha } from '@mui/material/styles';
+import Tab from '@mui/material/Tab';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import Tabs from '@mui/material/Tabs';
+import Tooltip from '@mui/material/Tooltip';
 import isEqual from 'lodash/isEqual';
 import { useState, useCallback } from 'react';
-import { USER_STATUS_OPTIONS } from '@/components/filters/filter-constants';
-
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
-import Card from '@mui/material/Card';
-import Table from '@mui/material/Table';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import { alpha } from '@mui/material/styles';
-import Container from '@mui/material/Container';
-import TableBody from '@mui/material/TableBody';
-import IconButton from '@mui/material/IconButton';
-import TableContainer from '@mui/material/TableContainer';
-
-import { paths } from '@/routes/paths';
-import { useRouter } from '@/routes/hooks';
-import { RouterLink } from '@/routes/components';
-
-import { useBoolean } from '@/hooks/use-boolean';
 
 import { _roles, _userList } from '@/_mock';
-
-import Label from '@/components/label';
-import Iconify from '@/components/iconify';
-import Scrollbar from '@/components/scrollbar';
-import { useSnackbar } from '@/components/snackbar';
-import { ConfirmDialog } from '@/components/custom-dialog';
-import { useSettingsContext } from '@/components/settings';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
+import { ConfirmDialog } from '@/components/custom-dialog';
+import { USER_STATUS_OPTIONS } from '@/components/filters/filter-constants';
+import Iconify from '@/components/iconify';
+import Label from '@/components/label';
+import Scrollbar from '@/components/scrollbar';
+import { useSettingsContext } from '@/components/settings';
+import { useSnackbar } from '@/components/snackbar';
 import {
   useTable,
   emptyRows,
@@ -41,16 +33,19 @@ import {
   TableSelectedAction,
   TablePaginationCustom,
 } from '@/components/table';
-
+import { useBoolean } from '@/hooks/use-boolean';
+import { RouterLink } from '@/routes/components';
+import { useRouter } from '@/routes/hooks';
+import { paths } from '@/routes/paths';
 import {
   IUserItem,
   IUserTableFilters,
   IUserTableFilterValue,
 } from '@/types/user';
 
+import UserTableFiltersResult from '../user-table-filters-result';
 import UserTableRow from '../user-table-row';
 import UserTableToolbar from '../user-table-toolbar';
-import UserTableFiltersResult from '../user-table-filters-result';
 
 // ----------------------------------------------------------------------
 

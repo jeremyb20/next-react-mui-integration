@@ -1,20 +1,18 @@
+import Masonry from '@mui/lab/Masonry';
+import Divider from '@mui/material/Divider';
+import Popover from '@mui/material/Popover';
+import Stack from '@mui/material/Stack';
 import { useRef, useState, useEffect, useCallback } from 'react';
 
-import Masonry from '@mui/lab/Masonry';
-import Stack from '@mui/material/Stack';
-import Popover from '@mui/material/Popover';
-import Divider from '@mui/material/Divider';
-
 import { usePathname, useActiveLink } from '@/routes/hooks';
-
 import { hideScroll } from '@/theme/css';
 
-import NavItem from './nav-item';
-import { NavListProps } from '../types';
+import MenuMoreLink from '../common/menu-more-link';
+import MenuProducts from '../common/menu-products';
 import MenuTags from '../common/menu-tags';
 import NavSubList from '../common/nav-sub-list';
-import MenuProducts from '../common/menu-products';
-import MenuMoreLink from '../common/menu-more-link';
+import { NavListProps } from '../types';
+import NavItem from './nav-item';
 
 // ----------------------------------------------------------------------
 
@@ -35,7 +33,6 @@ export default function NavList({ data, slotProps }: NavListProps) {
     if (openMenu) {
       handleCloseMenu();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   useEffect(() => {

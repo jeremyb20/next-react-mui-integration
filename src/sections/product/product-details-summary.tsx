@@ -1,28 +1,28 @@
-import { paths } from '@/routes/paths';
-import Label from '@/components/label';
-import { countries } from '@/assets/data';
-import { useRouter } from '@/routes/hooks';
-import Iconify from '@/components/iconify';
-import { useAuthContext } from '@/auth/hooks';
-import { useEffect, useCallback } from 'react';
-import { IProductItem } from '@/types/product';
-import { ICheckoutItem } from '@/types/checkout';
-import { useCurrency } from '@/hooks/use-currency';
-import { useForm, Controller } from 'react-hook-form';
-import { fShortenNumber } from '@/utils/format-number';
-import { ColorPicker } from '@/components/color-utils';
-import { inventoryStatusOptions } from '@/utils/constants';
-import FormProvider, { RHFSelect } from '@/components/hook-form';
-
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
 import { formHelperTextClasses } from '@mui/material/FormHelperText';
+import Link from '@mui/material/Link';
+import MenuItem from '@mui/material/MenuItem';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { useEffect, useCallback } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+
+import { countries } from '@/assets/data';
+import { useAuthContext } from '@/auth/hooks';
+import { ColorPicker } from '@/components/color-utils';
+import FormProvider, { RHFSelect } from '@/components/hook-form';
+import Iconify from '@/components/iconify';
+import Label from '@/components/label';
+import { useCurrency } from '@/hooks/use-currency';
+import { useRouter } from '@/routes/hooks';
+import { paths } from '@/routes/paths';
+import { ICheckoutItem } from '@/types/checkout';
+import { IProductItem } from '@/types/product';
+import { inventoryStatusOptions } from '@/utils/constants';
+import { fShortenNumber } from '@/utils/format-number';
 
 import IncrementerButton from './common/incrementer-button';
 
@@ -99,7 +99,6 @@ export default function ProductDetailsSummary({
     if (product) {
       reset(defaultValues);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product]);
 
   const onSubmit = handleSubmit(async (data) => {

@@ -1,18 +1,15 @@
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import { alpha, styled, useTheme } from '@mui/material/styles';
 import { useEffect } from 'react';
 
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import { alpha, styled, useTheme } from '@mui/material/styles';
-
-import { bgGradient } from '@/theme/css';
-
-import Image from '@/components/image';
-import Lightbox, { useLightBox } from '@/components/lightbox';
 import Carousel, {
   useCarousel,
   CarouselArrowIndex,
 } from '@/components/carousel';
-
+import Image from '@/components/image';
+import Lightbox, { useLightBox } from '@/components/lightbox';
+import { bgGradient } from '@/theme/css';
 import { IProductItem } from '@/types/product';
 
 // ----------------------------------------------------------------------

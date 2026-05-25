@@ -1,36 +1,32 @@
-/* eslint-disable no-nested-ternary */
+import { Box, Tooltip } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import ListItemText from '@mui/material/ListItemText';
+import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
 import { useSnackbar } from 'notistack';
 import { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-// import { IOrderItem } from '@/types/order';
-import { IUser, IPetProfile } from '@/types/api';
-import { IPInfoResponse } from '@/hooks/use-ip-info';
-import { openLink, getUserRoleFromState } from '@/utils/constants';
-import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
-import { USER_STATUS_OPTIONS } from '@/components/filters/filter-constants';
+
 import { AvatarWithSkeleton } from '@/components/avatar/avatar-with-skeleton';
-
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-import { Box, Tooltip } from '@mui/material';
-import Collapse from '@mui/material/Collapse';
-import MenuItem from '@mui/material/MenuItem';
-import TableRow from '@mui/material/TableRow';
-import Checkbox from '@mui/material/Checkbox';
-import TableCell from '@mui/material/TableCell';
-import IconButton from '@mui/material/IconButton';
-import ListItemText from '@mui/material/ListItemText';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { fDate, fTime } from '@/utils/format-time';
-
-import Iconify from '@/components/iconify';
-import Label, { LabelColor } from '@/components/label';
 import { ConfirmDialog } from '@/components/custom-dialog';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
+import { USER_STATUS_OPTIONS } from '@/components/filters/filter-constants';
+import Iconify from '@/components/iconify';
+import Label, { LabelColor } from '@/components/label';
+import { useBoolean } from '@/hooks/use-boolean';
+import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
+import { IPInfoResponse } from '@/hooks/use-ip-info';
+// import { IOrderItem } from '@/types/order';
+import { IUser, IPetProfile } from '@/types/api';
+import { openLink, getUserRoleFromState } from '@/utils/constants';
+import { fDate, fTime } from '@/utils/format-time';
 
 import PetQuickEditForm from './pet-quick-edit-form';
 import UserQuickEditForm from './user-quick-edit-form';

@@ -1,22 +1,22 @@
-import { _socials } from '@/_mock';
-import Logo from '@/components/logo';
-import { paths } from '@/routes/paths';
-import Label from '@/components/label';
-import Iconify from '@/components/iconify';
-import { usePathname } from '@/routes/hooks';
-import { RouterLink } from '@/routes/components';
-import { useTranslation } from '@/hooks/use-translation';
-import { APP_NAME, EMAIL_SUPPORT } from '@/config-global';
-
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
-import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+
+import { _socials } from '@/_mock';
+import Iconify from '@/components/iconify';
+import Label from '@/components/label';
+import Logo from '@/components/logo';
+import { APP_NAME, EMAIL_SUPPORT } from '@/config-global';
+import { useTranslation } from '@/hooks/use-translation';
+import { RouterLink } from '@/routes/components';
+import { usePathname } from '@/routes/hooks';
+import { paths } from '@/routes/paths';
 
 // ----------------------------------------------------------------------
 

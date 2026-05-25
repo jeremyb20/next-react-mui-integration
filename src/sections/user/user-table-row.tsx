@@ -1,20 +1,18 @@
-import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
-import TableCell from '@mui/material/TableCell';
 import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
+import MenuItem from '@mui/material/MenuItem';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import Tooltip from '@mui/material/Tooltip';
 
-import { useBoolean } from '@/hooks/use-boolean';
-
-import Label from '@/components/label';
-import Iconify from '@/components/iconify';
 import { ConfirmDialog } from '@/components/custom-dialog';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
-
+import Iconify from '@/components/iconify';
+import Label from '@/components/label';
+import { useBoolean } from '@/hooks/use-boolean';
 import { IUserItem } from '@/types/user';
 
 import UserQuickEditForm from './user-quick-edit-form';
