@@ -6,33 +6,20 @@ import { grey, primary } from '../palette';
 
 type PresetType = 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red';
 
-// export function createPresets(preset: PresetType) {
-//   const primaryColor = getPrimary(preset);
-
-//   const theme = {
-//     palette: {
-//       primary: primaryColor,
-//     },
-//     customShadows: {
-//       primary: `0 8px 16px 0 ${alpha(`${primaryColor?.main}`, 0.24)}`,
-//     },
-//   };
-
-//   return {
-//     ...theme,
-//   };
-// }
-
 export function createPresets(preset: PresetType) {
   const primaryColor = getPrimary(preset);
 
-  return {
+  const theme = {
     palette: {
       primary: primaryColor,
     },
     customShadows: {
       primary: `0 8px 16px 0 ${alpha(`${primaryColor?.main}`, 0.24)}`,
     },
+  };
+
+  return {
+    ...theme,
   };
 }
 

@@ -48,7 +48,9 @@ export default function Header({ onOpenNav }: Props) {
           <SvgColor src="/assets/icons/navbar/ic_menu_item.svg" />
         </IconButton>
       )}
-      {lgUp && <Searchbar />}
+      {lgUp && (
+        <Searchbar style={{ color: 'text.secondary', paddingInline: 1 }} />
+      )}
       <Stack
         flexGrow={1}
         direction="row"
@@ -100,7 +102,7 @@ export default function Header({ onOpenNav }: Props) {
     >
       <Toolbar
         sx={{
-          height: '100vh',
+          height: 1,
           px: { lg: 5 },
         }}
       >
