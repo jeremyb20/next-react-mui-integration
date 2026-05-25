@@ -1,4 +1,4 @@
-/* eslint-disable object-shorthand */
+ 
 // lib/seo-metadata.ts
 import { Metadata } from 'next';
 

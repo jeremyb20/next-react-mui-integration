@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
-import axiosInstance from '../utils/axios';
 import { BaseApiResponse } from '../types/api';
+import axiosInstance from '../utils/axios';
 
 type HttpMethod = 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 

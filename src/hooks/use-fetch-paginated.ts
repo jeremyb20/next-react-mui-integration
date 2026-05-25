@@ -1,10 +1,9 @@
-import { IProductItem } from '@/types/product';
-import axiosInstance, { endpoints } from '@/utils/axios';
 import {
   useQuery,
   UseQueryOptions,
   keepPreviousData,
 } from '@tanstack/react-query';
+
 import {
   ISeo,
   IUser,
@@ -18,6 +17,8 @@ import {
   IUpcomingAppointmentsResponse,
   IUpcomingAppointmentsGroupedResponse,
 } from '@/types/api';
+import { IProductItem } from '@/types/product';
+import axiosInstance, { endpoints } from '@/utils/axios';
 
 interface UsePaginatedQueryProps<T> {
   queryKey: string | string[];

@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import useSWR, { mutate } from 'swr';
-import { fetcher, endpoints } from '@/utils/axios';
+
 import { IKanban, IKanbanTask, IKanbanColumn } from '@/types/kanban';
+import { fetcher, endpoints } from '@/utils/axios';
 
 // ----------------------------------------------------------------------
 

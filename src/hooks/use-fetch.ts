@@ -1,7 +1,5 @@
-import axiosInstance, { endpoints } from '@/utils/axios';
-import { IUserCalendarResponse } from '@/types/calendar';
-import { DeviceSuscriptions } from '@/types/service-worker';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
+
 import {
   IQRStats,
   IPetStats,
@@ -11,6 +9,9 @@ import {
   NotificationData,
   IUserSettingsResponse,
 } from '@/types/api';
+import { IUserCalendarResponse } from '@/types/calendar';
+import { DeviceSuscriptions } from '@/types/service-worker';
+import axiosInstance, { endpoints } from '@/utils/axios';
 
 import { useAuthContext } from '../auth/hooks';
 

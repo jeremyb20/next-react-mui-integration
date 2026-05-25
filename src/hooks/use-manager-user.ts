@@ -1,13 +1,14 @@
 // use-manager-user.ts
 import { useCallback } from 'react';
+
 import { useAuthContext } from '@/auth/hooks';
 
 import { LOGO } from '../config-global';
-import { useResponsive } from './use-responsive';
 import {
   getUserRoleFromState,
   getUserStatusFromState,
 } from '../utils/constants';
+import { useResponsive } from './use-responsive';
 
 // ----------------------------------------------------------------------
 

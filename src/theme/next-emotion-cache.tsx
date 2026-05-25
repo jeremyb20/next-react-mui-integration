@@ -1,24 +1,17 @@
 'use client';
 
-import * as React from 'react';
+import type { Options as OptionsOfCreateCache } from '@emotion/cache';
+
 import createCache from '@emotion/cache';
-import { useServerInsertedHTML } from 'next/navigation';
 import { CacheProvider as DefaultCacheProvider } from '@emotion/react';
-import type {
-  EmotionCache,
-  Options as OptionsOfCreateCache,
-} from '@emotion/cache';
+import { useServerInsertedHTML } from 'next/navigation';
+import * as React from 'react';
 
 // ----------------------------------------------------------------------
 
 export type NextAppDirEmotionCacheProviderProps = {
   /** This is the options passed to createCache() from 'import createCache from "@emotion/cache"' */
   options: Omit<OptionsOfCreateCache, 'insertionPoint'>;
-  /** By default <CacheProvider /> from 'import { CacheProvider } from "@emotion/react"' */
-  CacheProvider?: (props: {
-    value: EmotionCache;
-    children: React.ReactNode;
-  }) => React.JSX.Element | null;
   children: React.ReactNode;
 };
 
@@ -26,7 +19,8 @@ export type NextAppDirEmotionCacheProviderProps = {
 export default function NextAppDirEmotionCacheProvider(
   props: NextAppDirEmotionCacheProviderProps
 ) {
-  const { options, CacheProvider = DefaultCacheProvider, children } = props;
+  const { options, children } = props;
+  const CacheProvider = DefaultCacheProvider;
 
   const [registry] = React.useState(() => {
     const cache = createCache(options);
@@ -83,14 +77,12 @@ export default function NextAppDirEmotionCacheProvider(
           <style
             key={name}
             data-emotion={`${registry.cache.key}-global ${name}`}
-            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: style }}
           />
         ))}
         {styles && (
           <style
             data-emotion={dataEmotionAttribute}
-            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: styles }}
           />
         )}

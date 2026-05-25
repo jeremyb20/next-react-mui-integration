@@ -1,8 +1,9 @@
-import useSWR from 'swr';
 import { useMemo } from 'react';
+import useSWR from 'swr';
+
+import { UserQueryParams } from '@/hooks/use-fetch-paginated';
 import { IProductItem } from '@/types/product';
 import { fetcher, endpoints } from '@/utils/axios';
-import { UserQueryParams } from '@/hooks/use-fetch-paginated';
 
 // ----------------------------------------------------------------------
 
