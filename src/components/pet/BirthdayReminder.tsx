@@ -116,7 +116,11 @@ export const BirthdayReminder = ({
         action={
           onClose &&
           showPetNameTitle && (
-            <Iconify icon="gridicons:external" onClick={onClose} />
+            <Iconify
+              icon="gridicons:external"
+              onClick={onClose}
+              sx={{ cursor: 'pointer' }}
+            />
           )
         }
         sx={{

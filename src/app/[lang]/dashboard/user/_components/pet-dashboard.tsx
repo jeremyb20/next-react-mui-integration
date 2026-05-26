@@ -41,7 +41,7 @@ export function PetDashboard({
   const [selectedPetId, setSelectedPetId] = useState<string | undefined>(
     undefined
   );
-  const [refreshKey, setRefreshKey] = useState(0);
+  // const [refreshKey, setRefreshKey] = useState(0);
   const refreshingRef = useRef(false);
   const { t } = useTranslation();
   const {
@@ -67,8 +67,8 @@ export function PetDashboard({
     // Solo refrescar la lista de mascotas una vez
     refetchPets();
 
-    // Forzar re-render del PetDetailsCard
-    setRefreshKey((prev) => prev + 1);
+    // // Forzar re-render del PetDetailsCard
+    // setRefreshKey((prev) => prev + 1);
 
     // Resetear el flag después de un tiempo
     setTimeout(() => {
@@ -140,7 +140,7 @@ export function PetDashboard({
       <Grid size={{ xs: 12 }}>
         {selectedPet ? (
           <PetDetailsCard
-            key={`${selectedPet._id}-${refreshKey}`}
+            // key={`${selectedPet._id}-${refreshKey}`}
             pet={selectedPet}
             onEdit={onPetEdit}
             onViewDetails={onViewDetails}

@@ -32,9 +32,12 @@ export default function AppFeatured({ list, ...other }: Props) {
     autoplay: true,
     ...CarouselDots({
       sx: {
-        top: 16,
-        left: 16,
         position: 'absolute',
+        top: {
+          xs: -250,
+          sm: -290,
+        },
+        left: -140,
         color: 'primary.light',
       },
     }),

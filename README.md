@@ -48,3 +48,7 @@ pnpm exec eslint src/\*_/_.{ts,tsx} --fix
 # Or if you want to see which files are causing problems
 
 pnpm exec eslint src/\*_/_.{ts,tsx}
+
+# command to view all files in the src folder
+
+ls -R src > estructura.txt

@@ -348,7 +348,7 @@ export default function AccountGeneral() {
           </Grid>
         </Grid>
       </FormProvider>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} mt={3}>
         <Grid size={{ xs: 12, md: 12 }}>
           <AccountChangePassword />
         </Grid>

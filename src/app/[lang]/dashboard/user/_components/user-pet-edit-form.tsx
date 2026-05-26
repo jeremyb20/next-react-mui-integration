@@ -41,10 +41,10 @@ import { useTranslation } from '@/hooks/use-translation';
 import RouterLink from '@/routes/components/router-link';
 import { useManagerUser } from '@/hooks/use-manager-user';
 import { getSpeciesFromBreed } from '@/utils/pet-age.utils';
+import { LoadingScreen } from '@/components/loading-screen';
 import StickyHeader from '@/components/header/sticky-header';
 import UploadAvatar from '@/components/upload/upload-avatar';
 import CardComponent from '@/sections/_examples/card-component';
-import SplashScreen from '@/components/loading-screen/splash-screen';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
 import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 import { PetAvatarWithBadge } from '@/components/badge/PetAvatarWithBage';
@@ -624,10 +624,6 @@ export default function PetEditForm({ petId }: Props) {
     }));
   }, [watch]);
 
-  if (isLoading) {
-    return <SplashScreen />;
-  }
-
   // Si no hay datos de mascota
   if (!currentPet) {
     return (
@@ -677,7 +673,7 @@ export default function PetEditForm({ petId }: Props) {
           }}
         >
           <CardContent sx={{ position: 'relative', zIndex: 1, p: 2, pt: 0 }}>
-            <Button onClick={redirectBack}>
+            <Button onClick={redirectBack} sx={{ my: 0.5 }}>
               <Iconify icon="eva:arrow-ios-back-fill" width={24} />
               <Typography variant="subtitle2" ml={1}>
                 {t('Back')}
@@ -729,6 +725,7 @@ export default function PetEditForm({ petId }: Props) {
       </StickyHeader>
 
       <FormProvider methods={methods}>
+        {isLoading && <LoadingScreen />}
         <Tabs
           value={tabValue}
           onChange={handleTabChange}
@@ -1079,7 +1076,6 @@ export default function PetEditForm({ petId }: Props) {
             display="grid"
             gridTemplateColumns={{
               xs: 'repeat(1, 1fr)',
-              sm: 'repeat(2, 1fr)',
             }}
           >
             <Stack
