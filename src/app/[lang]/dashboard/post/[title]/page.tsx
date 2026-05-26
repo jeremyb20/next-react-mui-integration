@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     title: string;
-  };
+  }>;
 };
 
-export default function PostDetailsPage({ params }: Props) {
-  const { title } = params;
+export default async function PostDetailsPage({ params }: Props) {
+  const { title } = await params;
 
   return <PostDetailsView title={title} />;
   // return <>PostDetailsView</>;

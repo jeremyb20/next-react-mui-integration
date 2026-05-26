@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     title: string;
-  };
+  }>;
 };
 
 export default function PostDetailsHomePage({ params: _params }: Props) {

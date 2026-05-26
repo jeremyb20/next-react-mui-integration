@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     productId: string;
-  };
+  }>;
 };
 
-export default function ProductDetailsPage({ params }: Props) {
-  const { productId } = params;
+export default async function ProductDetailsPage({ params }: Props) {
+  const { productId } = await params;
 
   return (
     <ProductDetailsView

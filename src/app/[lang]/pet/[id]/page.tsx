@@ -9,9 +9,9 @@ import RegistrationPetView from '../_components/view/registration-pet-view';
 import PetPublickProfileView from '../_components/view/pet-public-profile-view';
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function getPetData(identifier: string): Promise<PetApiResponse> {
@@ -43,7 +43,7 @@ async function getPetData(identifier: string): Promise<PetApiResponse> {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = params;
+  const { id } = await params;
 
   try {
     const data = await getPetData(id);
@@ -109,7 +109,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
   const data = await getPetData(id);
 
   // Si es perfil de mascota (QR ya convertido)

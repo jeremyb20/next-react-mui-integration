@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export default function JobDetailsPage({ params }: Props) {
-  const { id } = params;
+export default async function JobDetailsPage({ params }: Props) {
+  const { id } = await params;
 
   return <JobDetailsView id={id} />;
   // return <>JobDetailsView</>;

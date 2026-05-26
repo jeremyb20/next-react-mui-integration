@@ -15,9 +15,9 @@ interface ProductApiResponse {
 }
 
 type Props = {
-  params: {
+  params: Promise<{
     productId: string;
-  };
+  }>;
 };
 
 async function getProductData(productId: string): Promise<ProductApiResponse> {
@@ -55,7 +55,7 @@ async function getProductData(productId: string): Promise<ProductApiResponse> {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { productId } = params;
+  const { productId } = await params;
 
   try {
     const data = await getProductData(productId);
@@ -140,7 +140,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProductDetailsPage({ params }: Props) {
-  const { productId } = params;
+  const { productId } = await params;
   const data = await getProductData(productId);
 
   // Si es un producto válido

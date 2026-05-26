@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export default function InvoiceDetailsPage({ params }: Props) {
-  const { id } = params;
+export default async function InvoiceDetailsPage({ params }: Props) {
+  const { id } = await params;
 
   return <InvoiceDetailsView id={id} />;
 }
