@@ -4,14 +4,11 @@ import Stack from '@mui/material/Stack';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 
-import { paths } from '@/routes/paths';
-
 import { _mock } from '@/_mock';
-
+import { paths } from '@/routes/paths';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-import OrganizationalChart from '@/components/organizational-chart';
-
 import ComponentHero from '@/sections/_examples/component-hero';
+import OrganizationalChart from '@/components/organizational-chart';
 
 import ComponentBlock from '../component-block';
 

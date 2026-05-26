@@ -1,5 +1,6 @@
-import ScrollProgressView from '@/sections/_examples/extra/scroll-progress-view';
 import { Metadata } from 'next';
+
+import ScrollProgressView from '@/sections/_examples/extra/scroll-progress-view';
 
 // ----------------------------------------------------------------------
 

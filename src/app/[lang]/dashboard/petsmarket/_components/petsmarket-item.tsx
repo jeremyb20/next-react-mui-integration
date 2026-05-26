@@ -1,6 +1,3 @@
-import { IProductItem } from '@/types/product';
-import { inventoryStatusOptions } from '@/utils/constants';
-
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
@@ -10,13 +7,13 @@ import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 
 import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import { fDateTime } from '@/utils/format-time';
-import { fCurrency } from '@/utils/format-number';
-
 import Image from '@/components/image';
 import Iconify from '@/components/iconify';
+import { IProductItem } from '@/types/product';
+import { fDateTime } from '@/utils/format-time';
+import { RouterLink } from '@/routes/components';
+import { fCurrency } from '@/utils/format-number';
+import { inventoryStatusOptions } from '@/utils/constants';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
 
 // ----------------------------------------------------------------------

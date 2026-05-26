@@ -1,5 +1,6 @@
-import AvatarView from '@/sections/_examples/mui/avatar-view';
 import { Metadata } from 'next';
+
+import AvatarView from '@/sections/_examples/mui/avatar-view';
 
 // ----------------------------------------------------------------------
 

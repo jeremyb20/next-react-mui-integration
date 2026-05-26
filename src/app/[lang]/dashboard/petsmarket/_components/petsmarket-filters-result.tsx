@@ -7,7 +7,6 @@ import Stack, { StackProps } from '@mui/material/Stack';
 
 import Iconify from '@/components/iconify';
 import { shortDateLabel } from '@/components/custom-date-range-picker';
-
 import { ITourGuide, ITourFilters, ITourFilterValue } from '@/types/tour';
 
 // ----------------------------------------------------------------------

@@ -3,12 +3,9 @@
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-// import { PRODUCT_CHECKOUT_STEPS } from '@/_mock/_product';
-
 import { useSettingsContext } from '@/components/settings';
 
 import CheckoutCart from '../checkout-cart';
-// import CheckoutSteps from '../checkout-steps';
 import { useCheckoutContext } from '../context';
 import CheckoutPayment from '../checkout-payment';
 import CheckoutOrderComplete from '../checkout-order-complete';

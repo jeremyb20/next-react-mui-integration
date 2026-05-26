@@ -1,5 +1,6 @@
-import { OverviewAnalyticsView } from '@/sections/overview/analytics/view';
 import { Metadata } from 'next';
+
+import { OverviewAnalyticsView } from '@/sections/overview/analytics/view';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
-import { FirebaseVerifyView } from '@/sections/auth/firebase';
 import { Metadata } from 'next';
+
+import { FirebaseVerifyView } from '@/sections/auth/firebase';
 
 // ----------------------------------------------------------------------
 

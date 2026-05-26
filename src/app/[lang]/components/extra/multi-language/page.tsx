@@ -1,5 +1,6 @@
-import MultiLanguageView from '@/sections/_examples/extra/multi-language-view';
 import { Metadata } from 'next';
+
+import MultiLanguageView from '@/sections/_examples/extra/multi-language-view';
 
 // ----------------------------------------------------------------------
 

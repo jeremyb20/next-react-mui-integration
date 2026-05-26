@@ -1,5 +1,6 @@
-import TextMaxLineView from '@/sections/_examples/extra/text-max-line-view';
 import { Metadata } from 'next';
+
+import TextMaxLineView from '@/sections/_examples/extra/text-max-line-view';
 
 // ----------------------------------------------------------------------
 

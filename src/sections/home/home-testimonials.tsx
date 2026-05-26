@@ -1,13 +1,5 @@
-/* eslint-disable no-nested-ternary */
 import { m } from 'motion/react';
 import Carousel from 'react-slick';
-import Iconify from '@/components/iconify';
-import { APP_NAME } from '@/config-global';
-import { useResponsive } from '@/hooks/use-responsive';
-import { useTranslation } from '@/hooks/use-translation';
-import useCarousel from '@/components/carousel/use-carousel';
-import { varFade, MotionViewport } from '@/components/animate';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -17,6 +9,13 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import { alpha, useTheme } from '@mui/material/styles';
+
+import Iconify from '@/components/iconify';
+import { APP_NAME } from '@/config-global';
+import { useResponsive } from '@/hooks/use-responsive';
+import { useTranslation } from '@/hooks/use-translation';
+import useCarousel from '@/components/carousel/use-carousel';
+import { varFade, MotionViewport } from '@/components/animate';
 
 // ----------------------------------------------------------------------
 
@@ -315,7 +314,7 @@ export default function HomeTestimonials() {
           { number: '1.2K+', label: 'Affiliated Veterinarians' },
           { number: '800+', label: 'Certified Groomers' },
           { number: '4.9/5', label: 'Average Rating' },
-        ].map((stat, index) => (
+        ].map((stat) => (
           <m.div key={stat.label} variants={varFade().inUp}>
             <Stack spacing={1}>
               <Typography variant="h2" color="primary.main">

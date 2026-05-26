@@ -1,5 +1,4 @@
 import { m } from 'motion/react';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Paper from '@mui/material/Paper';
@@ -8,9 +7,8 @@ import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import { bgGradient } from '@/theme/css';
-
 import Image from '@/components/image';
+import { bgGradient } from '@/theme/css';
 import { varFade, MotionContainer } from '@/components/animate';
 import Carousel, {
   useCarousel,

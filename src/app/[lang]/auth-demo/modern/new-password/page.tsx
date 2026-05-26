@@ -1,5 +1,6 @@
-import { ModernNewPasswordView } from '@/sections/auth-demo/modern';
 import { Metadata } from 'next';
+
+import { ModernNewPasswordView } from '@/sections/auth-demo/modern';
 
 // ----------------------------------------------------------------------
 

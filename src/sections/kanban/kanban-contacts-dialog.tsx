@@ -1,9 +1,8 @@
-import { useState, useCallback } from 'react';
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Dialog from '@mui/material/Dialog';
+import { useState, useCallback } from 'react';
 import ListItem from '@mui/material/ListItem';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -14,12 +13,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 
 import { _contacts } from '@/_mock';
-
 import Iconify from '@/components/iconify';
 import Scrollbar from '@/components/scrollbar';
-import SearchNotFound from '@/components/search-not-found';
-
 import { IKanbanAssignee } from '@/types/kanban';
+import SearchNotFound from '@/components/search-not-found';
 
 // ----------------------------------------------------------------------
 

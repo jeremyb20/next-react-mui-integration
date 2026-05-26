@@ -10,8 +10,9 @@
 //   return <ProductListView />;
 // }
 
-import { ProductShopView } from '@/sections/product/view';
 import { Metadata } from 'next';
+
+import { ProductShopView } from '@/sections/product/view';
 
 // ----------------------------------------------------------------------
 

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+
 import BlogPanelView from './_components/view';
 
 // ----------------------------------------------------------------------

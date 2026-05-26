@@ -1,5 +1,6 @@
-import StepperView from '@/sections/_examples/mui/stepper-view';
 import { Metadata } from 'next';
+
+import StepperView from '@/sections/_examples/mui/stepper-view';
 
 // ----------------------------------------------------------------------
 

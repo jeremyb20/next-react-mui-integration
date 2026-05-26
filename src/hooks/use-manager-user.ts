@@ -4,11 +4,11 @@ import { useCallback } from 'react';
 import { useAuthContext } from '@/auth/hooks';
 
 import { LOGO } from '../config-global';
+import { useResponsive } from './use-responsive';
 import {
   getUserRoleFromState,
   getUserStatusFromState,
 } from '../utils/constants';
-import { useResponsive } from './use-responsive';
 
 // ----------------------------------------------------------------------
 
@@ -25,8 +25,9 @@ export function useManagerUser() {
     displayName: fullName,
     email: authUser?.email,
     photoURL: `/assets/images/avatars/avatar-${avatarProfile}.webp` || LOGO,
-    coverUrl: `https://picsum.photos/seed/picsum/${isMobile ? '300' : '1800'}/${isMobile ? '300' : '500'
-      }`,
+    coverUrl: `https://picsum.photos/seed/picsum/${isMobile ? '300' : '1800'}/${
+      isMobile ? '300' : '500'
+    }`,
     memberId: authUser?.memberId,
     phoneNumber: authUser?.profile?.phone,
     phone: authUser?.profile?.phone,

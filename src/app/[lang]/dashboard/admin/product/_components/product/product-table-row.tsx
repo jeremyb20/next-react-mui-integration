@@ -1,7 +1,3 @@
-import { paths } from '@/routes/paths';
-import { useCurrency } from '@/hooks/use-currency';
-import { inventoryStatusOptions } from '@/utils/constants';
-
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -10,11 +6,12 @@ import { GridCellParams } from '@mui/x-data-grid';
 import ListItemText from '@mui/material/ListItemText';
 import LinearProgress from '@mui/material/LinearProgress';
 
-import { useRouter } from '@/routes/hooks';
-
-import { fTime, fDate } from '@/utils/format-time';
-
+import { paths } from '@/routes/paths';
 import Label from '@/components/label';
+import { useRouter } from '@/routes/hooks';
+import { useCurrency } from '@/hooks/use-currency';
+import { fTime, fDate } from '@/utils/format-time';
+import { inventoryStatusOptions } from '@/utils/constants';
 
 // ----------------------------------------------------------------------
 

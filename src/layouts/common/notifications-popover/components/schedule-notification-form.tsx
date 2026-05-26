@@ -1,10 +1,5 @@
 // schedule-notification-form.tsx
 import { useState } from 'react';
-import { endpoints } from '@/utils/axios';
-import { LOGO, HOST_API } from '@/config-global';
-import { NotificationData, NotificationFormData } from '@/types/api';
-import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
-
 import {
   Box,
   Alert,
@@ -14,13 +9,18 @@ import {
   Typography,
 } from '@mui/material';
 
+import { endpoints } from '@/utils/axios';
+import { LOGO, HOST_API } from '@/config-global';
+import { NotificationData, NotificationFormData } from '@/types/api';
+import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
+
 interface ScheduleNotificationFormProps {
   onNotificationScheduled: () => void;
   setNotifications: React.Dispatch<React.SetStateAction<NotificationData[]>>;
 }
 
 const ScheduleNotificationForm = ({
-  onNotificationScheduled,
+  onNotificationScheduled: _onNotificationScheduled,
   setNotifications,
 }: ScheduleNotificationFormProps) => {
   const [formData, setFormData] = useState<NotificationFormData>({

@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
-import Paper, { PaperProps } from '@mui/material/Paper';
 import Grid, { GridProps } from '@mui/material/Grid';
+import Paper, { PaperProps } from '@mui/material/Paper';
 
 // ----------------------------------------------------------------------
 

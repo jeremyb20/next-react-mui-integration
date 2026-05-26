@@ -1,5 +1,3 @@
-import { useManagerUser } from '@/hooks/use-manager-user';
-
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -8,6 +6,7 @@ import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 
 import Iconify from '@/components/iconify';
+import { useManagerUser } from '@/hooks/use-manager-user';
 
 // ----------------------------------------------------------------------
 

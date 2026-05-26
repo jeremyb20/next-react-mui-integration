@@ -1,5 +1,6 @@
-import PricingView from '@/sections/pricing/view';
 import { Metadata } from 'next';
+
+import PricingView from '@/sections/pricing/view';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
-import RatingView from '@/sections/_examples/mui/rating-view';
 import { Metadata } from 'next';
+
+import RatingView from '@/sections/_examples/mui/rating-view';
 
 // ----------------------------------------------------------------------
 

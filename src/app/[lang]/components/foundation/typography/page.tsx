@@ -1,5 +1,6 @@
-import { TypographyView } from '@/sections/_examples/foundation';
 import { Metadata } from 'next';
+
+import { TypographyView } from '@/sections/_examples/foundation';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
-import { ClassicRegisterView } from '@/sections/auth-demo/classic';
 import { Metadata } from 'next';
+
+import { ClassicRegisterView } from '@/sections/auth-demo/classic';
 
 // ----------------------------------------------------------------------
 

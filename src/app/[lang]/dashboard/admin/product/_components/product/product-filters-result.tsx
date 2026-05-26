@@ -6,7 +6,6 @@ import { alpha } from '@mui/material/styles';
 import Stack, { StackProps } from '@mui/material/Stack';
 
 import Iconify from '@/components/iconify';
-
 import { IProductFilters, IProductFilterValue } from '@/types/product';
 
 // ----------------------------------------------------------------------

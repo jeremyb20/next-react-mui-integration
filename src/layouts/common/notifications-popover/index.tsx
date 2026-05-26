@@ -1,34 +1,34 @@
-import Badge from '@mui/material/Badge';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import Stack from '@mui/material/Stack';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
-import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
 import { m } from 'motion/react';
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import List from '@mui/material/List';
+import Tabs from '@mui/material/Tabs';
+import Badge from '@mui/material/Badge';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Drawer from '@mui/material/Drawer';
+import Divider from '@mui/material/Divider';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import { useMemo, useState, useEffect, useCallback } from 'react';
 
-import { varHover } from '@/components/animate';
-import Iconify from '@/components/iconify';
 import Label from '@/components/label';
-import PushNotificationManager from '@/components/notifications/push-notifications-manager';
-import Scrollbar from '@/components/scrollbar';
-import { HOST_API } from '@/config-global';
-import { useBoolean } from '@/hooks/use-boolean';
-import { useFetchGetNotifications } from '@/hooks/use-fetch';
-import { useManagerUser } from '@/hooks/use-manager-user';
-import { useResponsive } from '@/hooks/use-responsive';
-import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
-import { NotificationData } from '@/types/api';
 import { endpoints } from '@/utils/axios';
+import Iconify from '@/components/iconify';
+import { HOST_API } from '@/config-global';
+import Scrollbar from '@/components/scrollbar';
+import { NotificationData } from '@/types/api';
+import { varHover } from '@/components/animate';
+import { useBoolean } from '@/hooks/use-boolean';
+import { useResponsive } from '@/hooks/use-responsive';
+import { useManagerUser } from '@/hooks/use-manager-user';
+import { useFetchGetNotifications } from '@/hooks/use-fetch';
+import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
+import PushNotificationManager from '@/components/notifications/push-notifications-manager';
 
-import ScheduleNotificationForm from './components/schedule-notification-form';
 import NotificationItem from './notification-item';
+import ScheduleNotificationForm from './components/schedule-notification-form';
 
 // ----------------------------------------------------------------------
 

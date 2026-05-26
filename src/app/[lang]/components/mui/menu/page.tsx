@@ -1,5 +1,6 @@
-import MenuView from '@/sections/_examples/mui/menu-view';
 import { Metadata } from 'next';
+
+import MenuView from '@/sections/_examples/mui/menu-view';
 
 // ----------------------------------------------------------------------
 

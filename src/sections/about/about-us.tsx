@@ -1,8 +1,6 @@
 import React from 'react';
-import { APP_NAME } from '@/config-global';
-import Iconify from '@/components/iconify';
 import { useTranslation } from 'react-i18next';
-
+import { useTheme } from '@mui/material/styles';
 import {
   Box,
   Grid,
@@ -13,7 +11,9 @@ import {
   Typography,
   CardContent,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+
+import { APP_NAME } from '@/config-global';
+import Iconify from '@/components/iconify';
 const AboutUs = () => {
   const theme = useTheme();
   const { t } = useTranslation();

@@ -8,7 +8,6 @@ import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 
 import Iconify from '@/components/iconify';
-
 import { IJobCandidate } from '@/types/job';
 
 // ----------------------------------------------------------------------

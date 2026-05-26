@@ -1,5 +1,6 @@
-import BreadcrumbsView from '@/sections/_examples/mui/breadcrumbs-view';
 import { Metadata } from 'next';
+
+import BreadcrumbsView from '@/sections/_examples/mui/breadcrumbs-view';
 
 // ----------------------------------------------------------------------
 

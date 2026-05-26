@@ -4,12 +4,10 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import { useResponsive } from '@/hooks/use-responsive';
-
+import { IMails } from '@/types/mail';
 import Iconify from '@/components/iconify';
 import Scrollbar from '@/components/scrollbar';
-
-import { IMails } from '@/types/mail';
+import { useResponsive } from '@/hooks/use-responsive';
 
 import MailItem from './mail-item';
 import { MailItemSkeleton } from './mail-skeleton';

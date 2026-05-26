@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+
 import VeterinarianView from './_components/view';
 
 // ----------------------------------------------------------------------

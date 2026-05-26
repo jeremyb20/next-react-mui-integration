@@ -1,12 +1,12 @@
 'use client';
 
-import { useManagerUser } from '@/hooks/use-manager-user';
-
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 
+import { useManagerUser } from '@/hooks/use-manager-user';
+import { useSettingsContext } from '@/components/settings';
 import { MotivationIllustration } from '@/assets/illustrations';
 import {
   _ecommerceNewProducts,
@@ -14,8 +14,6 @@ import {
   _ecommerceSalesOverview,
   _ecommerceLatestProducts,
 } from '@/_mock';
-
-import { useSettingsContext } from '@/components/settings';
 
 import EcommerceWelcome from '../ecommerce-welcome';
 import EcommerceNewProducts from '../ecommerce-new-products';

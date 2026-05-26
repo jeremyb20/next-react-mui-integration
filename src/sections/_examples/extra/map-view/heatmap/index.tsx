@@ -17,7 +17,11 @@ function MapHeatmap({ ...other }: MapBoxProps) {
 
   const [earthquakes, setEarthQuakes] = useState();
 
-  const { projection, logoPosition, ...mapProps } = other;
+  const {
+    projection: _projection,
+    logoPosition: _logoPosition,
+    ...mapProps
+  } = other;
 
   useEffect(() => {
     fetch('https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson')

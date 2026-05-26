@@ -1,5 +1,6 @@
-import { JwtLoginView } from '@/sections/auth/jwt';
 import { Metadata } from 'next';
+
+import { JwtLoginView } from '@/sections/auth/jwt';
 
 // ----------------------------------------------------------------------
 

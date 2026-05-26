@@ -3,9 +3,8 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 
 import Scrollbar from '@/components/scrollbar';
-import { TableHeadCustom } from '@/components/table';
-
 import { ICheckoutItem } from '@/types/checkout';
+import { TableHeadCustom } from '@/components/table';
 
 import CheckoutCartProduct from './checkout-cart-product';
 

@@ -1,5 +1,6 @@
-import { UserCardsView } from '@/sections/user/view';
 import { Metadata } from 'next';
+
+import { UserCardsView } from '@/sections/user/view';
 
 // ----------------------------------------------------------------------
 

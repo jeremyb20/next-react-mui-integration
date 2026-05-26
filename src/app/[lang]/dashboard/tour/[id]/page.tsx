@@ -1,7 +1,8 @@
 // import { _tours } from '@/_mock/_tour';
 
-import { TourDetailsView } from '@/sections/tour/view';
 import { Metadata } from 'next';
+
+import { TourDetailsView } from '@/sections/tour/view';
 
 // ----------------------------------------------------------------------
 

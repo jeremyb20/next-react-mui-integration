@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { isEqual } from 'lodash';
 import { m } from 'motion/react';
+import Box from '@mui/material/Box';
 import orderBy from 'lodash/orderBy';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+
 import { paths } from '@/routes/paths';
 import { useRouter } from '@/routes/hooks';
 import EmptyContent from '@/components/empty-content';
@@ -11,12 +17,6 @@ import { UserQueryParams } from '@/hooks/use-fetch-paginated';
 import { varFade, MotionViewport } from '@/components/animate';
 import { IProductItem, IProductFilters } from '@/types/product';
 import { getSortOrder, getSortByField } from '@/utils/constants';
-
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 
 import ProductList from '../product/product-list';
 

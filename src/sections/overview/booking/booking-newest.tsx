@@ -6,11 +6,10 @@ import Box, { BoxProps } from '@mui/material/Box';
 import CardHeader from '@mui/material/CardHeader';
 import ListItemText from '@mui/material/ListItemText';
 
-import { fDateTime } from '@/utils/format-time';
-
 import Label from '@/components/label';
 import Image from '@/components/image';
 import Iconify from '@/components/iconify';
+import { fDateTime } from '@/utils/format-time';
 import Carousel, { useCarousel, CarouselArrows } from '@/components/carousel';
 
 // ----------------------------------------------------------------------

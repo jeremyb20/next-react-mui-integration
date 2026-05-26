@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-
 import Chip from '@mui/material/Chip';
 import Masonry from '@mui/lab/Masonry';
 import Checkbox from '@mui/material/Checkbox';
@@ -11,12 +10,9 @@ import Typography from '@mui/material/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 
 import { paths } from '@/routes/paths';
-
 import { countries } from '@/assets/data';
-
 import CountrySelect from '@/components/country-select';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import ComponentHero from '@/sections/_examples/component-hero';
 
 import ComponentBlock from '../component-block';

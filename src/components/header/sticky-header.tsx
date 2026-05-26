@@ -1,5 +1,5 @@
-import { Box, Theme, SxProps } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { Box, Theme, SxProps } from '@mui/material';
 import { useState, useEffect, ReactNode } from 'react';
 
 interface StickyHeaderProps {

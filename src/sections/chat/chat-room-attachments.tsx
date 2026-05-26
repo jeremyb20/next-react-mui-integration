@@ -3,15 +3,12 @@ import Stack from '@mui/material/Stack';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { fDateTime } from '@/utils/format-time';
-
 import Iconify from '@/components/iconify';
 import Scrollbar from '@/components/scrollbar';
-import FileThumbnail from '@/components/file-thumbnail';
-
 import { IChatAttachment } from '@/types/chat';
+import { fDateTime } from '@/utils/format-time';
+import { useBoolean } from '@/hooks/use-boolean';
+import FileThumbnail from '@/components/file-thumbnail';
 
 // ----------------------------------------------------------------------
 

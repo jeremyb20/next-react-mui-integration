@@ -1,3 +1,5 @@
+import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import { memo, useMemo, useState, useCallback } from 'react';
 import Map, {
   Layer,
@@ -6,9 +8,6 @@ import Map, {
   MapLayerMouseEvent,
 } from 'react-map-gl';
 
-import { useTheme } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
-
 import { MapPopup, MapControl, MapBoxProps } from '@/components/map';
 
 // ----------------------------------------------------------------------
@@ -16,7 +15,11 @@ import { MapPopup, MapControl, MapBoxProps } from '@/components/map';
 function MapHighlightByFilter({ ...other }: MapBoxProps) {
   const theme = useTheme();
 
-  const { projection, logoPosition, ...mapProps } = other;
+  const {
+    projection: _projection,
+    logoPosition: _logoPosition,
+    ...mapProps
+  } = other;
 
   const countiesLayer: Omit<FillLayer, 'source'> = {
     id: 'counties',

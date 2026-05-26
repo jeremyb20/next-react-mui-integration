@@ -1,7 +1,8 @@
 // import { _jobs } from '@/_mock/_job';
 
-import { JobDetailsView } from '@/sections/job/view';
 import { Metadata } from 'next';
+
+import { JobDetailsView } from '@/sections/job/view';
 
 // ----------------------------------------------------------------------
 

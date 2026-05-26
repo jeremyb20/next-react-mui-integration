@@ -1,9 +1,10 @@
 'use client';
 
+import Grid from '@mui/material/Grid';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 
+import { useSettingsContext } from '@/components/settings';
 import {
   _bookings,
   _bookingNew,
@@ -15,8 +16,6 @@ import {
   CheckInIllustration,
   CheckoutIllustration,
 } from '@/assets/illustrations';
-
-import { useSettingsContext } from '@/components/settings';
 
 import BookingBooked from '../booking-booked';
 import BookingNewest from '../booking-newest';

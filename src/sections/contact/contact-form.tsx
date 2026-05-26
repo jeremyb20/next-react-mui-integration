@@ -1,17 +1,17 @@
-import Alert from '@mui/material/Alert';
+import { m } from 'motion/react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress';
-import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { useState, useEffect } from 'react';
+import Snackbar from '@mui/material/Snackbar';
+import { useTranslation } from 'react-i18next';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { m } from 'motion/react';
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import CircularProgress from '@mui/material/CircularProgress';
 
-import { varFade, MotionViewport } from '@/components/animate';
 import { EMAIL_SUPPORT } from '@/config-global';
+import { varFade, MotionViewport } from '@/components/animate';
 
 // ----------------------------------------------------------------------
 

@@ -3,12 +3,8 @@
 'use client';
 
 import { m } from 'motion/react';
-import { IPromotions } from '@/types/api';
-import Iconify from '@/components/iconify';
 import { useTranslation } from 'react-i18next';
-import { varFade, MotionContainer } from '@/components/animate';
-import Carousel, { useCarousel, CarouselDots } from '@/components/carousel';
-
+import { alpha, useTheme } from '@mui/material/styles';
 import {
   Box,
   Card,
@@ -20,7 +16,10 @@ import {
   useMediaQuery,
 } from '@mui/material';
 
-import { alpha, useTheme } from '@mui/material/styles';
+import { IPromotions } from '@/types/api';
+import Iconify from '@/components/iconify';
+import { varFade, MotionContainer } from '@/components/animate';
+import Carousel, { useCarousel, CarouselDots } from '@/components/carousel';
 
 interface PromotionsCardProps {
   promotions: IPromotions[];

@@ -1,5 +1,6 @@
-import AutocompleteView from '@/sections/_examples/mui/autocomplete-view';
 import { Metadata } from 'next';
+
+import AutocompleteView from '@/sections/_examples/mui/autocomplete-view';
 
 // ----------------------------------------------------------------------
 

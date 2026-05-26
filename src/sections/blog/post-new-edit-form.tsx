@@ -1,28 +1,25 @@
 import * as Yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useMemo, useEffect, useCallback } from 'react';
-
+import { Grid } from '@mui/material';
 import Chip from '@mui/material/Chip';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
+import { useForm } from 'react-hook-form';
 import Button from '@mui/material/Button';
 import Switch from '@mui/material/Switch';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
-
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo, useEffect, useCallback } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-import { paths } from '@/routes/paths';
-import { useRouter } from '@/routes/hooks';
-
-import { useBoolean } from '@/hooks/use-boolean';
-import { useResponsive } from '@/hooks/use-responsive';
-
 import { _tags } from '@/_mock';
-
+import { paths } from '@/routes/paths';
+import { IPostItem } from '@/types/blog';
+import { useRouter } from '@/routes/hooks';
+import { useBoolean } from '@/hooks/use-boolean';
 import { CustomFile } from '@/components/upload';
 import { useSnackbar } from '@/components/snackbar';
+import { useResponsive } from '@/hooks/use-responsive';
 import FormProvider, {
   RHFEditor,
   RHFUpload,
@@ -30,10 +27,7 @@ import FormProvider, {
   RHFAutocomplete,
 } from '@/components/hook-form';
 
-import { IPostItem } from '@/types/blog';
-
 import PostDetailsPreview from './post-details-preview';
-import { Grid } from '@mui/material';
 
 // ----------------------------------------------------------------------
 

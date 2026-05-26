@@ -13,20 +13,17 @@ import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 import { alpha, darken, lighten } from '@mui/material/styles';
 
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { fDateTime } from '@/utils/format-time';
-
 import Label from '@/components/label';
 import Editor from '@/components/editor';
 import Iconify from '@/components/iconify';
 import Markdown from '@/components/markdown';
 import Scrollbar from '@/components/scrollbar';
+import { fDateTime } from '@/utils/format-time';
+import { useBoolean } from '@/hooks/use-boolean';
+import { IMail, IMailLabel } from '@/types/mail';
 import TextMaxLine from '@/components/text-max-line';
 import EmptyContent from '@/components/empty-content';
 import FileThumbnail from '@/components/file-thumbnail';
-
-import { IMail, IMailLabel } from '@/types/mail';
 
 // ----------------------------------------------------------------------
 

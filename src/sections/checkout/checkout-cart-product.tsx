@@ -1,5 +1,3 @@
-import { useCurrency } from '@/hooks/use-currency';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
@@ -11,9 +9,9 @@ import Typography from '@mui/material/Typography';
 
 import Label from '@/components/label';
 import Iconify from '@/components/iconify';
-import { ColorPreview } from '@/components/color-utils';
-
 import { ICheckoutItem } from '@/types/checkout';
+import { useCurrency } from '@/hooks/use-currency';
+import { ColorPreview } from '@/components/color-utils';
 
 import IncrementerButton from '../product/common/incrementer-button';
 

@@ -5,10 +5,8 @@ import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 import AvatarGroup, { avatarGroupClasses } from '@mui/material/AvatarGroup';
 
-import { fToNow } from '@/utils/format-time';
-
 import Iconify from '@/components/iconify';
-
+import { fToNow } from '@/utils/format-time';
 import { IChatParticipant } from '@/types/chat';
 
 // ----------------------------------------------------------------------

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+
 import { HomeView } from '@/sections/home/view';
 import { getSeoMetadata } from '@/utils/seo-metadata';
 

@@ -5,14 +5,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
 
-import { useResponsive } from '@/hooks/use-responsive';
-
-import { fDate } from '@/utils/format-time';
-
 import Iconify from '@/components/iconify';
-import CustomPopover, { usePopover } from '@/components/custom-popover';
-
+import { fDate } from '@/utils/format-time';
 import { ICalendarView } from '@/types/calendar';
+import { useResponsive } from '@/hooks/use-responsive';
+import CustomPopover, { usePopover } from '@/components/custom-popover';
 
 // ----------------------------------------------------------------------
 

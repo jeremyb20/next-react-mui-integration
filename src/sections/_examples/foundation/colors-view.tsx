@@ -7,13 +7,10 @@ import Typography from '@mui/material/Typography';
 import { alpha, useTheme, hexToRgb } from '@mui/material/styles';
 
 import { paths } from '@/routes/paths';
-
-import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
-
 import { useSnackbar } from '@/components/snackbar';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import ComponentHero from '@/sections/_examples/component-hero';
+import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 
 // ----------------------------------------------------------------------
 

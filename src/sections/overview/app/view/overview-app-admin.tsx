@@ -1,5 +1,11 @@
 'use client';
 
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { Container } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
 import { SeoIllustration } from '@/assets/illustrations';
 import { useManagerUser } from '@/hooks/use-manager-user';
 import { processByMonthData } from '@/utils/chart-data-processor';
@@ -12,12 +18,6 @@ import {
   useGetProductGrowth,
   useGetAdminProductStats,
 } from '@/hooks/use-fetch';
-
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import { Container } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
 
 import AppWidget from '../app-widget';
 import AppWelcome from '../app-welcome';

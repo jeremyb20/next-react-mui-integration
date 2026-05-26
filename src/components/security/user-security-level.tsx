@@ -1,9 +1,3 @@
-import React from 'react';
-import { SecurityLevel } from '@/types/security';
-import { useTranslation } from '@/hooks/use-translation';
-import { useManagerUser } from '@/hooks/use-manager-user';
-import { getSecurityColor, getSecurityLevelText } from '@/utils/constants';
-
 import {
   Box,
   Card,
@@ -12,6 +6,11 @@ import {
   Typography,
   LinearProgress,
 } from '@mui/material';
+
+import { SecurityLevel } from '@/types/security';
+import { useTranslation } from '@/hooks/use-translation';
+import { useManagerUser } from '@/hooks/use-manager-user';
+import { getSecurityColor, getSecurityLevelText } from '@/utils/constants';
 
 import Iconify from '../iconify';
 

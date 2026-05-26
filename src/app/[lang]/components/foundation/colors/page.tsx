@@ -1,5 +1,6 @@
-import { ColorsView } from '@/sections/_examples/foundation';
 import { Metadata } from 'next';
+
+import { ColorsView } from '@/sections/_examples/foundation';
 
 // ----------------------------------------------------------------------
 

@@ -11,12 +11,10 @@ import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 
 import { _socials } from '@/_mock';
-
 import Iconify from '@/components/iconify';
+import { IUserProfileFriend } from '@/types/user';
 import SearchNotFound from '@/components/search-not-found';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
-
-import { IUserProfileFriend } from '@/types/user';
 
 // ----------------------------------------------------------------------
 

@@ -1,7 +1,6 @@
+import Box from '@mui/material/Box';
 import { ApexOptions } from 'apexcharts';
 import { useState, useCallback } from 'react';
-
-import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import ButtonBase from '@mui/material/ButtonBase';
 import CardHeader from '@mui/material/CardHeader';

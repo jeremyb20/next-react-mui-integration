@@ -1,12 +1,12 @@
-/* eslint-disable object-shorthand */
 import { Metadata } from 'next';
+
 import { endpoints } from '@/utils/axios';
+import NotFoundPage from '@/app/not-found';
 import { PetApiResponse } from '@/types/global';
 import { DOMAIN, HOST_API } from '@/config-global';
 
 import RegistrationPetView from '../_components/view/registration-pet-view';
 import PetPublickProfileView from '../_components/view/pet-public-profile-view';
-import NotFoundPage from '@/app/not-found';
 
 type Props = {
   params: {
@@ -102,7 +102,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } catch (error) {
     return {
       title: 'Error | Plaquitas CR',
-      description: 'Ocurrió un error al cargar la información.',
+      description: `Ocurrió un error al cargar la información. ${error instanceof Error ? error.message : 'Desconocido'}`,
       metadataBase: new URL(DOMAIN),
     };
   }

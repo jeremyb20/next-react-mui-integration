@@ -1,5 +1,6 @@
-import AnimateView from '@/sections/_examples/extra/animate-view';
 import { Metadata } from 'next';
+
+import AnimateView from '@/sections/_examples/extra/animate-view';
 
 // ----------------------------------------------------------------------
 

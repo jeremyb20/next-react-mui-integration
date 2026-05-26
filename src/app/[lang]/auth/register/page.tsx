@@ -1,5 +1,6 @@
-import { JwtRegisterView } from '@/sections/auth/jwt';
 import { Metadata } from 'next';
+
+import { JwtRegisterView } from '@/sections/auth/jwt';
 
 // ----------------------------------------------------------------------
 

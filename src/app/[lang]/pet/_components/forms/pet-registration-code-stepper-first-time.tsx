@@ -1,7 +1,32 @@
 'use client';
 
 import * as Yup from 'yup';
+import Box from '@mui/material/Box';
+import Step from '@mui/material/Step';
 import { useSnackbar } from 'notistack';
+import Paper from '@mui/material/Paper';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import Stepper from '@mui/material/Stepper';
+import { alpha } from '@mui/material/styles';
+import StepLabel from '@mui/material/StepLabel';
+import Typography from '@mui/material/Typography';
+import StepContent from '@mui/material/StepContent';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState, useEffect, useCallback } from 'react';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import {
+  Card,
+  Stack,
+  MenuItem,
+  IconButton,
+  CardHeader,
+  ButtonGroup,
+  CardContent,
+  InputAdornment,
+} from '@mui/material';
+
 import { countries } from '@/assets/data';
 import { endpoints } from '@/utils/axios';
 import { useRouter } from '@/routes/hooks';
@@ -10,11 +35,8 @@ import { OptionType } from '@/types/global';
 import useIPInfo from '@/hooks/use-ip-info';
 import { fData } from '@/utils/format-number';
 import { useBoolean } from '@/hooks/use-boolean';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { getValidationCode } from '@/hooks/use-fetch';
 import { useTranslation } from '@/hooks/use-translation';
-import { useState, useEffect, useCallback } from 'react';
 import { HOST_API, PATH_AFTER_LOGIN } from '@/config-global';
 import UploadAvatar from '@/components/upload/upload-avatar';
 import { PetAgeCalculator } from '@/utils/pet-age-calculator';
@@ -32,29 +54,6 @@ import {
   getPhonePlaceholder,
   simplePhoneValidation,
 } from '@/utils/phone-validation';
-
-import Box from '@mui/material/Box';
-import Step from '@mui/material/Step';
-import Paper from '@mui/material/Paper';
-import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
-import Stepper from '@mui/material/Stepper';
-import { alpha } from '@mui/material/styles';
-import StepLabel from '@mui/material/StepLabel';
-import Typography from '@mui/material/Typography';
-
-import StepContent from '@mui/material/StepContent';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import {
-  Card,
-  Stack,
-  MenuItem,
-  IconButton,
-  CardHeader,
-  ButtonGroup,
-  CardContent,
-  InputAdornment,
-} from '@mui/material';
 
 // ----------------------------------------------------------------------
 

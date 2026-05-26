@@ -4,9 +4,9 @@ import { useMemo, useEffect, useReducer, useCallback } from 'react';
 
 import { paths } from '@/routes/paths';
 
-import { AuthUserType, ActionMapType, AuthStateType } from '../../types';
-import { AuthContext } from './auth-context';
 import { supabase } from './lib';
+import { AuthContext } from './auth-context';
+import { AuthUserType, ActionMapType, AuthStateType } from '../../types';
 
 // ----------------------------------------------------------------------
 /**

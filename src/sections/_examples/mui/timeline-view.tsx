@@ -14,10 +14,8 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 
 import { paths } from '@/routes/paths';
-
 import Iconify from '@/components/iconify';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import ComponentHero from '@/sections/_examples/component-hero';
 
 import ComponentBlock from '../component-block';

@@ -1,5 +1,6 @@
-import EditorView from '@/sections/_examples/extra/editor-view';
 import { Metadata } from 'next';
+
+import EditorView from '@/sections/_examples/extra/editor-view';
 
 // ----------------------------------------------------------------------
 

@@ -1,41 +1,29 @@
 import * as Yup from 'yup';
-import { useMemo, useEffect } from 'react';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm, Controller } from 'react-hook-form';
-
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
+import { Button } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
-import Grid from '@mui/material/Grid';
-
+import { useMemo, useEffect } from 'react';
 import ButtonBase from '@mui/material/ButtonBase';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
-
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, Controller } from 'react-hook-form';
 import InputAdornment from '@mui/material/InputAdornment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { paths } from '@/routes/paths';
-import { useRouter } from '@/routes/hooks';
-
-import { useResponsive } from '@/hooks/use-responsive';
-
+import { IJobItem } from '@/types/job';
 import { countries } from '@/assets/data';
-import {
-  _roles,
-  JOB_SKILL_OPTIONS,
-  JOB_BENEFIT_OPTIONS,
-  JOB_EXPERIENCE_OPTIONS,
-  JOB_EMPLOYMENT_TYPE_OPTIONS,
-  JOB_WORKING_SCHEDULE_OPTIONS,
-} from '@/_mock';
-
+import { useRouter } from '@/routes/hooks';
 import Iconify from '@/components/iconify';
 import { useSnackbar } from '@/components/snackbar';
+import { useResponsive } from '@/hooks/use-responsive';
 import FormProvider, {
   RHFEditor,
   RHFSwitch,
@@ -44,9 +32,14 @@ import FormProvider, {
   RHFAutocomplete,
   RHFMultiCheckbox,
 } from '@/components/hook-form';
-
-import { IJobItem } from '@/types/job';
-import { Button } from '@mui/material';
+import {
+  _roles,
+  JOB_SKILL_OPTIONS,
+  JOB_BENEFIT_OPTIONS,
+  JOB_EXPERIENCE_OPTIONS,
+  JOB_EMPLOYMENT_TYPE_OPTIONS,
+  JOB_WORKING_SCHEDULE_OPTIONS,
+} from '@/_mock';
 
 // ----------------------------------------------------------------------
 

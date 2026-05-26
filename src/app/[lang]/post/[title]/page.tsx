@@ -17,7 +17,7 @@ type Props = {
   };
 };
 
-export default function PostDetailsHomePage({ params }: Props) {
+export default function PostDetailsHomePage({ params: _params }: Props) {
   // const { title } = params;
 
   //  return <PostDetailsHomeView title={title} />;

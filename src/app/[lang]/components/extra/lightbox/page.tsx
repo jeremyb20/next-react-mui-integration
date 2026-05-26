@@ -1,5 +1,6 @@
-import LightboxView from '@/sections/_examples/extra/lightbox-view';
 import { Metadata } from 'next';
+
+import LightboxView from '@/sections/_examples/extra/lightbox-view';
 
 // ----------------------------------------------------------------------
 

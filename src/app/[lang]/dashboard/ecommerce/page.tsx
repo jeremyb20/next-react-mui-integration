@@ -1,5 +1,6 @@
-import { OverviewEcommerceView } from '@/sections/overview/e-commerce/view';
 import { Metadata } from 'next';
+
+import { OverviewEcommerceView } from '@/sections/overview/e-commerce/view';
 
 // ----------------------------------------------------------------------
 

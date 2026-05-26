@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+
 import QrPanelView from './_components/view';
 
 // ----------------------------------------------------------------------

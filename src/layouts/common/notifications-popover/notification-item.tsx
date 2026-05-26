@@ -1,6 +1,3 @@
-import Iconify from '@/components/iconify';
-import { NotificationData } from '@/types/api';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -11,9 +8,10 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemButton from '@mui/material/ListItemButton';
 
-import { fToNow } from '@/utils/format-time';
-
 import Label from '@/components/label';
+import Iconify from '@/components/iconify';
+import { fToNow } from '@/utils/format-time';
+import { NotificationData } from '@/types/api';
 import FileThumbnail from '@/components/file-thumbnail';
 
 // ----------------------------------------------------------------------

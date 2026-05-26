@@ -9,10 +9,9 @@ import {
   StyleSheet,
 } from '@react-pdf/renderer';
 
+import { IInvoice } from '@/types/invoice';
 import { fDate } from '@/utils/format-time';
 import { fCurrency } from '@/utils/format-number';
-
-import { IInvoice } from '@/types/invoice';
 
 // ----------------------------------------------------------------------
 

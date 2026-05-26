@@ -17,7 +17,7 @@ type Props = {
   };
 };
 
-export default function PostEditPage({ params }: Props) {
+export default function PostEditPage({ params: _params }: Props) {
   // const { title } = params;
 
   // return <PostEditView title={title} />;

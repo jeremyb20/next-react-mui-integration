@@ -2,18 +2,20 @@
 
 import orderBy from 'lodash/orderBy';
 import isEqual from 'lodash/isEqual';
-import { useState, useCallback } from 'react';
-
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { useState, useCallback } from 'react';
 import Container from '@mui/material/Container';
 
 import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
 import { countries } from '@/assets/data';
+import Iconify from '@/components/iconify';
+import { RouterLink } from '@/routes/components';
+import { useBoolean } from '@/hooks/use-boolean';
+import EmptyContent from '@/components/empty-content';
+import { useSettingsContext } from '@/components/settings';
+import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
+import { IJobItem, IJobFilters, IJobFilterValue } from '@/types/job';
 import {
   _jobs,
   _roles,
@@ -22,13 +24,6 @@ import {
   JOB_EXPERIENCE_OPTIONS,
   JOB_EMPLOYMENT_TYPE_OPTIONS,
 } from '@/_mock';
-
-import Iconify from '@/components/iconify';
-import EmptyContent from '@/components/empty-content';
-import { useSettingsContext } from '@/components/settings';
-import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
-import { IJobItem, IJobFilters, IJobFilterValue } from '@/types/job';
 
 import JobList from '../job-list';
 import JobSort from '../job-sort';

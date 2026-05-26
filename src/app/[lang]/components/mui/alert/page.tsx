@@ -1,5 +1,6 @@
-import AlertView from '@/sections/_examples/mui/alert-view';
 import { Metadata } from 'next';
+
+import AlertView from '@/sections/_examples/mui/alert-view';
 
 // ----------------------------------------------------------------------
 

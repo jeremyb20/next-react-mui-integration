@@ -1,15 +1,16 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-import { useManagerUser } from '@/hooks/use-manager-user';
-
 import Tab from '@mui/material/Tab';
 import Card from '@mui/material/Card';
+import { useState, useCallback } from 'react';
 import Container from '@mui/material/Container';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 
 import { paths } from '@/routes/paths';
-
+import Iconify from '@/components/iconify';
+import { useManagerUser } from '@/hooks/use-manager-user';
+import { useSettingsContext } from '@/components/settings';
+import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
 import {
   _userAbout,
   _userFeeds,
@@ -17,10 +18,6 @@ import {
   _userGallery,
   _userFollowers,
 } from '@/_mock';
-
-import Iconify from '@/components/iconify';
-import { useSettingsContext } from '@/components/settings';
-import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
 
 import ProfileHome from '../profile-home';
 import ProfileCover from '../profile-cover';

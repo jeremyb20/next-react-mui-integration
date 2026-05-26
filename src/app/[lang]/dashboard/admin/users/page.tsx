@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+
 import UsersView from './_components/view';
 
 // ----------------------------------------------------------------------

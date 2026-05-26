@@ -1,5 +1,6 @@
-import ButtonView from '@/sections/_examples/mui/button-view';
 import { Metadata } from 'next';
+
+import ButtonView from '@/sections/_examples/mui/button-view';
 
 // ----------------------------------------------------------------------
 

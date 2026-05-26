@@ -20,7 +20,11 @@ import {
 function MapClusters({ ...other }: MapBoxProps) {
   const mapRef = useRef<MapRef>(null);
 
-  const { projection, logoPosition, ...mapProps } = other;
+  const {
+    projection: _projection,
+    logoPosition: _logoPosition,
+    ...mapProps
+  } = other;
 
   const onClick = (event: MapLayerMouseEvent) => {
     const feature = event.features?.[0];

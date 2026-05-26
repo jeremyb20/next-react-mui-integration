@@ -1,5 +1,6 @@
-import SwitchView from '@/sections/_examples/mui/switch-view';
 import { Metadata } from 'next';
+
+import SwitchView from '@/sections/_examples/mui/switch-view';
 
 // ----------------------------------------------------------------------
 

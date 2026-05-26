@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import { tableCellClasses } from '@mui/material/TableCell';
 import { tablePaginationClasses } from '@mui/material/TablePagination';
 
+import { IFile } from '@/types/file';
 import Iconify from '@/components/iconify';
 import {
   TableProps,
@@ -16,8 +17,6 @@ import {
   TableSelectedAction,
   TablePaginationCustom,
 } from '@/components/table';
-
-import { IFile } from '@/types/file';
 
 import FileManagerTableRow from './file-manager-table-row';
 

@@ -1,7 +1,3 @@
-// components/BirthdayReminder.tsx
-import { useTranslation } from '@/hooks/use-translation';
-import { formatDate, getDaysUntilNextBirthday } from '@/utils/format-time';
-
 import {
   Box,
   Paper,
@@ -10,6 +6,10 @@ import {
   Typography,
   AlertTitle,
 } from '@mui/material';
+
+// components/BirthdayReminder.tsx
+import { useTranslation } from '@/hooks/use-translation';
+import { formatDate, getDaysUntilNextBirthday } from '@/utils/format-time';
 
 import Iconify from '../iconify';
 import { PetAvatarWithBadge } from '../badge/PetAvatarWithBage';

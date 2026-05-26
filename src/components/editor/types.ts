@@ -1,5 +1,4 @@
 import ReactQuill from 'react-quill-new';
-
 import { Theme, SxProps } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------

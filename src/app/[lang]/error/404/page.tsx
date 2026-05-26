@@ -1,5 +1,6 @@
-import { NotFoundView } from '@/sections/error';
 import { Metadata } from 'next';
+
+import { NotFoundView } from '@/sections/error';
 
 // ----------------------------------------------------------------------
 

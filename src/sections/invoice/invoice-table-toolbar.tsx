@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
 import Checkbox from '@mui/material/Checkbox';
@@ -15,7 +14,6 @@ import { formHelperTextClasses } from '@mui/material/FormHelperText';
 
 import Iconify from '@/components/iconify';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
-
 import {
   IInvoiceTableFilters,
   IInvoiceTableFilterValue,

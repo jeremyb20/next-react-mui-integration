@@ -1,5 +1,6 @@
-import MegaMenuView from '@/sections/_examples/extra/mega-menu-view';
 import { Metadata } from 'next';
+
+import MegaMenuView from '@/sections/_examples/extra/mega-menu-view';
 
 // ----------------------------------------------------------------------
 

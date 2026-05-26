@@ -1,5 +1,6 @@
-import MapView from '@/sections/_examples/extra/map-view';
 import { Metadata } from 'next';
+
+import MapView from '@/sections/_examples/extra/map-view';
 
 // ----------------------------------------------------------------------
 

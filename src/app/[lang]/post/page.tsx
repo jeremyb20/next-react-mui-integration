@@ -1,5 +1,6 @@
-import { PostListHomeView } from '@/sections/blog/view';
 import { Metadata } from 'next';
+
+import { PostListHomeView } from '@/sections/blog/view';
 
 // ----------------------------------------------------------------------
 

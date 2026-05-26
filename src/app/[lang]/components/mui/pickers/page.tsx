@@ -1,5 +1,6 @@
-import PickerView from '@/sections/_examples/mui/picker-view';
 import { Metadata } from 'next';
+
+import PickerView from '@/sections/_examples/mui/picker-view';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
-import { PaymentView } from '@/sections/payment/view';
 import { Metadata } from 'next';
+
+import { PaymentView } from '@/sections/payment/view';
 
 // ----------------------------------------------------------------------
 

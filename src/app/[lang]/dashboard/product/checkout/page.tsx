@@ -1,5 +1,6 @@
-import { CheckoutView } from '@/sections/checkout/view';
 import { Metadata } from 'next';
+
+import { CheckoutView } from '@/sections/checkout/view';
 
 // ----------------------------------------------------------------------
 

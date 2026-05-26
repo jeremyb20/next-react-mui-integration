@@ -1,8 +1,4 @@
-// components/dashboard/user/upcoming-appointments-card.tsx
-import Iconify from '@/components/iconify';
-import { IUpcomingAppointment } from '@/types/api';
-import { useTranslation } from '@/hooks/use-translation';
-
+import { alpha, useTheme } from '@mui/material/styles';
 import {
   Box,
   Card,
@@ -15,7 +11,11 @@ import {
   IconButton,
   CardContent,
 } from '@mui/material';
-import { alpha, useTheme } from '@mui/material/styles';
+
+// components/dashboard/user/upcoming-appointments-card.tsx
+import Iconify from '@/components/iconify';
+import { IUpcomingAppointment } from '@/types/api';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface UpcomingAppointmentsCardProps {
   appointments: IUpcomingAppointment[];

@@ -8,15 +8,12 @@ import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import { fShortenNumber } from '@/utils/format-number';
-
 import { _socials } from '@/_mock';
-import { AvatarShape } from '@/assets/illustrations';
-
 import Image from '@/components/image';
-import Iconify from '@/components/iconify';
-
 import { IUserCard } from '@/types/user';
+import Iconify from '@/components/iconify';
+import { AvatarShape } from '@/assets/illustrations';
+import { fShortenNumber } from '@/utils/format-number';
 
 // ----------------------------------------------------------------------
 

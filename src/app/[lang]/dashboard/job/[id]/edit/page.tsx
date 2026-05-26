@@ -16,7 +16,7 @@ type Props = {
   };
 };
 
-export default function JobEditPage({ params }: Props) {
+export default function JobEditPage({ params: _params }: Props) {
   //  const { id } = params;
 
   // return <JobEditView id={id} />;

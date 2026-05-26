@@ -1,17 +1,16 @@
-import FormProvider from '@/components/hook-form';
-import { useSnackbar } from '@/components/snackbar';
-import { useForm, Controller } from 'react-hook-form';
-
 import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
+import { Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
-import Grid from '@mui/material/Grid';
-
+import { useForm, Controller } from 'react-hook-form';
 import ListItemText from '@mui/material/ListItemText';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
+import FormProvider from '@/components/hook-form';
+import { useSnackbar } from '@/components/snackbar';
+
 import AccountSubscriptionNotification from './account-subscription-notification';
-import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 

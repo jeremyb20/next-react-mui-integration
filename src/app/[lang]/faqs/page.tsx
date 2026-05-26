@@ -1,5 +1,6 @@
-import { FaqsView } from '@/sections/faqs/view';
 import { Metadata } from 'next';
+
+import { FaqsView } from '@/sections/faqs/view';
 
 // ----------------------------------------------------------------------
 

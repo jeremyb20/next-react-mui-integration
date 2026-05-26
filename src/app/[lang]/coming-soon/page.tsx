@@ -1,5 +1,6 @@
-import ComingSoonView from '@/sections/coming-soon/view';
 import { Metadata } from 'next';
+
+import ComingSoonView from '@/sections/coming-soon/view';
 
 // ----------------------------------------------------------------------
 

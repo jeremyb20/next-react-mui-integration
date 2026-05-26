@@ -1,10 +1,8 @@
 'use client';
 
-import React from 'react';
-import { RoleBasedGuard } from '@/auth/guard';
-
 import { Container } from '@mui/material';
 
+import { RoleBasedGuard } from '@/auth/guard';
 import { useSettingsContext } from '@/components/settings';
 
 import { ProductListView } from './product/view';

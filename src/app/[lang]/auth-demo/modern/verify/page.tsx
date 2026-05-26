@@ -1,5 +1,6 @@
-import { ModernVerifyView } from '@/sections/auth-demo/modern';
 import { Metadata } from 'next';
+
+import { ModernVerifyView } from '@/sections/auth-demo/modern';
 
 // ----------------------------------------------------------------------
 

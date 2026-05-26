@@ -1,5 +1,6 @@
-import { SupabaseVerifyView } from '@/sections/auth/supabase';
 import { Metadata } from 'next';
+
+import { SupabaseVerifyView } from '@/sections/auth/supabase';
 
 // ----------------------------------------------------------------------
 

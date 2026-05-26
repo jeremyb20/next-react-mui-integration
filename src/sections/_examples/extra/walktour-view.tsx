@@ -1,11 +1,26 @@
 'use client';
 
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import Switch from '@mui/material/Switch';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import { useTheme } from '@mui/material/styles';
+import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import InputAdornment from '@mui/material/InputAdornment';
+
 import { paths } from '@/routes/paths';
 import Iconify from '@/components/iconify';
-
+import Walktour from '@/components/walktour/walktour';
 import { MotivationIllustration } from '@/assets/illustrations';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
 import ComponentHero from '@/sections/_examples/component-hero';
+import { useWalktour } from '@/components/walktour/use-walktour';
 import EcommerceWelcome from '@/sections/overview/e-commerce/ecommerce-welcome';
 import EcommerceNewProducts from '@/sections/overview/e-commerce/ecommerce-new-products';
 import EcommerceYearlySales from '@/sections/overview/e-commerce/ecommerce-yearly-sales';
@@ -22,23 +37,6 @@ import {
   _ecommerceSalesOverview,
   _ecommerceLatestProducts,
 } from '@/_mock';
-
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import Switch from '@mui/material/Switch';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import { useTheme } from '@mui/material/styles';
-import Container from '@mui/material/Container';
-
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import InputAdornment from '@mui/material/InputAdornment';
-import { useWalktour } from '@/components/walktour/use-walktour';
-import Walktour from '@/components/walktour/walktour';
-import Grid from '@mui/material/Grid';
 
 // ----------------------------------------------------------------------
 

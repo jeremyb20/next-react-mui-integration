@@ -1,5 +1,6 @@
-import DataGridView from '@/sections/_examples/mui/data-grid-view';
 import { Metadata } from 'next';
+
+import DataGridView from '@/sections/_examples/mui/data-grid-view';
 
 // ----------------------------------------------------------------------
 

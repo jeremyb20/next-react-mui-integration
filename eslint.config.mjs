@@ -58,7 +58,8 @@ export default [
       'perfectionist/sort-imports': [
         'error',
         {
-          type: 'natural',
+          // type: 'natural',
+          type: 'line-length',
           order: 'asc',
           ignoreCase: true,
         },

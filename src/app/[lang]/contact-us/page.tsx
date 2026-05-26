@@ -1,5 +1,6 @@
-import { ContactView } from '@/sections/contact/view';
 import { Metadata } from 'next';
+
+import { ContactView } from '@/sections/contact/view';
 
 // ----------------------------------------------------------------------
 

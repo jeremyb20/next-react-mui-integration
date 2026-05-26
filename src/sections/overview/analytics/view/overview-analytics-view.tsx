@@ -4,14 +4,13 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
+import { useSettingsContext } from '@/components/settings';
 import {
   _analyticTasks,
   _analyticPosts,
   _analyticTraffic,
   _analyticOrderTimeline,
 } from '@/_mock';
-
-import { useSettingsContext } from '@/components/settings';
 
 import AnalyticsNews from '../analytics-news';
 import AnalyticsTasks from '../analytics-tasks';

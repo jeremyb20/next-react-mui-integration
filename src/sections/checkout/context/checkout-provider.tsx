@@ -1,18 +1,15 @@
 'use client';
 
 import uniq from 'lodash/uniq';
-import { useAuthContext } from '@/auth/hooks';
 import { useMemo, useEffect, useCallback } from 'react';
 
 import { paths } from '@/routes/paths';
 import { useRouter } from '@/routes/hooks';
-
-import { getStorage, useLocalStorage } from '@/hooks/use-local-storage';
-
-import { PRODUCT_CHECKOUT_STEPS } from '@/_mock/_product';
-
+import { useAuthContext } from '@/auth/hooks';
 import { IAddressItem } from '@/types/address';
 import { ICheckoutItem } from '@/types/checkout';
+import { PRODUCT_CHECKOUT_STEPS } from '@/_mock/_product';
+import { getStorage, useLocalStorage } from '@/hooks/use-local-storage';
 
 import { CheckoutContext } from './checkout-context';
 
@@ -60,7 +57,6 @@ export function CheckoutProvider({ children }: Props) {
     update('discount', state.items.length ? state.discount : 0);
     update('shipping', state.items.length ? state.shipping : 0);
     update('total', state.subTotal - state.discount + state.shipping);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     state.items,
     state.activeStep,

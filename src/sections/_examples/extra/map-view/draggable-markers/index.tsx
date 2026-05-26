@@ -15,7 +15,11 @@ function MapDraggableMarkers({ ...other }: MapBoxProps) {
 
   const [events, logEvents] = useState({});
 
-  const { projection, logoPosition, ...mapProps } = other;
+  const {
+    projection: _projection,
+    logoPosition: _logoPosition,
+    ...mapProps
+  } = other;
 
   const onMarkerDragStart = useCallback((event: MarkerDragEvent) => {
     logEvents((prevEvents) => ({ ...prevEvents, onDragStart: event.lngLat }));

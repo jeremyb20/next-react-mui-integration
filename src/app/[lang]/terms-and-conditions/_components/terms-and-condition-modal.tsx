@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Iconify from '@/components/iconify';
-
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   Box,
   Dialog,
@@ -13,8 +13,9 @@ import {
   DialogActions,
   FormControlLabel,
 } from '@mui/material';
-import { useTheme, Breakpoint } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+
+import Iconify from '@/components/iconify';
+
 import TermsAndConditions from './terms-and-conditions-view';
 
 interface TermsAndConditionsModalProps {

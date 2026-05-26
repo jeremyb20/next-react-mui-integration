@@ -1,26 +1,26 @@
 import Box from '@mui/material/Box';
-import Dialog, { dialogClasses } from '@mui/material/Dialog';
-import InputAdornment from '@mui/material/InputAdornment';
-import InputBase from '@mui/material/InputBase';
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
+import InputBase from '@mui/material/InputBase';
 import { useTheme } from '@mui/material/styles';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import { memo, useState, useCallback } from 'react';
+import InputAdornment from '@mui/material/InputAdornment';
+import Dialog, { dialogClasses } from '@mui/material/Dialog';
 
-import Iconify from '@/components/iconify';
 import Label from '@/components/label';
-import Scrollbar from '@/components/scrollbar';
-import SearchNotFound from '@/components/search-not-found';
-import { useBoolean } from '@/hooks/use-boolean';
-import { useEventListener } from '@/hooks/use-event-listener';
-import { useManagerUser } from '@/hooks/use-manager-user';
-import { useResponsive } from '@/hooks/use-responsive';
+import Iconify from '@/components/iconify';
 import { useRouter } from '@/routes/hooks';
+import Scrollbar from '@/components/scrollbar';
+import { useBoolean } from '@/hooks/use-boolean';
+import { useResponsive } from '@/hooks/use-responsive';
+import { useManagerUser } from '@/hooks/use-manager-user';
+import SearchNotFound from '@/components/search-not-found';
+import { useEventListener } from '@/hooks/use-event-listener';
 
-import { useNavData } from '../../dashboard/config-navigation';
 import ResultItem from './result-item';
+import { useNavData } from '../../dashboard/config-navigation';
 import { applyFilter, groupedData, getAllItems } from './utils';
 
 // ----------------------------------------------------------------------

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Divider from '@mui/material/Divider';
@@ -10,9 +9,7 @@ import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { paths } from '@/routes/paths';
-
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import ComponentHero from '@/sections/_examples/component-hero';
 
 import ReactHookForm from './react-hook-form';

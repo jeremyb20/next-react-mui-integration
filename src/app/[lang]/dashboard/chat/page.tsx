@@ -1,5 +1,6 @@
-import { ChatView } from '@/sections/chat/view';
 import { Metadata } from 'next';
+
+import { ChatView } from '@/sections/chat/view';
 
 // ----------------------------------------------------------------------
 

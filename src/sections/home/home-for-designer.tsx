@@ -1,16 +1,16 @@
 import { m } from 'motion/react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import { alpha, useTheme } from '@mui/material/styles';
+
 import { paths } from '@/routes/paths';
 import Iconify from '@/components/iconify';
 import { useResponsive } from '@/hooks/use-responsive';
 import { bgGradient, textGradient } from '@/theme/css';
 import { varFade, MotionViewport } from '@/components/animate';
-
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import { alpha, useTheme } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 

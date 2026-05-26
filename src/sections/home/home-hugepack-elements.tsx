@@ -1,18 +1,10 @@
-import { _mock } from '@/_mock';
 import { m } from 'motion/react';
-import { paths } from '@/routes/paths';
-import Label from '@/components/label';
-import Image from '@/components/image';
-import Iconify from '@/components/iconify';
-import { useState, useCallback } from 'react';
-import { useResponsive } from '@/hooks/use-responsive';
-import { varFade, MotionViewport } from '@/components/animate';
-
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Tab from '@mui/material/Tab';
 import Chip from '@mui/material/Chip';
 import Tabs from '@mui/material/Tabs';
+import Grid from '@mui/material/Grid';
 import Radio from '@mui/material/Radio';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
@@ -24,11 +16,11 @@ import Avatar from '@mui/material/Avatar';
 import Slider from '@mui/material/Slider';
 import Switch from '@mui/material/Switch';
 import { alpha } from '@mui/material/styles';
+import { useState, useCallback } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
@@ -38,6 +30,14 @@ import ToggleButton from '@mui/material/ToggleButton';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import CircularProgress from '@mui/material/CircularProgress';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+
+import { _mock } from '@/_mock';
+import { paths } from '@/routes/paths';
+import Label from '@/components/label';
+import Image from '@/components/image';
+import Iconify from '@/components/iconify';
+import { useResponsive } from '@/hooks/use-responsive';
+import { varFade, MotionViewport } from '@/components/animate';
 
 // ----------------------------------------------------------------------
 

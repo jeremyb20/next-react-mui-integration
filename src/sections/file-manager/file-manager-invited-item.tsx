@@ -1,17 +1,15 @@
-import { useState, useCallback } from 'react';
-
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
+import { useState, useCallback } from 'react';
 import ListItem from '@mui/material/ListItem';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 
 import Iconify from '@/components/iconify';
-import CustomPopover, { usePopover } from '@/components/custom-popover';
-
 import { IFileShared } from '@/types/file';
+import CustomPopover, { usePopover } from '@/components/custom-popover';
 
 // ----------------------------------------------------------------------
 

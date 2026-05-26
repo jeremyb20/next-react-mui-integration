@@ -1,5 +1,6 @@
-import CheckboxView from '@/sections/_examples/mui/checkbox-view';
 import { Metadata } from 'next';
+
+import CheckboxView from '@/sections/_examples/mui/checkbox-view';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
-import ListView from '@/sections/_examples/mui/list-view';
 import { Metadata } from 'next';
+
+import ListView from '@/sections/_examples/mui/list-view';
 
 // ----------------------------------------------------------------------
 

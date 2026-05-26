@@ -1,5 +1,6 @@
-import BadgeView from '@/sections/_examples/mui/badge-view';
 import { Metadata } from 'next';
+
+import BadgeView from '@/sections/_examples/mui/badge-view';
 
 // ----------------------------------------------------------------------
 

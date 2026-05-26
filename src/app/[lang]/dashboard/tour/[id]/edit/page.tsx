@@ -16,7 +16,7 @@ type Props = {
   };
 };
 
-export default function TourEditPage({ params }: Props) {
+export default function TourEditPage({ params: _params }: Props) {
   // const { id } = params;
 
   // return <TourEditView id={id} />;

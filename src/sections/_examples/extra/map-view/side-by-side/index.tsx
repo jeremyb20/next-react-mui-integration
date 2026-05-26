@@ -1,7 +1,7 @@
 'use client';
 
-import { memo, useMemo, useState, useCallback, useEffect } from 'react';
 import Map, { ViewStateChangeEvent } from 'react-map-gl';
+import { memo, useMemo, useState, useCallback, useEffect } from 'react';
 
 import { MapBoxProps } from '@/components/map';
 

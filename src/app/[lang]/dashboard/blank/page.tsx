@@ -1,5 +1,6 @@
-import BlankView from '@/sections/blank/view';
 import { Metadata } from 'next';
+
+import BlankView from '@/sections/blank/view';
 
 // ----------------------------------------------------------------------
 

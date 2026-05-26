@@ -1,11 +1,11 @@
 'use client';
 
-import { RoleBasedGuard } from '@/auth/guard';
-
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+
+import { RoleBasedGuard } from '@/auth/guard';
 
 import PaymentSummary from '../payment-summary';
 import PaymentMethods from '../payment-methods';

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+
 import CatalogView from './_components/view';
 
 // ----------------------------------------------------------------------

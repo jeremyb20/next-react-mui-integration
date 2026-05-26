@@ -1,15 +1,13 @@
-import { ApexOptions } from 'apexcharts';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { ApexOptions } from 'apexcharts';
 import Divider from '@mui/material/Divider';
 import { useTheme } from '@mui/material/styles';
 import CardHeader from '@mui/material/CardHeader';
 import Card, { CardProps } from '@mui/material/Card';
 
-import { useResponsive } from '@/hooks/use-responsive';
-
 import Chart, { useChart } from '@/components/chart';
+import { useResponsive } from '@/hooks/use-responsive';
 
 // ----------------------------------------------------------------------
 

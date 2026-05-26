@@ -1,6 +1,6 @@
 import React from 'react';
-import { IPetProfile } from '@/types/api';
 import { useTranslation } from 'react-i18next';
+import { Box, Grid, Button, Typography } from '@mui/material';
 import {
   EmailShareButton,
   TwitterShareButton,
@@ -9,7 +9,7 @@ import {
   TelegramShareButton,
 } from 'react-share';
 
-import { Box, Grid, Button, Typography } from '@mui/material';
+import { IPetProfile } from '@/types/api';
 
 import { ShareIcon } from './share-icon';
 

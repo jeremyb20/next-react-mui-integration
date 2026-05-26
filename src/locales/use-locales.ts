@@ -2,15 +2,15 @@
 
 import { useEffect, useCallback } from 'react';
 
-import { useTranslation } from '@/hooks/use-translation';
 import { useRouter, usePathname } from '@/routes/hooks';
+import { useTranslation } from '@/hooks/use-translation';
 import { localStorageGetItem } from '@/utils/storage-available';
 
-import { languages, cookieName } from '../app/i18n/settings';
+import { allLangs, defaultLang } from './config-lang';
 import { useSettingsContext } from '../components/settings';
+import { languages, cookieName } from '../app/i18n/settings';
 import { LANGUAGE_NORMALIZATION_MAP } from '../utils/constants';
 import { getExchangeRate, DEFAULT_CURRENCY } from '../utils/currency-service';
-import { allLangs, defaultLang } from './config-lang';
 
 // ----------------------------------------------------------------------
 

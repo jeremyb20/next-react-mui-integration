@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
@@ -8,7 +7,6 @@ import Stack, { StackProps } from '@mui/material/Stack';
 
 import Iconify from '@/components/iconify';
 import { shortDateLabel } from '@/components/custom-date-range-picker';
-
 import {
   IInvoiceTableFilters,
   IInvoiceTableFilterValue,

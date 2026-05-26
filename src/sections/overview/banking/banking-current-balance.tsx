@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,13 +6,10 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { Theme, alpha, SxProps, useTheme } from '@mui/material/styles';
 
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { fCurrency } from '@/utils/format-number';
-
 import { bgGradient } from '@/theme/css';
-
 import Iconify from '@/components/iconify';
+import { useBoolean } from '@/hooks/use-boolean';
+import { fCurrency } from '@/utils/format-number';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
 import Carousel, { useCarousel, CarouselDots } from '@/components/carousel';
 

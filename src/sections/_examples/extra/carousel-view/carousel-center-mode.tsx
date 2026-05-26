@@ -4,9 +4,8 @@ import Paper from '@mui/material/Paper';
 import CardContent from '@mui/material/CardContent';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import { bgGradient } from '@/theme/css';
-
 import Image from '@/components/image';
+import { bgGradient } from '@/theme/css';
 import Iconify from '@/components/iconify';
 import TextMaxLine from '@/components/text-max-line';
 import Carousel, { useCarousel, CarouselArrows } from '@/components/carousel';

@@ -1,5 +1,6 @@
-import { View500 } from '@/sections/error';
 import { Metadata } from 'next';
+
+import { View500 } from '@/sections/error';
 
 // ----------------------------------------------------------------------
 

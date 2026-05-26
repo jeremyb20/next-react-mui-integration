@@ -7,17 +7,14 @@ import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 
 import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import { fDateTime } from '@/utils/format-time';
-import { fCurrency } from '@/utils/format-number';
-
 import Image from '@/components/image';
+import { ITourItem } from '@/types/tour';
 import Iconify from '@/components/iconify';
+import { fDateTime } from '@/utils/format-time';
+import { RouterLink } from '@/routes/components';
+import { fCurrency } from '@/utils/format-number';
 import { shortDateLabel } from '@/components/custom-date-range-picker';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
-
-import { ITourItem } from '@/types/tour';
 
 // ----------------------------------------------------------------------
 

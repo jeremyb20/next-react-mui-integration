@@ -10,12 +10,10 @@ import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
-import { useCountdownDate } from '@/hooks/use-countdown';
-
 import { _socials } from '@/_mock';
-import { ComingSoonIllustration } from '@/assets/illustrations';
-
 import Iconify from '@/components/iconify';
+import { useCountdownDate } from '@/hooks/use-countdown';
+import { ComingSoonIllustration } from '@/assets/illustrations';
 
 // ----------------------------------------------------------------------
 

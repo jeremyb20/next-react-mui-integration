@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-
 import Masonry from '@mui/lab/Masonry';
 import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
@@ -10,10 +9,8 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { paths } from '@/routes/paths';
-
 import Iconify from '@/components/iconify';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import ComponentHero from '@/sections/_examples/component-hero';
 
 import ComponentBlock from '../component-block';

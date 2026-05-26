@@ -1,5 +1,6 @@
-import TooltipView from '@/sections/_examples/mui/tooltip-view';
 import { Metadata } from 'next';
+
+import TooltipView from '@/sections/_examples/mui/tooltip-view';
 
 // ----------------------------------------------------------------------
 

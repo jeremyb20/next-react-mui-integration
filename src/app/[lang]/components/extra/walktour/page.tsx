@@ -1,5 +1,6 @@
-import WalktourView from '@/sections/_examples/extra/walktour-view';
 import { Metadata } from 'next';
+
+import WalktourView from '@/sections/_examples/extra/walktour-view';
 
 // ----------------------------------------------------------------------
 

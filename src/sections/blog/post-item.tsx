@@ -8,20 +8,15 @@ import CardContent from '@mui/material/CardContent';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import { useResponsive } from '@/hooks/use-responsive';
-
-import { fDate } from '@/utils/format-time';
-import { fShortenNumber } from '@/utils/format-number';
-
-import { AvatarShape } from '@/assets/illustrations';
-
 import Image from '@/components/image';
-import Iconify from '@/components/iconify';
-import TextMaxLine from '@/components/text-max-line';
-
 import { IPostItem } from '@/types/blog';
+import Iconify from '@/components/iconify';
+import { fDate } from '@/utils/format-time';
+import { RouterLink } from '@/routes/components';
+import { AvatarShape } from '@/assets/illustrations';
+import TextMaxLine from '@/components/text-max-line';
+import { useResponsive } from '@/hooks/use-responsive';
+import { fShortenNumber } from '@/utils/format-number';
 
 // ----------------------------------------------------------------------
 

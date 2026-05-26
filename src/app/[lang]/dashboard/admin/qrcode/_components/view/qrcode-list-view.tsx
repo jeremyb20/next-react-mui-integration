@@ -1,10 +1,6 @@
-/* eslint-disable no-nested-ternary */
-
 'use client';
 
 import sumBy from 'lodash/sumBy';
-import { useMemo, useState, useCallback } from 'react';
-
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Card from '@mui/material/Card';
@@ -16,29 +12,9 @@ import Tooltip from '@mui/material/Tooltip';
 import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import IconButton from '@mui/material/IconButton';
+import { useMemo, useState, useCallback } from 'react';
 import { alpha, useTheme } from '@mui/material/styles';
 import TableContainer from '@mui/material/TableContainer';
-
-import { paths } from '@/routes/paths';
-import { useRouter } from '@/routes/hooks';
-import { RouterLink } from '@/routes/components';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { isAfter, isBetween } from '@/utils/format-time';
-
-// import { _invoices, INVOICE_SERVICE_OPTIONS } from '@/_mock';
-
-import { IQrCode } from '@/types/api';
-import { useGetQRStats } from '@/hooks/use-fetch';
-import EmptyContent from '@/components/empty-content';
-import FilterToolbar from '@/components/filters/filter-toolbar';
-import { ADMIN_QRCODE_FILTER_TOOLBAR } from '@/components/filters/filter-constants';
-import {
-  UserQueryParams,
-  useGetAllQrCodeList,
-} from '@/hooks/use-fetch-paginated';
-
 import {
   Box,
   Paper,
@@ -49,13 +25,28 @@ import {
   LinearProgress,
 } from '@mui/material';
 
+import { IQrCode } from '@/types/api';
+import { paths } from '@/routes/paths';
 import Label from '@/components/label';
+import { useRouter } from '@/routes/hooks';
+// import { _invoices, INVOICE_SERVICE_OPTIONS } from '@/_mock';
 import Iconify from '@/components/iconify';
 import Scrollbar from '@/components/scrollbar';
+import { RouterLink } from '@/routes/components';
+import { useBoolean } from '@/hooks/use-boolean';
+import { useGetQRStats } from '@/hooks/use-fetch';
 import { useSnackbar } from '@/components/snackbar';
+import EmptyContent from '@/components/empty-content';
+import { isAfter, isBetween } from '@/utils/format-time';
 import { ConfirmDialog } from '@/components/custom-dialog';
 import { useSettingsContext } from '@/components/settings';
+import FilterToolbar from '@/components/filters/filter-toolbar';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
+import { ADMIN_QRCODE_FILTER_TOOLBAR } from '@/components/filters/filter-constants';
+import {
+  UserQueryParams,
+  useGetAllQrCodeList,
+} from '@/hooks/use-fetch-paginated';
 import {
   useTable,
   TableNoData,
@@ -234,6 +225,7 @@ export default function QrCodeListView() {
 
   const handleDeleteRow = useCallback(
     (id: string) => {
+      console.log('Deleting row with id:', id);
       enqueueSnackbar('Delete success!');
     },
     [enqueueSnackbar]

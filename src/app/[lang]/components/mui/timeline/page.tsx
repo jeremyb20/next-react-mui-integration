@@ -1,5 +1,6 @@
-import TimelineView from '@/sections/_examples/mui/timeline-view';
 import { Metadata } from 'next';
+
+import TimelineView from '@/sections/_examples/mui/timeline-view';
 
 // ----------------------------------------------------------------------
 

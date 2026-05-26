@@ -1,21 +1,20 @@
 'use client';
 
 import * as Yup from 'yup';
-import { paths } from '@/routes/paths';
+import Link from '@mui/material/Link';
+import { Button } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import { useForm } from 'react-hook-form';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { yupResolver } from '@hookform/resolvers/yup';
+import InputAdornment from '@mui/material/InputAdornment';
+
+import { paths } from '@/routes/paths';
 import Iconify from '@/components/iconify';
 import { RouterLink } from '@/routes/components';
 import { useBoolean } from '@/hooks/use-boolean';
-import { yupResolver } from '@hookform/resolvers/yup';
 import FormProvider, { RHFTextField } from '@/components/hook-form';
-
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-
-import InputAdornment from '@mui/material/InputAdornment';
-import { Button } from '@mui/material';
 
 // ----------------------------------------------------------------------
 

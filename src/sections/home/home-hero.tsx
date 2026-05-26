@@ -1,21 +1,21 @@
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { m, useScroll } from 'motion/react';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import { alpha, styled } from '@mui/material/styles';
+import { useRef, useState, useEffect, useCallback } from 'react';
+
 import { paths } from '@/routes/paths';
 import Iconify from '@/components/iconify';
 import { APP_NAME } from '@/config-global';
-import { m, useScroll } from 'motion/react';
 import { RouterLink } from '@/routes/components';
 import { HEADER } from '@/layouts/config-layout';
 import { bgGradient, textGradient } from '@/theme/css';
 import { useTranslation } from '@/hooks/use-translation';
 import { varFade, MotionContainer } from '@/components/animate';
-import { useRef, useState, useEffect, useCallback } from 'react';
-
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import { alpha, styled } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
 

@@ -16,7 +16,11 @@ function MapViewportAnimation({ data, ...other }: Props) {
 
   const [selectedCity, setSelectedCity] = useState(data[2].city);
 
-  const { projection, logoPosition, ...mapProps } = other;
+  const {
+    projection: _projection,
+    logoPosition: _logoPosition,
+    ...mapProps
+  } = other;
 
   const onSelectCity = useCallback(
     (

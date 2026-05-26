@@ -1,5 +1,6 @@
-import ProgressView from '@/sections/_examples/mui/progress-view';
 import { Metadata } from 'next';
+
+import ProgressView from '@/sections/_examples/mui/progress-view';
 
 // ----------------------------------------------------------------------
 

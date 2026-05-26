@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -12,24 +11,20 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import { paths } from '@/routes/paths';
-import { usePathname } from '@/routes/hooks';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
 import { _mock } from '@/_mock';
-
 import Logo from '@/components/logo';
+import { paths } from '@/routes/paths';
 import Iconify from '@/components/iconify';
+import { usePathname } from '@/routes/hooks';
 import Scrollbar from '@/components/scrollbar';
+import { useBoolean } from '@/hooks/use-boolean';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
+import ComponentHero from '@/sections/_examples/component-hero';
 import {
   MegaMenuMobile,
   MegaMenuDesktopVertical,
   MegaMenuDesktopHorizontal,
 } from '@/components/mega-menu';
-
-import ComponentHero from '@/sections/_examples/component-hero';
 
 // ----------------------------------------------------------------------
 
@@ -42,7 +37,6 @@ export default function MegaMenuView() {
     if (mobileOpen) {
       mobileOpen.onFalse();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const renderHorizontal = (

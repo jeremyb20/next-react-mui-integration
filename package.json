@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -p 8083",
+    "prebuild": "pnpm lint:strict",
     "build": "next build",
+    "lint:strict": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --max-warnings 10",
     "start": "next start",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",

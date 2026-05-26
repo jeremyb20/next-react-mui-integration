@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import DialogContent from '@mui/material/DialogContent';
 
 import Iconify from '@/components/iconify';
-
 import { IChatParticipant } from '@/types/chat';
 
 // ----------------------------------------------------------------------

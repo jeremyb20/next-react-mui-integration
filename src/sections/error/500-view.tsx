@@ -1,15 +1,12 @@
 'use client';
 
 import { m } from 'motion/react';
-
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import { RouterLink } from '@/routes/components';
-
 import CompactLayout from '@/layouts/compact';
+import { RouterLink } from '@/routes/components';
 import { SeverErrorIllustration } from '@/assets/illustrations';
-
 import { varBounce, MotionContainer } from '@/components/animate';
 
 // ----------------------------------------------------------------------

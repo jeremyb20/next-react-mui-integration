@@ -25,7 +25,11 @@ function MapInteraction({ ...other }: MapBoxProps) {
     touchZoomRotate: true,
   });
 
-  const { projection, logoPosition, ...mapProps } = other;
+  const {
+    projection: _projection,
+    logoPosition: _logoPosition,
+    ...mapProps
+  } = other;
 
   const updateSettings = useCallback(
     (name: string, value: boolean | number) =>

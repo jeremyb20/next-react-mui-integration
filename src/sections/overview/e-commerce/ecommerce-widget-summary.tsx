@@ -1,15 +1,13 @@
-import { ApexOptions } from 'apexcharts';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { ApexOptions } from 'apexcharts';
 import Typography from '@mui/material/Typography';
 import Card, { CardProps } from '@mui/material/Card';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import { fNumber, fPercent } from '@/utils/format-number';
-
 import Iconify from '@/components/iconify';
 import Chart, { useChart } from '@/components/chart';
+import { fNumber, fPercent } from '@/utils/format-number';
 
 // ----------------------------------------------------------------------
 

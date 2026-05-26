@@ -1,5 +1,6 @@
-import TextfieldView from '@/sections/_examples/mui/textfield-view';
 import { Metadata } from 'next';
+
+import TextfieldView from '@/sections/_examples/mui/textfield-view';
 
 // ----------------------------------------------------------------------
 

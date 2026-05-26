@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
-
 import FormHelperText from '@mui/material/FormHelperText';
+import { Controller, useFormContext } from 'react-hook-form';
 
 import Editor, { EditorProps } from '../editor';
 

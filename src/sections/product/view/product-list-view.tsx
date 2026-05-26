@@ -1,12 +1,11 @@
 'use client';
 
 import isEqual from 'lodash/isEqual';
-import { useState, useEffect, useCallback } from 'react';
-
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import { useState, useEffect, useCallback } from 'react';
 // import {
 //   DataGrid,
 //   GridColDef,
@@ -19,13 +18,11 @@ import Container from '@mui/material/Container';
 //   GridToolbarColumnsButton,
 //   GridColumnVisibilityModel,
 // } from '@mui/x-data-grid';
-
 import {
   DataGrid,
   GridColDef,
   GridActionsCellItem,
   GridRowId,
-  GridRowSelectionModel,
   GridColumnVisibilityModel,
   // Herramientas del toolbar - nueva estructura en v8
   // GridToolbarQuickFilter,
@@ -43,20 +40,16 @@ import {
 
 import { paths } from '@/routes/paths';
 import { useRouter } from '@/routes/hooks';
-import { RouterLink } from '@/routes/components';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
+import Iconify from '@/components/iconify';
 import { useGetProducts } from '@/api/product';
 import { PRODUCT_STOCK_OPTIONS } from '@/_mock';
-
-import Iconify from '@/components/iconify';
+import { RouterLink } from '@/routes/components';
+import { useBoolean } from '@/hooks/use-boolean';
 import { useSnackbar } from '@/components/snackbar';
 import EmptyContent from '@/components/empty-content';
 import { ConfirmDialog } from '@/components/custom-dialog';
 import { useSettingsContext } from '@/components/settings';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import {
   IProductItem,
   IProductTableFilters,

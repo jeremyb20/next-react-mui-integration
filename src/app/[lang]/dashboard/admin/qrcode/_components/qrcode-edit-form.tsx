@@ -1,24 +1,21 @@
 import * as Yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { IQrCode } from '@/types/api';
-import { endpoints } from '@/utils/axios';
-import { HOST_API } from '@/config-global';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useMemo, Dispatch, useEffect, SetStateAction } from 'react';
-import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
-
+import Stack from '@mui/material/Stack';
+import { useForm } from 'react-hook-form';
 import { Button, MenuItem } from '@mui/material';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo, Dispatch, useEffect, SetStateAction } from 'react';
 
-import { useResponsive } from '@/hooks/use-responsive';
-
+import { IQrCode } from '@/types/api';
+import { endpoints } from '@/utils/axios';
+import { HOST_API } from '@/config-global';
 import { useSnackbar } from '@/components/snackbar';
+import { useResponsive } from '@/hooks/use-responsive';
+import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 import FormProvider, { RHFSelect, RHFTextField } from '@/components/hook-form';
 
 // ----------------------------------------------------------------------

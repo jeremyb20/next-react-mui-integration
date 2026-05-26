@@ -1,7 +1,6 @@
 import Map from 'react-map-gl';
-import { memo, useState } from 'react';
-
 import Box from '@mui/material/Box';
+import { memo, useState } from 'react';
 import Typography from '@mui/material/Typography';
 
 import Image from '@/components/image';
@@ -25,7 +24,11 @@ interface Props extends MapBoxProps {
 function MapMarkersPopups({ data, ...other }: Props) {
   const [popupInfo, setPopupInfo] = useState<CountryProps | null>(null);
 
-  const { projection, logoPosition, ...mapProps } = other;
+  const {
+    projection: _projection,
+    logoPosition: _logoPosition,
+    ...mapProps
+  } = other;
 
   return (
     <Map

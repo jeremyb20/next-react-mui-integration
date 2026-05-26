@@ -1,5 +1,6 @@
-import OrganizationalChartView from '@/sections/_examples/extra/organizational-chart-view';
 import { Metadata } from 'next';
+
+import OrganizationalChartView from '@/sections/_examples/extra/organizational-chart-view';
 
 // ----------------------------------------------------------------------
 

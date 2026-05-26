@@ -1,7 +1,4 @@
-// components/dashboard/user/statistics-cards.tsx
-import Iconify from '@/components/iconify';
-import { useTranslation } from '@/hooks/use-translation';
-
+import { useTheme } from '@mui/material/styles';
 import {
   Box,
   Card,
@@ -10,7 +7,10 @@ import {
   Typography,
   CardContent,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+
+// components/dashboard/user/statistics-cards.tsx
+import Iconify from '@/components/iconify';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface StatisticsCardsProps {
   petsCount: number;

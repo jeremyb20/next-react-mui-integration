@@ -1,5 +1,5 @@
-import AppProviders from '../components/providers/AppProviders';
 import { DOMAIN, HOST_API } from '../config-global';
+import AppProviders from '../components/providers/AppProviders';
 // ----------------------------------------------------------------------
 
 type Props = {

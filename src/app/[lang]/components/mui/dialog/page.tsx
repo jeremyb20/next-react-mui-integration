@@ -1,5 +1,6 @@
-import DialogView from '@/sections/_examples/mui/dialog-view';
 import { Metadata } from 'next';
+
+import DialogView from '@/sections/_examples/mui/dialog-view';
 
 // ----------------------------------------------------------------------
 

@@ -1,22 +1,22 @@
 'use client';
 
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import { alpha } from '@mui/material/styles';
+import { useState, useCallback } from 'react';
+import Container from '@mui/material/Container';
+
 import { paths } from '@/routes/paths';
 import Iconify from '@/components/iconify';
-import { useState, useCallback } from 'react';
 import { useAuthContext } from '@/auth/hooks';
 import { IProductItem } from '@/types/product';
 import { RouterLink } from '@/routes/components';
 import EmptyContent from '@/components/empty-content';
 import { useSettingsContext } from '@/components/settings';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
-import Card from '@mui/material/Card';
-import Button from '@mui/material/Button';
-import { alpha } from '@mui/material/styles';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 
 import CartIcon from '../common/cart-icon';
 import { useCheckoutContext } from '../../checkout/context';
@@ -33,7 +33,7 @@ type Props = {
   product?: IProductItem;
 };
 
-export default function ProductShopDetailsView({ id, product }: Props) {
+export default function ProductShopDetailsView({ id: _id, product }: Props) {
   const settings = useSettingsContext();
   const checkout = useCheckoutContext();
   const [currentTab, setCurrentTab] = useState('description');

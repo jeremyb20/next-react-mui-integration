@@ -1,5 +1,4 @@
 import { m } from 'motion/react';
-
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -9,17 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 
-import { fDate } from '@/utils/format-time';
-
-import { TOUR_SERVICE_OPTIONS } from '@/_mock';
-
 import Image from '@/components/image';
+import { ITourItem } from '@/types/tour';
 import Iconify from '@/components/iconify';
+import { fDate } from '@/utils/format-time';
 import Markdown from '@/components/markdown';
+import { TOUR_SERVICE_OPTIONS } from '@/_mock';
 import { varTranHover } from '@/components/animate';
 import Lightbox, { useLightBox } from '@/components/lightbox';
-
-import { ITourItem } from '@/types/tour';
 
 // ----------------------------------------------------------------------
 

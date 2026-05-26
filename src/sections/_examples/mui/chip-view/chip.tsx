@@ -5,7 +5,6 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 import { _mock } from '@/_mock';
-
 import Iconify from '@/components/iconify';
 
 // ----------------------------------------------------------------------

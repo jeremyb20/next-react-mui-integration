@@ -1,5 +1,6 @@
-import RadioButtonView from '@/sections/_examples/mui/radio-button-view';
 import { Metadata } from 'next';
+
+import RadioButtonView from '@/sections/_examples/mui/radio-button-view';
 
 // ----------------------------------------------------------------------
 

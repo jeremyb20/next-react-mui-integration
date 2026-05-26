@@ -1,17 +1,14 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+import { useState, useCallback } from 'react';
 import Container from '@mui/material/Container';
 
 import { paths } from '@/routes/paths';
-
-import { _tours, TOUR_DETAILS_TABS, TOUR_PUBLISH_OPTIONS } from '@/_mock';
-
 import Label from '@/components/label';
 import { useSettingsContext } from '@/components/settings';
+import { _tours, TOUR_DETAILS_TABS, TOUR_PUBLISH_OPTIONS } from '@/_mock';
 
 import TourDetailsToolbar from '../tour-details-toolbar';
 import TourDetailsContent from '../tour-details-content';

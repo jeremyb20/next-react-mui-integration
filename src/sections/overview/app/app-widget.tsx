@@ -1,14 +1,11 @@
 import { ApexOptions } from 'apexcharts';
-
 import { useTheme } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import Stack, { StackProps } from '@mui/material/Stack';
 
-import { fNumber } from '@/utils/format-number';
-
-import { ColorSchema } from '@/theme/palette';
-
 import Iconify from '@/components/iconify';
+import { ColorSchema } from '@/theme/palette';
+import { fNumber } from '@/utils/format-number';
 import Chart, { useChart } from '@/components/chart';
 
 // ----------------------------------------------------------------------
@@ -29,7 +26,7 @@ interface Props extends StackProps {
 export default function AppWidget({
   title,
   total,
-  subtitle,
+  subtitle: _subtitle,
   icon,
   color = 'primary',
   chart,

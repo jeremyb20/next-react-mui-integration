@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { m } from 'motion/react';
-
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';

@@ -1,20 +1,17 @@
 'use client';
 
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-
-import { paths } from '@/routes/paths';
-
-import { useTypography } from '@/components/text-max-line';
-import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
-import ComponentHero from '@/sections/_examples/component-hero';
-
 // ----------------------------------------------------------------------
 import { TypographyProps } from '@mui/material/Typography';
+
+import { paths } from '@/routes/paths';
+import { useTypography } from '@/components/text-max-line';
+import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
+import ComponentHero from '@/sections/_examples/component-hero';
 
 // ----------------------------------------------------------------------
 

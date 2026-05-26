@@ -1,5 +1,4 @@
 import { m } from 'motion/react';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -9,10 +8,9 @@ import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
-import { _socials, _carouselsMembers } from '@/_mock';
-
 import Image from '@/components/image';
 import Iconify from '@/components/iconify';
+import { _socials, _carouselsMembers } from '@/_mock';
 import { varFade, MotionViewport } from '@/components/animate';
 import Carousel, { useCarousel, CarouselArrows } from '@/components/carousel';
 

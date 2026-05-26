@@ -1,22 +1,17 @@
 'use client';
 
 import orderBy from 'lodash/orderBy';
-import { useState, useCallback } from 'react';
-
 import Stack from '@mui/material/Stack';
+import { useState, useCallback } from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import { paths } from '@/routes/paths';
-
-import { useDebounce } from '@/hooks/use-debounce';
-
-import { POST_SORT_OPTIONS } from '@/_mock';
-import { useGetPosts, useSearchPosts } from '@/api/blog';
-
-import { useSettingsContext } from '@/components/settings';
-
 import { IPostItem } from '@/types/blog';
+import { POST_SORT_OPTIONS } from '@/_mock';
+import { useDebounce } from '@/hooks/use-debounce';
+import { useGetPosts, useSearchPosts } from '@/api/blog';
+import { useSettingsContext } from '@/components/settings';
 
 import PostList from '../post-list';
 import PostSort from '../post-sort';

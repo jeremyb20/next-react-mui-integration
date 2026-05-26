@@ -1,5 +1,6 @@
-import { FirebaseLoginView } from '@/sections/auth/firebase';
 import { Metadata } from 'next';
+
+import { FirebaseLoginView } from '@/sections/auth/firebase';
 
 // ----------------------------------------------------------------------
 

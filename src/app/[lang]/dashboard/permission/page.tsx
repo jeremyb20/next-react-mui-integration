@@ -1,5 +1,6 @@
-import PermissionDeniedView from '@/sections/permission/view';
 import { Metadata } from 'next';
+
+import PermissionDeniedView from '@/sections/permission/view';
 
 // ----------------------------------------------------------------------
 

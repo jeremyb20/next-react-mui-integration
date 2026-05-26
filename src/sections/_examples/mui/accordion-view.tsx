@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Accordion from '@mui/material/Accordion';
@@ -9,13 +8,10 @@ import Typography from '@mui/material/Typography';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
-import { paths } from '@/routes/paths';
-
 import { _mock } from '@/_mock';
-
+import { paths } from '@/routes/paths';
 import Iconify from '@/components/iconify';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import ComponentHero from '@/sections/_examples/component-hero';
 
 import ComponentBlock from '../component-block';

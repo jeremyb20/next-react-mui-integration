@@ -1,5 +1,5 @@
-/* eslint-disable object-shorthand */
 import { Metadata } from 'next';
+
 import { endpoints } from '@/utils/axios';
 import { PetApiResponse } from '@/types/global';
 import { DOMAIN, HOST_API } from '@/config-global';
@@ -100,7 +100,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } catch (error) {
     return {
       title: 'Error | Plaquitas CR',
-      description: 'Ocurrió un error al cargar la información.',
+      description: ` Ocurrió un error al cargar la información. ${error}`,
       metadataBase: new URL(DOMAIN),
     };
   }

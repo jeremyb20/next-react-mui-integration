@@ -1,5 +1,6 @@
-import { JobListView } from '@/sections/job/view';
 import { Metadata } from 'next';
+
+import { JobListView } from '@/sections/job/view';
 
 // ----------------------------------------------------------------------
 

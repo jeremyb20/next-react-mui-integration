@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef, useState, useEffect, useCallback } from 'react';
 import {
   Box,
   Card,
@@ -9,14 +10,13 @@ import {
   CardContent,
   CircularProgress,
 } from '@mui/material';
-import { useRef, useState, useEffect, useCallback } from 'react';
 
+import { endpoints } from '@/utils/axios';
 import Iconify from '@/components/iconify';
 import { HOST_API } from '@/config-global';
-import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 import { NotificationData } from '@/types/api';
-import { endpoints } from '@/utils/axios';
 import { getApplicationServerKey } from '@/utils/notifications';
+import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 
 interface PushNotificationProps {
   onNotificationScheduled: () => void;
@@ -24,8 +24,8 @@ interface PushNotificationProps {
 }
 
 const PushNotificationManager = ({
-  onNotificationScheduled,
-  setNotifications,
+  onNotificationScheduled: _onNotificationScheduled,
+  setNotifications: _setNotifications,
 }: PushNotificationProps) => {
   const initializedRef = useRef(false);
   const [isSupported, setIsSupported] = useState<boolean>(false);

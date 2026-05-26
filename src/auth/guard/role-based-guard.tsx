@@ -1,12 +1,10 @@
 import { m } from 'motion/react';
-import { useManagerUser } from '@/hooks/use-manager-user';
-
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { Theme, SxProps } from '@mui/material/styles';
 
+import { useManagerUser } from '@/hooks/use-manager-user';
 import { ForbiddenIllustration } from '@/assets/illustrations';
-
 import { varBounce, MotionContainer } from '@/components/animate';
 
 // ----------------------------------------------------------------------

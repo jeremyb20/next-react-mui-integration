@@ -10,15 +10,12 @@ import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 
 import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import { fDate } from '@/utils/format-time';
-import { fCurrency } from '@/utils/format-number';
-
-import Iconify from '@/components/iconify';
-import CustomPopover, { usePopover } from '@/components/custom-popover';
-
 import { IJobItem } from '@/types/job';
+import Iconify from '@/components/iconify';
+import { fDate } from '@/utils/format-time';
+import { RouterLink } from '@/routes/components';
+import { fCurrency } from '@/utils/format-number';
+import CustomPopover, { usePopover } from '@/components/custom-popover';
 
 // ----------------------------------------------------------------------
 

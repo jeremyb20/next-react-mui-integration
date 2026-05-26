@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react';
-
 import MenuItem from '@mui/material/MenuItem';
 import Checkbox from '@mui/material/Checkbox';
 import InputLabel from '@mui/material/InputLabel';
@@ -9,7 +8,6 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Iconify from '@/components/iconify';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
-
 import {
   IProductTableFilters,
   IProductTableFilterValue,

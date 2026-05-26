@@ -8,9 +8,7 @@ import Container from '@mui/material/Container';
 import AlertTitle from '@mui/material/AlertTitle';
 
 import { paths } from '@/routes/paths';
-
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import ComponentHero from '@/sections/_examples/component-hero';
 
 import ComponentBlock from '../component-block';

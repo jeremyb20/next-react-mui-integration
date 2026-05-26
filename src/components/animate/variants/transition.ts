@@ -1,5 +1,6 @@
 // src/components/animate/transition.ts
 import { Transition } from 'motion/react';
+
 import { TranExitType, TranHoverType, TranEnterType } from '../types';
 
 // ----------------------------------------------------------------------

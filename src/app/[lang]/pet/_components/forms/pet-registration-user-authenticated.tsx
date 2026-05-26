@@ -1,29 +1,16 @@
 'use client';
 
 import * as Yup from 'yup';
-import { useSnackbar } from 'notistack';
-import { endpoints } from '@/utils/axios';
-import { useTranslation } from 'react-i18next';
-import { OptionType } from '@/types/global';
-import { useAuthContext } from '@/auth/hooks';
-import { fData } from '@/utils/format-number';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useState, useEffect, useCallback } from 'react';
-import { HOST_API, PATH_AFTER_LOGIN } from '@/config-global';
-import UploadAvatar from '@/components/upload/upload-avatar';
-import { PetAgeCalculator } from '@/utils/pet-age-calculator';
-import { BreedOptions, GENDER_OPTIONS } from '@/utils/constants';
-import useCelebrationConfetti from '@/hooks/use-celebration-confetti';
-import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
-import { getDogSizeFromBreed, getSpeciesFromBreed } from '@/utils/pet-utils';
-
 import Box from '@mui/material/Box';
+import { useSnackbar } from 'notistack';
 import Alert from '@mui/material/Alert';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
-
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState, useEffect, useCallback } from 'react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import {
   Card,
@@ -33,8 +20,18 @@ import {
   CardContent,
 } from '@mui/material';
 
+import { endpoints } from '@/utils/axios';
 import { useRouter } from '@/routes/hooks';
-
+import { OptionType } from '@/types/global';
+import { useAuthContext } from '@/auth/hooks';
+import { fData } from '@/utils/format-number';
+import { HOST_API, PATH_AFTER_LOGIN } from '@/config-global';
+import UploadAvatar from '@/components/upload/upload-avatar';
+import { PetAgeCalculator } from '@/utils/pet-age-calculator';
+import { BreedOptions, GENDER_OPTIONS } from '@/utils/constants';
+import useCelebrationConfetti from '@/hooks/use-celebration-confetti';
+import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
+import { getDogSizeFromBreed, getSpeciesFromBreed } from '@/utils/pet-utils';
 import FormProvider, {
   RHFSelect,
   RHFTextField,

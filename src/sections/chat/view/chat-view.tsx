@@ -1,25 +1,21 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { useManagerUser } from '@/hooks/use-manager-user';
-
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { useState, useEffect, useCallback } from 'react';
 
 import { paths } from '@/routes/paths';
+import { IChatParticipant } from '@/types/chat';
+import { useManagerUser } from '@/hooks/use-manager-user';
+import { useSettingsContext } from '@/components/settings';
 import { useRouter, useSearchParams } from '@/routes/hooks';
-
 import {
   useGetContacts,
   useGetConversation,
   useGetConversations,
 } from '@/api/chat';
-
-import { useSettingsContext } from '@/components/settings';
-
-import { IChatParticipant } from '@/types/chat';
 
 import ChatNav from '../chat-nav';
 import ChatRoom from '../chat-room';

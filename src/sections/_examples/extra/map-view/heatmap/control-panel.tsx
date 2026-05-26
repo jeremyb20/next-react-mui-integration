@@ -1,12 +1,10 @@
 import { memo } from 'react';
-
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 
 import { fDate } from '@/utils/format-time';
-
 import { StyledControlPanel } from '@/components/map';
 
 // ----------------------------------------------------------------------

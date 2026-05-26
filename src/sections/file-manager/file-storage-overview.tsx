@@ -1,13 +1,11 @@
-import { ApexOptions } from 'apexcharts';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { ApexOptions } from 'apexcharts';
 import { useTheme } from '@mui/material/styles';
 import Card, { CardProps } from '@mui/material/Card';
 import ListItemText from '@mui/material/ListItemText';
 
 import { fData } from '@/utils/format-number';
-
 import Chart, { useChart } from '@/components/chart';
 
 // ----------------------------------------------------------------------

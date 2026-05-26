@@ -12,15 +12,12 @@ import AvatarGroup from '@mui/material/AvatarGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import { fShortenNumber } from '@/utils/format-number';
-
-import { useGetPost, useGetLatestPosts } from '@/api/blog';
-
 import Iconify from '@/components/iconify';
 import Markdown from '@/components/markdown';
+import { RouterLink } from '@/routes/components';
 import EmptyContent from '@/components/empty-content';
+import { fShortenNumber } from '@/utils/format-number';
+import { useGetPost, useGetLatestPosts } from '@/api/blog';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
 
 import PostList from '../post-list';

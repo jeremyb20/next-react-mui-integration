@@ -4,7 +4,6 @@ import Paper, { PaperProps } from '@mui/material/Paper';
 import Stack, { StackProps } from '@mui/material/Stack';
 
 import Label from '@/components/label';
-
 import { IAddressItem } from '@/types/address';
 
 // ----------------------------------------------------------------------

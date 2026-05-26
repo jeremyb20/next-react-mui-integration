@@ -1,10 +1,8 @@
-import { useState, useCallback } from 'react';
-import { useManagerUser } from '@/hooks/use-manager-user';
-
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
+import { useState, useCallback } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
@@ -13,6 +11,7 @@ import Badge, { badgeClasses } from '@mui/material/Badge';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Iconify from '@/components/iconify';
+import { useManagerUser } from '@/hooks/use-manager-user';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
 
 // ----------------------------------------------------------------------

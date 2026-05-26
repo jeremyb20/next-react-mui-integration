@@ -1,5 +1,6 @@
-import { AccountView } from '@/sections/account/view';
 import { Metadata } from 'next';
+
+import { AccountView } from '@/sections/account/view';
 
 // ----------------------------------------------------------------------
 

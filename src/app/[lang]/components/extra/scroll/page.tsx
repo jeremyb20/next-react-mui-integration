@@ -1,5 +1,6 @@
-import ScrollView from '@/sections/_examples/extra/scroll-view';
 import { Metadata } from 'next';
+
+import ScrollView from '@/sections/_examples/extra/scroll-view';
 
 // ----------------------------------------------------------------------
 

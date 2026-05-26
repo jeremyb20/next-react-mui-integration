@@ -1,5 +1,6 @@
-import TransferListView from '@/sections/_examples/mui/transfer-list-view';
 import { Metadata } from 'next';
+
+import TransferListView from '@/sections/_examples/mui/transfer-list-view';
 
 // ----------------------------------------------------------------------
 

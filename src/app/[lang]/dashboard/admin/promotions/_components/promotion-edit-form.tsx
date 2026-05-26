@@ -1,14 +1,22 @@
 // components/admin/promotion/promotion-edit-form.tsx
 import * as Yup from 'yup';
-import { IPromotions } from '@/types/api';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import { useForm } from 'react-hook-form';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useMemo, Dispatch, useEffect, SetStateAction } from 'react';
+import { Chip, Button, MenuItem, FormHelperText } from '@mui/material';
+
+import { IPromotions } from '@/types/api';
 import { endpoints } from '@/utils/axios';
 import { HOST_API } from '@/config-global';
 import Iconify from '@/components/iconify';
 import { useSnackbar } from '@/components/snackbar';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useResponsive } from '@/hooks/use-responsive';
-import { useMemo, Dispatch, useEffect, SetStateAction } from 'react';
 import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 import FormProvider, {
   RHFSelect,
@@ -17,14 +25,6 @@ import FormProvider, {
   RHFSwitch,
   RHFTextField,
 } from '@/components/hook-form';
-
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
-import Grid from '@mui/material/Grid';
-import CardHeader from '@mui/material/CardHeader';
-import Typography from '@mui/material/Typography';
-import { Chip, Button, MenuItem, FormHelperText } from '@mui/material';
 
 // ----------------------------------------------------------------------
 

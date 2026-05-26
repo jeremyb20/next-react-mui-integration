@@ -6,11 +6,9 @@ import CardHeader from '@mui/material/CardHeader';
 import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 
-import { fCurrency } from '@/utils/format-number';
-
 import Iconify from '@/components/iconify';
 import Scrollbar from '@/components/scrollbar';
-
+import { fCurrency } from '@/utils/format-number';
 import { IOrderProductItem } from '@/types/order';
 
 // ----------------------------------------------------------------------

@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import { alpha, styled } from '@mui/material/styles';
 
 import { bgBlur } from '@/theme/css';
-
 import Image from '@/components/image';
 import Iconify from '@/components/iconify';
 import Carousel, { useCarousel, CarouselArrows } from '@/components/carousel';

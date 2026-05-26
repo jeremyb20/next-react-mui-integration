@@ -1,25 +1,21 @@
 import { m } from 'motion/react';
-
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Masonry from '@mui/lab/Masonry';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 import { alpha, useTheme } from '@mui/material/styles';
 import Stack, { StackProps } from '@mui/material/Stack';
 
-import { useResponsive } from '@/hooks/use-responsive';
-
-import { fDate } from '@/utils/format-time';
-
 import { _testimonials } from '@/_mock';
-import { bgBlur, bgGradient, hideScroll } from '@/theme/css';
-
 import Iconify from '@/components/iconify';
+import { fDate } from '@/utils/format-time';
+import { useResponsive } from '@/hooks/use-responsive';
+import { bgBlur, bgGradient, hideScroll } from '@/theme/css';
 import { varFade, MotionViewport } from '@/components/animate';
 
 // ----------------------------------------------------------------------

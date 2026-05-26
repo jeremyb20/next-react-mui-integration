@@ -1,14 +1,32 @@
 import * as Yup from 'yup';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import { useForm } from 'react-hook-form';
+import Switch from '@mui/material/Switch';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import CardHeader from '@mui/material/CardHeader';
+import Typography from '@mui/material/Typography';
+import { yupResolver } from '@hookform/resolvers/yup';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { useMemo, useState, useEffect, useCallback } from 'react';
+
 import { paths } from '@/routes/paths';
 import { endpoints } from '@/utils/axios';
 import { HOST_API } from '@/config-global';
 import Iconify from '@/components/iconify';
+import { useRouter } from '@/routes/hooks';
 import useIPInfo from '@/hooks/use-ip-info';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { IProductItem } from '@/types/product';
 import { useCurrency } from '@/hooks/use-currency';
 import { countries } from '@/assets/data/countries';
-import { useMemo, useState, useEffect, useCallback } from 'react';
+import { useSnackbar } from '@/components/snackbar';
+import { useResponsive } from '@/hooks/use-responsive';
+import { useTranslation } from '@/hooks/use-translation';
 import { fCurrency, getLocaleCode } from '@/utils/format-number';
 import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 import {
@@ -16,24 +34,6 @@ import {
   getPhonePlaceholder,
   simplePhoneValidation,
 } from '@/utils/phone-validation';
-
-import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
-import Switch from '@mui/material/Switch';
-import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
-import CardHeader from '@mui/material/CardHeader';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControlLabel from '@mui/material/FormControlLabel';
-
-import { useRouter } from '@/routes/hooks';
-
-import { useResponsive } from '@/hooks/use-responsive';
-
 import {
   _tags,
   PRODUCT_SIZE_OPTIONS,
@@ -41,8 +41,6 @@ import {
   PRODUCT_COLOR_NAME_OPTIONS,
   PRODUCT_CATEGORY_GROUP_OPTIONS,
 } from '@/_mock';
-
-import { useSnackbar } from '@/components/snackbar';
 import FormProvider, {
   RHFSelect,
   RHFEditor,
@@ -53,9 +51,6 @@ import FormProvider, {
   RHFAutocomplete,
   RHFMultiCheckbox,
 } from '@/components/hook-form';
-
-import { IProductItem } from '@/types/product';
-import { useTranslation } from '@/hooks/use-translation';
 
 // ----------------------------------------------------------------------
 
@@ -251,7 +246,7 @@ export default function ProductNewEditForm({ currentProduct }: Props) {
         }
       } else {
         // 🆕 MODO CREACIÓN
-        // eslint-disable-next-line no-lonely-if
+
         if (newImageFiles.length > 0) {
           await mutateAsync<IProductItem>({
             payload: {

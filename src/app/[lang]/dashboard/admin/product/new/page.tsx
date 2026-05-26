@@ -1,6 +1,7 @@
 // ----------------------------------------------------------------------
 
 import { Metadata } from 'next';
+
 import { ProductCreateView } from '../_components/product/view';
 
 export const metadata: Metadata = {

@@ -1,22 +1,22 @@
 'use client';
 
 import { useRef } from 'react';
-import { _socials } from '@/_mock';
-import Iconify from '@/components/iconify';
-import { fNumber } from '@/utils/format-number';
-import { IUserProfile, IUserProfilePost } from '@/types/user';
-
 import Fab from '@mui/material/Fab';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import Grid from '@mui/material/Grid';
 import CardHeader from '@mui/material/CardHeader';
+
+import { _socials } from '@/_mock';
+import Iconify from '@/components/iconify';
+import { fNumber } from '@/utils/format-number';
+import { IUserProfile, IUserProfilePost } from '@/types/user';
 
 import ProfilePostItem from './profile-post-item';
 

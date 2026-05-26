@@ -16,7 +16,7 @@ type Props = {
   };
 };
 
-export default function InvoiceEditPage({ params }: Props) {
+export default function InvoiceEditPage({ params: _params }: Props) {
   // const { id } = params;
 
   // return <InvoiceEditView id={id} />;

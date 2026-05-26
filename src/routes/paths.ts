@@ -1,5 +1,5 @@
-import { _id, _postTitles } from '@/_mock/assets';
 import { paramCase } from '@/utils/change-case';
+import { _id, _postTitles } from '@/_mock/assets';
 
 // ----------------------------------------------------------------------
 

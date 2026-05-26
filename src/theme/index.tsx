@@ -1,28 +1,28 @@
 'use client';
 
+import { useMemo } from 'react';
+import merge from 'lodash/merge';
 import CssBaseline from '@mui/material/CssBaseline';
 import {
   createTheme,
   ThemeOptions,
   ThemeProvider as MuiThemeProvider,
 } from '@mui/material/styles';
-import merge from 'lodash/merge';
-import { useMemo } from 'react';
 
-import { useSettingsContext } from '@/components/settings';
 import { useLocales } from '@/locales';
+import { useSettingsContext } from '@/components/settings';
 
-import { customShadows } from './custom-shadows';
-import NextAppDirEmotionCacheProvider from './next-emotion-cache';
-import { createContrast } from './options/contrast';
-import { createPresets } from './options/presets';
-// options
-import RTL from './options/right-to-left';
-import { componentsOverrides } from './overrides';
 // system
 import { palette } from './palette';
 import { shadows } from './shadows';
+// options
+import RTL from './options/right-to-left';
+import { customShadows } from './custom-shadows';
+import { createPresets } from './options/presets';
+import { componentsOverrides } from './overrides';
 import { getScaledTypography } from './typography'; // Cambia esta importación
+import { createContrast } from './options/contrast';
+import NextAppDirEmotionCacheProvider from './next-emotion-cache';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
-import { IconsView } from '@/sections/_examples/foundation';
 import { Metadata } from 'next';
+
+import { IconsView } from '@/sections/_examples/foundation';
 
 // ----------------------------------------------------------------------
 

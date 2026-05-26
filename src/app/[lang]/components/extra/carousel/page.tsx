@@ -1,5 +1,6 @@
-import CarouselView from '@/sections/_examples/extra/carousel-view';
 import { Metadata } from 'next';
+
+import CarouselView from '@/sections/_examples/extra/carousel-view';
 
 // ----------------------------------------------------------------------
 

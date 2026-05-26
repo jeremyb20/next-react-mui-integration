@@ -1,24 +1,20 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
+import { useState, useCallback } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 import { paths } from '@/routes/paths';
-
-import { useBoolean } from '@/hooks/use-boolean';
-import { useResponsive } from '@/hooks/use-responsive';
-
 import { _files, _folders } from '@/_mock';
-
 import Iconify from '@/components/iconify';
 import Scrollbar from '@/components/scrollbar';
 import { UploadBox } from '@/components/upload';
+import { useBoolean } from '@/hooks/use-boolean';
+import { useResponsive } from '@/hooks/use-responsive';
 import { useSettingsContext } from '@/components/settings';
 
 import FileWidget from '../../../file-manager/file-widget';

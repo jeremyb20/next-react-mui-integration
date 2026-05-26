@@ -1,14 +1,14 @@
 import { m } from 'motion/react';
-import Iconify from '@/components/iconify';
-import { useTranslation } from '@/hooks/use-translation';
-import { varFade, MotionViewport } from '@/components/animate';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+
+import Iconify from '@/components/iconify';
+import { useTranslation } from '@/hooks/use-translation';
+import { varFade, MotionViewport } from '@/components/animate';
 
 const SERVICES = [
   {
@@ -55,7 +55,7 @@ export default function HomeServices() {
           md: 'repeat(3, 1fr)',
         }}
       >
-        {SERVICES.map((service, index) => (
+        {SERVICES.map((service) => (
           <m.div key={service.title} variants={varFade().inUp}>
             <Card
               sx={{

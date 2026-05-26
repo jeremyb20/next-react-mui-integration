@@ -1,32 +1,26 @@
 'use client';
 
 import orderBy from 'lodash/orderBy';
-import { useState, useCallback } from 'react';
-import { IProductItem } from '@/types/product';
-import { useGetProductsPublished } from '@/api/product';
-
 import Stack from '@mui/material/Stack';
+import { useState, useCallback } from 'react';
 import Container from '@mui/material/Container';
 
 import { paths } from '@/routes/paths';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { isAfter } from '@/utils/format-time';
-
 import { countries } from '@/assets/data';
+import { isAfter } from '@/utils/format-time';
+import { IProductItem } from '@/types/product';
+import { useBoolean } from '@/hooks/use-boolean';
+import EmptyContent from '@/components/empty-content';
+import { useGetProductsPublished } from '@/api/product';
+import { useSettingsContext } from '@/components/settings';
+import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
+import { ITourItem, ITourFilters, ITourFilterValue } from '@/types/tour';
 import {
   _tours,
   _tourGuides,
   TOUR_SORT_OPTIONS,
   TOUR_SERVICE_OPTIONS,
 } from '@/_mock';
-
-import EmptyContent from '@/components/empty-content';
-import { useSettingsContext } from '@/components/settings';
-import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
-import { ITourItem, ITourFilters, ITourFilterValue } from '@/types/tour';
 
 import TourSort from '../_components/petsmarket-sort';
 import TourSearch from '../_components/petsmarket-search';
@@ -211,9 +205,9 @@ export default function PetsMarketView() {
 
 const applyFilter = ({
   inputData,
-  filters,
+  filters: _filters,
   sortBy,
-  dateError,
+  dateError: _dateError,
 }: {
   inputData: IProductItem[];
   filters: ITourFilters;

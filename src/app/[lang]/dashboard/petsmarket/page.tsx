@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+
 import PetsMarketView from './_view/petsmarket-list-view';
 
 // ----------------------------------------------------------------------

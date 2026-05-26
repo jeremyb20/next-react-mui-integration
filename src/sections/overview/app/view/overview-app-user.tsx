@@ -1,5 +1,7 @@
 'use client';
 
+import { useState, useCallback } from 'react';
+import { alpha, useTheme } from '@mui/material/styles';
 import {
   Box,
   Card,
@@ -12,31 +14,29 @@ import {
   CardContent,
   useMediaQuery,
 } from '@mui/material';
-import { alpha, useTheme } from '@mui/material/styles';
-import { useState, useCallback } from 'react';
 
-import RegisterPetByUserModal from '@/app/[lang]/pet/_components/modals/register-pet-by-user-modal';
+import { IUser } from '@/types/api';
+import { paths } from '@/routes/paths';
+import { useRouter } from '@/routes/hooks';
+import { useBoolean } from '@/hooks/use-boolean';
+import { useRedirect } from '@/hooks/use-redirect';
+import { useSnackbar } from '@/components/snackbar';
+import { useGetUserPetStats } from '@/hooks/use-fetch';
+import { ALLOW_MAX_PETS_BY_USER } from '@/config-global';
+import { useTranslation } from '@/hooks/use-translation';
+import { useManagerUser } from '@/hooks/use-manager-user';
 import { BirthdayReminder } from '@/components/pet/BirthdayReminder';
 import UserSecurityLevel from '@/components/security/user-security-level';
-import { useSnackbar } from '@/components/snackbar';
-import { ALLOW_MAX_PETS_BY_USER } from '@/config-global';
-import { useBoolean } from '@/hooks/use-boolean';
-import { useGetUserPetStats } from '@/hooks/use-fetch';
+import RegisterPetByUserModal from '@/app/[lang]/pet/_components/modals/register-pet-by-user-modal';
 import {
   UserQueryParams,
   useGetActivePromotions,
   useGetUserUpcomingAppointments,
 } from '@/hooks/use-fetch-paginated';
-import { useManagerUser } from '@/hooks/use-manager-user';
-import { useRedirect } from '@/hooks/use-redirect';
-import { useTranslation } from '@/hooks/use-translation';
-import { useRouter } from '@/routes/hooks';
-import { paths } from '@/routes/paths';
-import { IUser } from '@/types/api';
 
-import { PromotionsCardCaroussell } from './components/promotions-carousell';
 import { QuickActions } from './components/quick-actions';
 import { StatisticsCards } from './components/statistics-cards';
+import { PromotionsCardCaroussell } from './components/promotions-carousell';
 import { UpcomingAppointmentsCard } from './components/upcoming-appointments-card';
 
 export default function OverviewAppUser() {

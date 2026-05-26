@@ -1,14 +1,14 @@
 // components/pets/pet-dashboard.tsx
 
+import { useRef, useState, useEffect, useCallback } from 'react';
+import { Box, Grid, Card, Button, Typography } from '@mui/material';
+
 import { IPetProfile } from '@/types/api';
 import Iconify from '@/components/iconify';
 import { ALLOW_MAX_PETS_BY_USER } from '@/config-global';
 import { useTranslation } from '@/hooks/use-translation';
-import { useRef, useState, useEffect, useCallback } from 'react';
 import { useMedicalRecordForm } from '@/hooks/user-medical-record-form';
 import MedicalRecordForm from '@/app/[lang]/pet/_components/forms/medical-record-form';
-
-import { Box, Grid, Card, Button, Typography } from '@mui/material';
 
 import { PetAvatarList } from './pet-avatar-list';
 import { PetDetailsCard } from './pet-details-card';

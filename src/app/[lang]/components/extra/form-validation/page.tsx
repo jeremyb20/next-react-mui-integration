@@ -1,5 +1,6 @@
-import FormValidationView from '@/sections/_examples/extra/form-validation-view';
 import { Metadata } from 'next';
+
+import FormValidationView from '@/sections/_examples/extra/form-validation-view';
 
 // ----------------------------------------------------------------------
 

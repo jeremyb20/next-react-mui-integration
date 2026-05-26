@@ -1,5 +1,6 @@
-import { GridView } from '@/sections/_examples/foundation';
 import { Metadata } from 'next';
+
+import { GridView } from '@/sections/_examples/foundation';
 
 // ----------------------------------------------------------------------
 

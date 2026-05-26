@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'; // Exporta la función
 
-import { fallbackLng } from '@/app/i18n/settings';
-import { SplashScreen } from '@/components/loading-screen';
-import { useParams, useRouter } from '@/routes/hooks';
 import { paths } from '@/routes/paths';
+import { fallbackLng } from '@/app/i18n/settings';
+import { useParams, useRouter } from '@/routes/hooks';
+import { SplashScreen } from '@/components/loading-screen';
 
 import { useAuthContext } from '../hooks';
 

@@ -4,12 +4,10 @@ import { Box } from '@mui/system';
 import { Stack } from '@mui/material';
 import Button from '@mui/material/Button';
 
-import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
 import { _userCards } from '@/_mock';
-
+import { paths } from '@/routes/paths';
 import Iconify from '@/components/iconify';
+import { RouterLink } from '@/routes/components';
 
 import UserCardList from '../user-card-list';
 

@@ -1,5 +1,6 @@
-import { InvoiceDetailsView } from '@/sections/invoice/view';
 import { Metadata } from 'next';
+
+import { InvoiceDetailsView } from '@/sections/invoice/view';
 
 // ----------------------------------------------------------------------
 

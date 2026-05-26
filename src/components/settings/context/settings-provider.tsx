@@ -1,16 +1,15 @@
 'use client';
 
 import isEqual from 'lodash/isEqual';
+import { useRef, useMemo, useState, useEffect, useCallback } from 'react';
+
 import { endpoints } from '@/utils/axios';
 import { HOST_API } from '@/config-global';
 import { useAuthContext } from '@/auth/hooks';
 import { useGetUserSettings } from '@/hooks/use-fetch';
-import { useRef, useMemo, useState, useEffect, useCallback } from 'react';
-import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
-
 import { useLocalStorage } from '@/hooks/use-local-storage';
-
 import { localStorageGetItem } from '@/utils/storage-available';
+import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 
 import { SettingsValueProps } from '../types';
 import { SettingsContext } from './settings-context';
@@ -63,7 +62,6 @@ export function SettingsProvider({
     if (isArabic) {
       onChangeDirectionByLang('ar');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isArabic]);
 
   // Cargar configuraciones cuando se obtengan datos del hook

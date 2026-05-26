@@ -1,5 +1,3 @@
-import { useRef, useMemo, useState, useImperativeHandle } from 'react';
-
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -7,6 +5,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
 import Rating, { RatingProps } from '@mui/material/Rating';
+import { useRef, useMemo, useState, useImperativeHandle } from 'react';
 // import {
 //   DataGrid,
 //   GridColDef,
@@ -24,13 +23,11 @@ import Rating, { RatingProps } from '@mui/material/Rating';
 //   GridToolbarDensitySelector,
 //   GridRowId,
 // } from '@mui/x-data-grid';
-
 import {
   DataGrid,
   GridColDef,
   GridActionsCellItem,
   GridRowId,
-  GridRowSelectionModel,
   GridColumnVisibilityModel,
   // Herramientas del toolbar - nueva estructura en v8
   // GridToolbarQuickFilter,
@@ -49,11 +46,10 @@ import {
   GridFilterItem,
 } from '@mui/x-data-grid';
 
-import { fPercent } from '@/utils/format-number';
-import { fDate, fTime } from '@/utils/format-time';
-
 import Label from '@/components/label';
 import Iconify from '@/components/iconify';
+import { fPercent } from '@/utils/format-number';
+import { fDate, fTime } from '@/utils/format-time';
 import EmptyContent from '@/components/empty-content';
 
 // ----------------------------------------------------------------------

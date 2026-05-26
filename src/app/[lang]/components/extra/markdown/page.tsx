@@ -1,5 +1,6 @@
-import MarkdownView from '@/sections/_examples/extra/markdown-view';
 import { Metadata } from 'next';
+
+import MarkdownView from '@/sections/_examples/extra/markdown-view';
 
 // ----------------------------------------------------------------------
 

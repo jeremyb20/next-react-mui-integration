@@ -1,7 +1,4 @@
 import React from 'react';
-import Iconify from '@/components/iconify';
-import { useTranslation } from '@/hooks/use-translation';
-
 import {
   Box,
   Grid,
@@ -14,6 +11,9 @@ import {
   DialogActions,
   DialogContent,
 } from '@mui/material';
+
+import Iconify from '@/components/iconify';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface AvatarOption {
   avatarDialog: {

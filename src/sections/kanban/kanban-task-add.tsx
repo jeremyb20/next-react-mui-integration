@@ -1,13 +1,10 @@
-import { useMemo, useState, useCallback } from 'react';
-
 import Paper from '@mui/material/Paper';
+import { useMemo, useState, useCallback } from 'react';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import InputBase, { inputBaseClasses } from '@mui/material/InputBase';
 
-import uuidv4 from '@/utils/uuidv4';
-
 import { _mock } from '@/_mock';
-
+import uuidv4 from '@/utils/uuidv4';
 import { IKanbanTask } from '@/types/kanban';
 
 // ----------------------------------------------------------------------

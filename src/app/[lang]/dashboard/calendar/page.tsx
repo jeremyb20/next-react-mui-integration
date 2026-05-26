@@ -1,5 +1,6 @@
-import { CalendarView } from '@/sections/calendar/view';
 import { Metadata } from 'next';
+
+import { CalendarView } from '@/sections/calendar/view';
 
 // ----------------------------------------------------------------------
 

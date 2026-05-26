@@ -5,13 +5,11 @@ import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import { fDate } from '@/utils/format-time';
-
 import Image from '@/components/image';
 import Iconify from '@/components/iconify';
-import Lightbox, { useLightBox } from '@/components/lightbox';
-
+import { fDate } from '@/utils/format-time';
 import { IUserProfileGallery } from '@/types/user';
+import Lightbox, { useLightBox } from '@/components/lightbox';
 
 // ----------------------------------------------------------------------
 

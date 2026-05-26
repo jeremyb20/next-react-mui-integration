@@ -1,5 +1,6 @@
-import { ModernLoginView } from '@/sections/auth-demo/modern';
 import { Metadata } from 'next';
+
+import { ModernLoginView } from '@/sections/auth-demo/modern';
 
 // ----------------------------------------------------------------------
 

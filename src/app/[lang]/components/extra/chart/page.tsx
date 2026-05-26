@@ -1,5 +1,6 @@
-import ChartView from '@/sections/_examples/extra/chart-view';
 import { Metadata } from 'next';
+
+import ChartView from '@/sections/_examples/extra/chart-view';
 
 // ----------------------------------------------------------------------
 

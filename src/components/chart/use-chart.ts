@@ -1,6 +1,5 @@
 import merge from 'lodash/merge';
 import { ApexOptions } from 'apexcharts';
-
 import { alpha, useTheme } from '@mui/material/styles';
 
 import { useResponsive } from '@/hooks/use-responsive';

@@ -7,9 +7,7 @@ import Typography from '@mui/material/Typography';
 import Paper, { PaperProps } from '@mui/material/Paper';
 
 import { paths } from '@/routes/paths';
-
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import ComponentHero from '@/sections/_examples/component-hero';
 
 import ComponentBlock from '../component-block';

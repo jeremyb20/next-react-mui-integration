@@ -1,29 +1,26 @@
 import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm, Controller } from 'react-hook-form';
-import { useMemo, useEffect, useCallback } from 'react';
-
 import Chip from '@mui/material/Chip';
 import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
+import { Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Switch from '@mui/material/Switch';
-import Grid from '@mui/material/Grid';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, Controller } from 'react-hook-form';
+import { useMemo, useEffect, useCallback } from 'react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { paths } from '@/routes/paths';
-import { useRouter } from '@/routes/hooks';
-
-import { useResponsive } from '@/hooks/use-responsive';
-
 import { countries } from '@/assets/data';
-import { _tags, _tourGuides, TOUR_SERVICE_OPTIONS } from '@/_mock';
-
+import { useRouter } from '@/routes/hooks';
 import { useSnackbar } from '@/components/snackbar';
+import { ITourItem, ITourGuide } from '@/types/tour';
+import { useResponsive } from '@/hooks/use-responsive';
+import { _tags, _tourGuides, TOUR_SERVICE_OPTIONS } from '@/_mock';
 import FormProvider, {
   RHFEditor,
   RHFUpload,
@@ -31,8 +28,6 @@ import FormProvider, {
   RHFAutocomplete,
   RHFMultiCheckbox,
 } from '@/components/hook-form';
-
-import { ITourItem, ITourGuide } from '@/types/tour';
 
 // ----------------------------------------------------------------------
 

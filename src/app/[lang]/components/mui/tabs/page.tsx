@@ -1,5 +1,6 @@
-import TabsView from '@/sections/_examples/mui/tabs-view';
 import { Metadata } from 'next';
+
+import TabsView from '@/sections/_examples/mui/tabs-view';
 
 // ----------------------------------------------------------------------
 

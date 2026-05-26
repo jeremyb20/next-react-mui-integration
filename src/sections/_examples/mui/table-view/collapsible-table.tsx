@@ -9,10 +9,9 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import TableContainer from '@mui/material/TableContainer';
 
-import { useBoolean } from '@/hooks/use-boolean';
-
 import Iconify from '@/components/iconify';
 import Scrollbar from '@/components/scrollbar';
+import { useBoolean } from '@/hooks/use-boolean';
 
 import createData from './utils';
 

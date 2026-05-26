@@ -1,5 +1,6 @@
-import { ProductCreateView } from '@/sections/product/view';
 import { Metadata } from 'next';
+
+import { ProductCreateView } from '@/sections/product/view';
 
 // ----------------------------------------------------------------------
 

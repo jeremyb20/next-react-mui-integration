@@ -6,9 +6,8 @@ import CardHeader from '@mui/material/CardHeader';
 import Card, { CardProps } from '@mui/material/Card';
 import ListItemText from '@mui/material/ListItemText';
 
-import { fCurrency } from '@/utils/format-number';
-
 import Scrollbar from '@/components/scrollbar';
+import { fCurrency } from '@/utils/format-number';
 import { ColorPreview } from '@/components/color-utils';
 
 // ----------------------------------------------------------------------

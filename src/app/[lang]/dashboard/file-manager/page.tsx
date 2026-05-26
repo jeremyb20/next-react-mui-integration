@@ -1,5 +1,6 @@
-import { FileManagerView } from '@/sections/file-manager/view';
 import { Metadata } from 'next';
+
+import { FileManagerView } from '@/sections/file-manager/view';
 
 // ----------------------------------------------------------------------
 

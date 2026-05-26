@@ -1,5 +1,6 @@
-import { TourCreateView } from '@/sections/tour/view';
 import { Metadata } from 'next';
+
+import { TourCreateView } from '@/sections/tour/view';
 
 // ----------------------------------------------------------------------
 

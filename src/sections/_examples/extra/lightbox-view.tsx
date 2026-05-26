@@ -1,28 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import { Slide, SlideImage } from 'yet-another-react-lightbox';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
-import { paths } from '@/routes/paths';
+import { Slide, SlideImage } from 'yet-another-react-lightbox';
 
 import { _mock } from '@/_mock';
-
+import { paths } from '@/routes/paths';
 import Image from '@/components/image';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-import Lightbox, { SlideVideo, useLightBox } from '@/components/lightbox';
-
 import ComponentHero from '@/sections/_examples/component-hero';
+import Lightbox, { SlideVideo, useLightBox } from '@/components/lightbox';
 
 // ----------------------------------------------------------------------
 

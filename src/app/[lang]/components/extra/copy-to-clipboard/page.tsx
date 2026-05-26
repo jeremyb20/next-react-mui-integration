@@ -1,5 +1,6 @@
-import CopyToClipboardView from '@/sections/_examples/extra/copy-to-clipboard-view';
 import { Metadata } from 'next';
+
+import CopyToClipboardView from '@/sections/_examples/extra/copy-to-clipboard-view';
 
 // ----------------------------------------------------------------------
 

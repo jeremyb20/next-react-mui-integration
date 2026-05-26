@@ -1,5 +1,6 @@
-import { SupabaseForgotPasswordView } from '@/sections/auth/supabase';
 import { Metadata } from 'next';
+
+import { SupabaseForgotPasswordView } from '@/sections/auth/supabase';
 
 // ----------------------------------------------------------------------
 

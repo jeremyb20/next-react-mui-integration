@@ -6,9 +6,8 @@ import Stack, { StackProps } from '@mui/material/Stack';
 
 import Label from '@/components/label';
 import Iconify from '@/components/iconify';
-import CustomPopover, { usePopover } from '@/components/custom-popover';
-
 import { IPaymentCard } from '@/types/payment';
+import CustomPopover, { usePopover } from '@/components/custom-popover';
 
 // ----------------------------------------------------------------------
 

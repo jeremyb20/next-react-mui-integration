@@ -16,7 +16,7 @@ type Props = {
   };
 };
 
-export default function ProductEditPage({ params }: Props) {
+export default function ProductEditPage({ params: _params }: Props) {
   //  const { id } = params;
 
   // return <ProductEditView id={id} />;

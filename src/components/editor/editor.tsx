@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-
 import { alpha } from '@mui/material/styles';
 import Skeleton from '@mui/material/Skeleton';
 

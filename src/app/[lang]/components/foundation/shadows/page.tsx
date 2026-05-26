@@ -1,5 +1,6 @@
-import { ShadowsView } from '@/sections/_examples/foundation';
 import { Metadata } from 'next';
+
+import { ShadowsView } from '@/sections/_examples/foundation';
 
 // ----------------------------------------------------------------------
 

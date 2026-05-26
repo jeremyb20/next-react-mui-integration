@@ -1,5 +1,4 @@
 import { memo } from 'react';
-
 import Switch from '@mui/material/Switch';
 import InputBase from '@mui/material/InputBase';
 import Typography from '@mui/material/Typography';

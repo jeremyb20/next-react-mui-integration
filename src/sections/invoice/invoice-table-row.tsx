@@ -10,17 +10,14 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { fCurrency } from '@/utils/format-number';
-import { fDate, fTime } from '@/utils/format-time';
-
 import Label from '@/components/label';
 import Iconify from '@/components/iconify';
+import { IInvoice } from '@/types/invoice';
+import { useBoolean } from '@/hooks/use-boolean';
+import { fCurrency } from '@/utils/format-number';
+import { fDate, fTime } from '@/utils/format-time';
 import { ConfirmDialog } from '@/components/custom-dialog';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
-
-import { IInvoice } from '@/types/invoice';
 
 // ----------------------------------------------------------------------
 

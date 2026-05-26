@@ -1,8 +1,7 @@
-// multi-file-preview.tsx
-import { m, AnimatePresence } from 'motion/react';
-
 import Stack from '@mui/material/Stack';
 import { alpha } from '@mui/material/styles';
+// multi-file-preview.tsx
+import { m, AnimatePresence } from 'motion/react';
 import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 
@@ -23,7 +22,7 @@ export default function MultiFilePreview({
 }: UploadProps) {
   return (
     <AnimatePresence initial={false}>
-      {files?.map((file, index) => {
+      {files?.map((file) => {
         const {
           key,
           name = '',

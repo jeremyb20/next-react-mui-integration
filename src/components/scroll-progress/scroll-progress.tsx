@@ -1,6 +1,5 @@
-import { m, useSpring, MotionValue } from 'motion/react';
-
 import Box, { BoxProps } from '@mui/material/Box';
+import { m, useSpring, MotionValue } from 'motion/react';
 
 // ----------------------------------------------------------------------
 

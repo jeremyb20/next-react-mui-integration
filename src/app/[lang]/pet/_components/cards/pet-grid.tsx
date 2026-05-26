@@ -1,7 +1,7 @@
+import { Box, Button } from '@mui/material';
+
 import { IPetProfile } from '@/types/api';
 import Iconify from '@/components/iconify';
-
-import { Box, Button } from '@mui/material';
 
 import { PetCard } from './pet-card-list';
 import { EmptyState } from './empty-cards';

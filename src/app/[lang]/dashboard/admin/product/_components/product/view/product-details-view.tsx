@@ -1,24 +1,21 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { alpha } from '@mui/material/styles';
+import { useState, useCallback } from 'react';
 import Container from '@mui/material/Container';
-
 import Typography from '@mui/material/Typography';
 
 import { paths } from '@/routes/paths';
-import { RouterLink } from '@/routes/components';
-
-import { useGetProduct } from '@/api/product';
-import { PRODUCT_PUBLISH_OPTIONS } from '@/_mock';
-
 import Iconify from '@/components/iconify';
+import { useGetProduct } from '@/api/product';
+import { RouterLink } from '@/routes/components';
+import { PRODUCT_PUBLISH_OPTIONS } from '@/_mock';
 import EmptyContent from '@/components/empty-content';
 import { useSettingsContext } from '@/components/settings';
 
@@ -28,7 +25,6 @@ import ProductDetailsSummary from '../product-details-summary';
 import ProductDetailsToolbar from '../product-details-toolbar';
 import ProductDetailsCarousel from '../product-details-carousel';
 import ProductDetailsDescription from '../product-details-description';
-import Grid from '@mui/material/Grid';
 
 // ----------------------------------------------------------------------
 

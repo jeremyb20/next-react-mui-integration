@@ -1,5 +1,6 @@
-import ComponentsView from '@/sections/_examples/view';
 import { Metadata } from 'next';
+
+import ComponentsView from '@/sections/_examples/view';
 
 // ----------------------------------------------------------------------
 

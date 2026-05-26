@@ -1,9 +1,8 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
-
 import Masonry from '@mui/lab/Masonry';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
+import { useRef, useState, useEffect, useCallback } from 'react';
 
 import { usePathname, useActiveLink } from '@/routes/hooks';
 
@@ -31,7 +30,6 @@ export default function NavList({ data, slotProps }: NavListProps) {
     if (openMenu) {
       handleCloseMenu();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const handleOpenMenu = useCallback(() => {

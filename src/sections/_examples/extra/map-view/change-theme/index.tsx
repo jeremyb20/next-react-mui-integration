@@ -21,7 +21,11 @@ function MapChangeTheme({ themes, ...other }: Props) {
     []
   );
 
-  const { projection, logoPosition, ...mapProps } = other;
+  const {
+    projection: _projection,
+    logoPosition: _logoPosition,
+    ...mapProps
+  } = other;
 
   return (
     <>

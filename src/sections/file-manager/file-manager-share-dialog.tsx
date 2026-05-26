@@ -8,9 +8,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
 
 import Iconify from '@/components/iconify';
-import Scrollbar from '@/components/scrollbar';
-
 import { IFileShared } from '@/types/file';
+import Scrollbar from '@/components/scrollbar';
 
 import FileManagerInvitedItem from './file-manager-invited-item';
 

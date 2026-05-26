@@ -1,17 +1,14 @@
 import uniq from 'lodash/uniq';
-import flatten from 'lodash/flatten';
-import { useEffect, useCallback } from 'react';
-
 import Box from '@mui/material/Box';
+import flatten from 'lodash/flatten';
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
+import { useEffect, useCallback } from 'react';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 
-import { useResponsive } from '@/hooks/use-responsive';
-
 import Iconify from '@/components/iconify';
-
+import { useResponsive } from '@/hooks/use-responsive';
 import { IChatParticipant, IChatConversation } from '@/types/chat';
 
 import { useCollapseNav } from './hooks';
@@ -55,7 +52,6 @@ export default function ChatRoom({ participants, conversation }: Props) {
     } else {
       onOpenMobile();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lgUp]);
 
   const group = participants.length > 1;

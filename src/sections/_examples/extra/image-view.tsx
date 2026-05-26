@@ -7,13 +7,10 @@ import Container from '@mui/material/Container';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
 
-import { paths } from '@/routes/paths';
-
 import { _mock } from '@/_mock';
-
+import { paths } from '@/routes/paths';
 import Image from '@/components/image';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import ComponentHero from '@/sections/_examples/component-hero';
 
 // ----------------------------------------------------------------------

@@ -1,5 +1,6 @@
-import { ClassicLoginView } from '@/sections/auth-demo/classic';
 import { Metadata } from 'next';
+
+import { ClassicLoginView } from '@/sections/auth-demo/classic';
 
 // ----------------------------------------------------------------------
 

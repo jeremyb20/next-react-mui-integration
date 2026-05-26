@@ -1,5 +1,6 @@
-import UploadView from '@/sections/_examples/extra/upload-view';
 import { Metadata } from 'next';
+
+import UploadView from '@/sections/_examples/extra/upload-view';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
-import AccordionView from '@/sections/_examples/mui/accordion-view';
 import { Metadata } from 'next';
+
+import AccordionView from '@/sections/_examples/mui/accordion-view';
 
 // ----------------------------------------------------------------------
 

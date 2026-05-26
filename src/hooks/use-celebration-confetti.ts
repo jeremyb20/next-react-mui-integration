@@ -1,6 +1,6 @@
-import confetti, { Options } from 'canvas-confetti';
 // hooks/useCelebrationConfetti.ts
 import { useCallback } from 'react';
+import confetti, { Options } from 'canvas-confetti';
 
 interface CelebrationOptions {
   type?: 'success' | 'celebration' | 'fireworks' | 'custom';

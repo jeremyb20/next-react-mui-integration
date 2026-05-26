@@ -1,8 +1,8 @@
 // components/dashboard/user/pet-sticky-note.tsx
 
+import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
-import { useState } from 'react';
 
 interface PetStickyNoteProps {
   notes: string;

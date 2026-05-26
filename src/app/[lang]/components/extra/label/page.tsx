@@ -1,5 +1,6 @@
-import LabelView from '@/sections/_examples/extra/label-view';
 import { Metadata } from 'next';
+
+import LabelView from '@/sections/_examples/extra/label-view';
 
 // ----------------------------------------------------------------------
 

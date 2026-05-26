@@ -1,5 +1,6 @@
-import NavigationBarView from '@/sections/_examples/extra/navigation-bar-view';
 import { Metadata } from 'next';
+
+import NavigationBarView from '@/sections/_examples/extra/navigation-bar-view';
 
 // ----------------------------------------------------------------------
 

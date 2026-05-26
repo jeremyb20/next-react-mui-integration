@@ -1,20 +1,17 @@
 import { m } from 'motion/react';
-
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 import LinearProgress from '@mui/material/LinearProgress';
 
-import { useResponsive } from '@/hooks/use-responsive';
-
-import { fPercent } from '@/utils/format-number';
-
 import Image from '@/components/image';
 import Iconify from '@/components/iconify';
+import { fPercent } from '@/utils/format-number';
+import { useResponsive } from '@/hooks/use-responsive';
 import { varFade, MotionViewport } from '@/components/animate';
 
 // ----------------------------------------------------------------------

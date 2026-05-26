@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-
 import Radio from '@mui/material/Radio';
 import Stack from '@mui/material/Stack';
 import Badge from '@mui/material/Badge';
@@ -19,7 +18,6 @@ import InputBase, { inputBaseClasses } from '@mui/material/InputBase';
 import Iconify from '@/components/iconify';
 import Scrollbar from '@/components/scrollbar';
 import { ColorPicker } from '@/components/color-utils';
-
 import { IProductFilters, IProductFilterValue } from '@/types/product';
 
 // ----------------------------------------------------------------------

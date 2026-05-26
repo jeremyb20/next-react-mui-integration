@@ -1,5 +1,6 @@
-import { MailView } from '@/sections/mail/view';
 import { Metadata } from 'next';
+
+import { MailView } from '@/sections/mail/view';
 
 // ----------------------------------------------------------------------
 

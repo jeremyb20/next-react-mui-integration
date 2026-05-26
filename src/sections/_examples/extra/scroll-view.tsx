@@ -7,10 +7,8 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 
 import { paths } from '@/routes/paths';
-
 import Scrollbar from '@/components/scrollbar';
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import ComponentHero from '@/sections/_examples/component-hero';
 
 // ----------------------------------------------------------------------

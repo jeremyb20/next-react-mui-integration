@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
-
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import { alpha, styled } from '@mui/material/styles';
 
-import { bgGradient } from '@/theme/css';
-
 import Image from '@/components/image';
+import { bgGradient } from '@/theme/css';
 import Carousel, {
   useCarousel,
   CarouselArrowIndex,

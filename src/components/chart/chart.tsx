@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import dynamic from 'next/dynamic';
-
 import { alpha, styled } from '@mui/material/styles';
 
 import { bgBlur } from '@/theme/css';

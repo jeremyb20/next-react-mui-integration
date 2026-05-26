@@ -1,5 +1,6 @@
-import ImageView from '@/sections/_examples/extra/image-view';
 import { Metadata } from 'next';
+
+import ImageView from '@/sections/_examples/extra/image-view';
 
 // ----------------------------------------------------------------------
 

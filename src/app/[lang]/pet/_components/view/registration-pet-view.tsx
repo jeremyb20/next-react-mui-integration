@@ -1,18 +1,18 @@
 'use client';
 
-import { Button } from '@mui/material';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import { Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
-import { useState } from 'react';
 
 import Iconify from '@/components/iconify';
-import { useTranslation } from '@/hooks/use-translation';
 import { PetApiResponse } from '@/types/global';
+import { useTranslation } from '@/hooks/use-translation';
 
 import { RegistrationTypeSelector } from '../cards/registration-type-selector';
-import PetRegistrationCodeStepperFirstTime from '../forms/pet-registration-code-stepper-first-time';
 import { PetRegistrationExistingUser } from '../forms/pet-registration-existing-user';
+import PetRegistrationCodeStepperFirstTime from '../forms/pet-registration-code-stepper-first-time';
 
 // ----------------------------------------------------------------------
 

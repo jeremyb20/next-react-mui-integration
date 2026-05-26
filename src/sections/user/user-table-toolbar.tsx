@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
 import Checkbox from '@mui/material/Checkbox';
@@ -13,7 +12,6 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import Iconify from '@/components/iconify';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
-
 import { IUserTableFilters, IUserTableFilterValue } from '@/types/user';
 
 // ----------------------------------------------------------------------

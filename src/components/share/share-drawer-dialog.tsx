@@ -2,6 +2,8 @@
 
 'use client';
 
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/system/useMediaQuery';
 import {
   Box,
   Theme,
@@ -10,13 +12,10 @@ import {
   IconButton,
   SwipeableDrawer,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/system/useMediaQuery';
-import React from 'react';
 
-import ShareButtons from '@/app/[lang]/pet/_components/share/share-buttons';
-import Iconify from '@/components/iconify';
 import { IPetProfile } from '@/types/api';
+import Iconify from '@/components/iconify';
+import ShareButtons from '@/app/[lang]/pet/_components/share/share-buttons';
 
 interface ShareDrawerDialogProps {
   open: boolean;

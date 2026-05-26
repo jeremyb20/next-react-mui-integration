@@ -1,16 +1,13 @@
-import { useRef, useState, useCallback } from 'react';
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Collapse from '@mui/material/Collapse';
-
-import { useBoolean } from '@/hooks/use-boolean';
-
-import Iconify from '@/components/iconify';
-import { TableProps } from '@/components/table';
+import { useRef, useState, useCallback } from 'react';
 
 import { IFile } from '@/types/file';
+import Iconify from '@/components/iconify';
+import { TableProps } from '@/components/table';
+import { useBoolean } from '@/hooks/use-boolean';
 
 import FileManagerPanel from './file-manager-panel';
 import FileManagerFileItem from './file-manager-file-item';

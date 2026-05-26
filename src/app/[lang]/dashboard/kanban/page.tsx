@@ -1,5 +1,6 @@
-import { KanbanView } from '@/sections/kanban/view';
 import { Metadata } from 'next';
+
+import { KanbanView } from '@/sections/kanban/view';
 
 // ----------------------------------------------------------------------
 

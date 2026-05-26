@@ -1,5 +1,6 @@
-import { View403 } from '@/sections/error';
 import { Metadata } from 'next';
+
+import { View403 } from '@/sections/error';
 
 // ----------------------------------------------------------------------
 

@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+import { Box, Container, CircularProgress } from '@mui/material';
+
 import { JwtLoginView } from '@/sections/auth/jwt';
 import { getSeoMetadata } from '@/utils/seo-metadata';
-
-import { Box, Container, CircularProgress } from '@mui/material';
 
 // ----------------------------------------------------------------------
 

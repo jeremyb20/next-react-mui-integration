@@ -1,9 +1,7 @@
 // components/dashboard/user/location-consent-overlay.tsx
 
 import { useState } from 'react';
-import Iconify from '@/components/iconify';
-import { useTranslation } from '@/hooks/use-translation';
-
+import { alpha, useTheme } from '@mui/material/styles';
 import {
   Box,
   Alert,
@@ -13,7 +11,9 @@ import {
   Typography,
   CircularProgress,
 } from '@mui/material';
-import { alpha, useTheme } from '@mui/material/styles';
+
+import Iconify from '@/components/iconify';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface LocationConsentOverlayProps {
   onLocationAccepted: (position: GeolocationPosition) => void;

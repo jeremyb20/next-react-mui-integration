@@ -1,14 +1,14 @@
 import { m } from 'motion/react';
-import Image from '@/components/image';
-import { useTranslation } from '@/hooks/use-translation';
-import { varFade, MotionViewport } from '@/components/animate';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+
+import Image from '@/components/image';
+import { useTranslation } from '@/hooks/use-translation';
+import { varFade, MotionViewport } from '@/components/animate';
 
 export default function HomeGrooming() {
   const { t } = useTranslation();

@@ -1,4 +1,4 @@
-import { LOGO } from '@/config-global';
+import { Box, Stack } from '@mui/system';
 import { useState, useEffect } from 'react';
 import {
   QrcodeStyle,
@@ -6,8 +6,6 @@ import {
   QrcodeColorEffect,
   useQrcodeDownload,
 } from 'react-qrcode-pretty';
-
-import { Box, Stack } from '@mui/system';
 import {
   Grid,
   Card,
@@ -25,6 +23,8 @@ import {
   CardContent,
   FormControlLabel,
 } from '@mui/material';
+
+import { LOGO } from '@/config-global';
 
 import Iconify from '../iconify';
 

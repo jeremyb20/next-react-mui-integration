@@ -1,5 +1,6 @@
-import { FirebaseRegisterView } from '@/sections/auth/firebase';
 import { Metadata } from 'next';
+
+import { FirebaseRegisterView } from '@/sections/auth/firebase';
 
 // ----------------------------------------------------------------------
 

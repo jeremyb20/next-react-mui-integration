@@ -1,5 +1,6 @@
-import { Auth0LoginView } from '@/sections/auth/auth0';
 import { Metadata } from 'next';
+
+import { Auth0LoginView } from '@/sections/auth/auth0';
 
 // ----------------------------------------------------------------------
 

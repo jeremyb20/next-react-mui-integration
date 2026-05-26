@@ -1,5 +1,6 @@
-import { ClassicForgotPasswordView } from '@/sections/auth-demo/classic';
 import { Metadata } from 'next';
+
+import { ClassicForgotPasswordView } from '@/sections/auth-demo/classic';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
-import { OverviewBankingView } from '@/sections/overview/booking/view';
 import { Metadata } from 'next';
+
+import { OverviewBankingView } from '@/sections/overview/booking/view';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
-import PaginationView from '@/sections/_examples/mui/pagination-view';
 import { Metadata } from 'next';
+
+import PaginationView from '@/sections/_examples/mui/pagination-view';
 
 // ----------------------------------------------------------------------
 

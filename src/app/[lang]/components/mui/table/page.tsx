@@ -1,5 +1,6 @@
-import TableView from '@/sections/_examples/mui/table-view';
 import { Metadata } from 'next';
+
+import TableView from '@/sections/_examples/mui/table-view';
 
 // ----------------------------------------------------------------------
 

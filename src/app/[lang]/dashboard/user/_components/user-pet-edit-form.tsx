@@ -1,6 +1,18 @@
 'use client';
 
+import * as Yup from 'yup';
+import Box from '@mui/material/Box';
+import { Container } from '@mui/system';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import { useTheme } from '@mui/material/styles';
+import { useSearchParams } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
+import useMediaQuery from '@mui/system/useMediaQuery';
+import { useForm, Controller } from 'react-hook-form';
+import { useQueryClient } from '@tanstack/react-query';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { useMemo, useState, useEffect, useCallback } from 'react';
 import {
   Tab,
   Tabs,
@@ -12,62 +24,50 @@ import {
   CardContent,
   InputAdornment,
 } from '@mui/material';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
-import { useTheme } from '@mui/material/styles';
-import { Container } from '@mui/system';
-import useMediaQuery from '@mui/system/useMediaQuery';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useQueryClient } from '@tanstack/react-query';
-import { useSearchParams } from 'next/navigation';
-import { useMemo, useState, useEffect, useCallback } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import * as Yup from 'yup';
 
-import PetLocationMap from '@/app/[lang]/pet/_components/locations/pet-location-map';
-import MedicalControlView from '@/app/[lang]/pet/_components/view/medical-control-view';
-import { countries } from '@/assets/data';
-import { PetAvatarWithBadge } from '@/components/badge/PetAvatarWithBage';
-import CostaRicaIDCard from '@/components/country-cards/Costa-Rica/costa-rica-card';
-import CustomPopover, { usePopover } from '@/components/custom-popover';
-import StickyHeader from '@/components/header/sticky-header';
-import FormProvider, {
-  RHFSelect,
-  RHFSwitch,
-  RHFTextField,
-  RHFAutocomplete,
-} from '@/components/hook-form';
-import Iconify from '@/components/iconify';
-import SplashScreen from '@/components/loading-screen/splash-screen';
-import { useSnackbar } from '@/components/snackbar';
-import UploadAvatar from '@/components/upload/upload-avatar';
-import { HOST_API } from '@/config-global';
-import { useGetPetProfileById } from '@/hooks/use-fetch';
-import { useManagerUser } from '@/hooks/use-manager-user';
-import { useRedirect } from '@/hooks/use-redirect';
-import { useTranslation } from '@/hooks/use-translation';
-import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
-import RouterLink from '@/routes/components/router-link';
-import { useRouter } from '@/routes/hooks';
 import { paths } from '@/routes/paths';
-import CardComponent from '@/sections/_examples/card-component';
+import { countries } from '@/assets/data';
+import { endpoints } from '@/utils/axios';
+import Iconify from '@/components/iconify';
+import { HOST_API } from '@/config-global';
+import { useRouter } from '@/routes/hooks';
 import { OptionType } from '@/types/global';
 import { PetFormValues } from '@/types/pet';
-import { endpoints } from '@/utils/axios';
+import { fData } from '@/utils/format-number';
+import { useRedirect } from '@/hooks/use-redirect';
+import { useSnackbar } from '@/components/snackbar';
+import { useGetPetProfileById } from '@/hooks/use-fetch';
+import { useTranslation } from '@/hooks/use-translation';
+import RouterLink from '@/routes/components/router-link';
+import { useManagerUser } from '@/hooks/use-manager-user';
+import { getSpeciesFromBreed } from '@/utils/pet-age.utils';
+import StickyHeader from '@/components/header/sticky-header';
+import UploadAvatar from '@/components/upload/upload-avatar';
+import CardComponent from '@/sections/_examples/card-component';
+import SplashScreen from '@/components/loading-screen/splash-screen';
+import CustomPopover, { usePopover } from '@/components/custom-popover';
+import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
+import { PetAvatarWithBadge } from '@/components/badge/PetAvatarWithBage';
+import CostaRicaIDCard from '@/components/country-cards/Costa-Rica/costa-rica-card';
+import PetLocationMap from '@/app/[lang]/pet/_components/locations/pet-location-map';
+import MedicalControlView from '@/app/[lang]/pet/_components/view/medical-control-view';
 import {
   parseWeight,
   BreedOptions,
   GENDER_OPTIONS,
   PET_STATUS_OPTIONS,
 } from '@/utils/constants';
-import { fData } from '@/utils/format-number';
-import { getSpeciesFromBreed } from '@/utils/pet-age.utils';
 import {
   getPhoneHelperText,
   getPhonePlaceholder,
   simplePhoneValidation,
 } from '@/utils/phone-validation';
+import FormProvider, {
+  RHFSelect,
+  RHFSwitch,
+  RHFTextField,
+  RHFAutocomplete,
+} from '@/components/hook-form';
 
 // ----------------------------------------------------------------------
 

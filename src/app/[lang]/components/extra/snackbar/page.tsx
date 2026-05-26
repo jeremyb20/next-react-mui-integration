@@ -1,5 +1,6 @@
-import SnackbarView from '@/sections/_examples/extra/snackbar-view';
 import { Metadata } from 'next';
+
+import SnackbarView from '@/sections/_examples/extra/snackbar-view';
 
 // ----------------------------------------------------------------------
 

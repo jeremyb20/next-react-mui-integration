@@ -1,5 +1,6 @@
-import { ModernRegisterView } from '@/sections/auth-demo/modern';
 import { Metadata } from 'next';
+
+import { ModernRegisterView } from '@/sections/auth-demo/modern';
 
 // ----------------------------------------------------------------------
 

@@ -1,10 +1,9 @@
-import { useState, useCallback } from 'react';
-
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+import { useState, useCallback } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
@@ -12,16 +11,13 @@ import Typography from '@mui/material/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import Drawer, { DrawerProps } from '@mui/material/Drawer';
 
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { fData } from '@/utils/format-number';
-import { fDateTime } from '@/utils/format-time';
-
-import Iconify from '@/components/iconify';
-import Scrollbar from '@/components/scrollbar';
-import FileThumbnail, { fileFormat } from '@/components/file-thumbnail';
-
 import { IFile } from '@/types/file';
+import Iconify from '@/components/iconify';
+import { fData } from '@/utils/format-number';
+import Scrollbar from '@/components/scrollbar';
+import { fDateTime } from '@/utils/format-time';
+import { useBoolean } from '@/hooks/use-boolean';
+import FileThumbnail, { fileFormat } from '@/components/file-thumbnail';
 
 import FileManagerShareDialog from './file-manager-share-dialog';
 import FileManagerInvitedItem from './file-manager-invited-item';

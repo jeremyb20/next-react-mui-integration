@@ -1,5 +1,3 @@
-import { useCurrency } from '@/hooks/use-currency';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -12,6 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import InputAdornment from '@mui/material/InputAdornment';
 
 import Iconify from '@/components/iconify';
+import { useCurrency } from '@/hooks/use-currency';
 
 // ----------------------------------------------------------------------
 

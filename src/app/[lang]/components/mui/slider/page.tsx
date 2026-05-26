@@ -1,5 +1,6 @@
-import SliderView from '@/sections/_examples/mui/slider-view';
 import { Metadata } from 'next';
+
+import SliderView from '@/sections/_examples/mui/slider-view';
 
 // ----------------------------------------------------------------------
 

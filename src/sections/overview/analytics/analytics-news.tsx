@@ -6,9 +6,8 @@ import CardHeader from '@mui/material/CardHeader';
 import Card, { CardProps } from '@mui/material/Card';
 import ListItemText from '@mui/material/ListItemText';
 
-import { fToNow } from '@/utils/format-time';
-
 import Iconify from '@/components/iconify';
+import { fToNow } from '@/utils/format-time';
 import Scrollbar from '@/components/scrollbar';
 
 // ----------------------------------------------------------------------

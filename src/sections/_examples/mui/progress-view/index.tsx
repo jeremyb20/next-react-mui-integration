@@ -1,14 +1,11 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
+import { useRef, useState, useEffect } from 'react';
 
 import { paths } from '@/routes/paths';
-
 import CustomBreadcrumbs from '@/components/custom-breadcrumbs';
-
 import ComponentHero from '@/sections/_examples/component-hero';
 
 import ProgressLinear from './progress-linear';

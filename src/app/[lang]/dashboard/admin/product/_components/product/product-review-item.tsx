@@ -5,10 +5,8 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 
-import { fDate } from '@/utils/format-time';
-
 import Iconify from '@/components/iconify';
-
+import { fDate } from '@/utils/format-time';
 import { IProductReview } from '@/types/product';
 
 // ----------------------------------------------------------------------

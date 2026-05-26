@@ -1,5 +1,6 @@
-import { FirebaseForgotPasswordView } from '@/sections/auth/firebase';
 import { Metadata } from 'next';
+
+import { FirebaseForgotPasswordView } from '@/sections/auth/firebase';
 
 // ----------------------------------------------------------------------
 

@@ -1,14 +1,14 @@
 import { m } from 'motion/react';
-import { APP_NAME } from '@/config-global';
-import { useTranslation } from '@/hooks/use-translation';
-import { varFade, MotionViewport } from '@/components/animate';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+
+import { APP_NAME } from '@/config-global';
+import { useTranslation } from '@/hooks/use-translation';
+import { varFade, MotionViewport } from '@/components/animate';
 
 const BLOG_POSTS = [
   {
@@ -65,7 +65,7 @@ export default function HomeBlog() {
             md: 'repeat(3, 1fr)',
           }}
         >
-          {BLOG_POSTS.map((post, index) => (
+          {BLOG_POSTS.map((post) => (
             <m.div key={post.title} variants={varFade().inUp}>
               <Card
                 sx={{

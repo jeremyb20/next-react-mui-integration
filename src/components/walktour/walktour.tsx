@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 import { Props as WalktourProps } from 'react-joyride';
-
 import { alpha, useTheme } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------

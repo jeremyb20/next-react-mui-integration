@@ -1,9 +1,9 @@
-/* eslint-disable object-shorthand */
 import { Metadata } from 'next';
+
 import { paths } from '@/routes/paths';
 import { endpoints } from '@/utils/axios';
-import NotFoundPage from '@/app/[lang]/not-found';
 import { IProductItem } from '@/types/product';
+import NotFoundPage from '@/app/[lang]/not-found';
 import { DOMAIN, HOST_API } from '@/config-global';
 import { ProductShopDetailsView } from '@/sections/product/view';
 
@@ -74,9 +74,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     // Precios formateados
     const priceFormatted = `$${product.price.toFixed(2)}`;
-    const priceSaleFormatted = product.priceSale
-      ? `$${product.priceSale.toFixed(2)}`
-      : null;
 
     // Título y descripción
     const baseTitle = `${product.name} | Tu Tienda`;
@@ -136,7 +133,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } catch (error) {
     return {
       title: 'Error | Tu Tienda',
-      description: 'Ocurrió un error al cargar la información del producto.',
+      description: `Ocurrió un error al cargar la información del producto. ${error instanceof Error ? error.message : 'Error desconocido'}`,
       metadataBase: new URL(DOMAIN),
     };
   }

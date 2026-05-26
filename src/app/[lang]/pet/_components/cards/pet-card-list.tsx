@@ -1,6 +1,3 @@
-import { IPetProfile } from '@/types/api';
-import { BreedOptions } from '@/utils/constants';
-
 import {
   Box,
   Card,
@@ -11,7 +8,9 @@ import {
   CardContent,
 } from '@mui/material';
 
+import { IPetProfile } from '@/types/api';
 import Iconify from '@/components/iconify';
+import { BreedOptions } from '@/utils/constants';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
 
 interface PetCardProps {
@@ -24,7 +23,7 @@ interface PetCardProps {
 
 export function PetCard({
   pet,
-  index,
+  index: _index,
   onDelete,
   onView,
   onEdit,

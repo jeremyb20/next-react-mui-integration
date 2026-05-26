@@ -1,25 +1,24 @@
 // front-end/components/seo/SeoQuickEditForm.tsx
 import * as Yup from 'yup';
 import { useMemo } from 'react';
-import { useForm } from 'react-hook-form';
-import { endpoints } from '@/utils/axios';
-import { HOST_API } from '@/config-global';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useManagerUser } from '@/hooks/use-manager-user';
-import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
-
 import Box from '@mui/material/Box';
 import { Stack } from '@mui/system';
 import Alert from '@mui/material/Alert';
+import { useForm } from 'react-hook-form';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import MenuItem from '@mui/material/MenuItem';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Chip, InputAdornment } from '@mui/material';
+import { yupResolver } from '@hookform/resolvers/yup';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 
+import { endpoints } from '@/utils/axios';
+import { HOST_API } from '@/config-global';
 import { useSnackbar } from '@/components/snackbar';
+import { useManagerUser } from '@/hooks/use-manager-user';
+import { useCreateGenericMutation } from '@/hooks/user-generic-mutation';
 import FormProvider, {
   RHFSelect,
   RHFTextField,

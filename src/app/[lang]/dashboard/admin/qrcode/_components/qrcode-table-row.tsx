@@ -1,10 +1,4 @@
-/* eslint-disable no-nested-ternary */
 import { useState } from 'react';
-import { IQrCode } from '@/types/api';
-import { useTranslation } from 'react-i18next';
-import { BreedOptions } from '@/utils/constants';
-import { QrcodeCustom } from '@/components/qr-generator/qr-codes';
-
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -17,13 +11,14 @@ import IconButton from '@mui/material/IconButton';
 import ListItemText from '@mui/material/ListItemText';
 import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 
-import { useBoolean } from '@/hooks/use-boolean';
-
-import { fDate, fTime } from '@/utils/format-time';
-
+import { IQrCode } from '@/types/api';
 import Label from '@/components/label';
 import Iconify from '@/components/iconify';
+import { BreedOptions } from '@/utils/constants';
+import { useBoolean } from '@/hooks/use-boolean';
+import { fDate, fTime } from '@/utils/format-time';
 import { ConfirmDialog } from '@/components/custom-dialog';
+import { QrcodeCustom } from '@/components/qr-generator/qr-codes';
 import CustomPopover, { usePopover } from '@/components/custom-popover';
 
 // ----------------------------------------------------------------------
@@ -56,8 +51,6 @@ export default function QrCodeTableRow({
   } = row;
 
   const confirm = useBoolean();
-
-  const { t } = useTranslation();
 
   const collapse = useBoolean();
 

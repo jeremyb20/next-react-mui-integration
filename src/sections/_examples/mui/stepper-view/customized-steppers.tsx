@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import Box from '@mui/material/Box';
 import Step from '@mui/material/Step';
 import Paper from '@mui/material/Paper';
@@ -14,7 +13,6 @@ import StepConnector, {
 } from '@mui/material/StepConnector';
 
 import { bgGradient } from '@/theme/css';
-
 import Iconify from '@/components/iconify';
 
 // ----------------------------------------------------------------------

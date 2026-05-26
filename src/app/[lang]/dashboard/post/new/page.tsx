@@ -1,5 +1,6 @@
-import { PostCreateView } from '@/sections/blog/view';
 import { Metadata } from 'next';
+
+import { PostCreateView } from '@/sections/blog/view';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,3 @@
-import { useState, useEffect, useCallback } from 'react';
-
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
@@ -8,6 +6,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
+import { useState, useEffect, useCallback } from 'react';
 import ListItemButton from '@mui/material/ListItemButton';
 
 import { RouterLink } from '@/routes/components';
@@ -33,7 +32,6 @@ export default function NavList({ data, slotProps }: NavListProps) {
     if (openMenu) {
       handleCloseMenu();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   useEffect(() => {

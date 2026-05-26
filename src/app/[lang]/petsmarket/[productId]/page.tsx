@@ -1,9 +1,10 @@
 // import axios, { endpoints } from '@/utils/axios';
 
+import { Metadata } from 'next';
+
 import { paths } from '@/routes/paths';
 
 import { ProductDetailsView } from '../../dashboard/admin/product/_components/product/view';
-import { Metadata } from 'next';
 
 // ----------------------------------------------------------------------
 

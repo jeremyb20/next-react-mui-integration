@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import { RouterLink } from '@/routes/components';
-
 import { MaintenanceIllustration } from '@/assets/illustrations';
 
 // ----------------------------------------------------------------------
