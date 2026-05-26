@@ -1,7 +1,9 @@
-import { version } from './package.json';
+import type { NextConfig } from 'next';
+import { readFileSync } from 'fs';
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
+const appVersion = packageJson.version;
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
 
@@ -85,7 +87,7 @@ const nextConfig = {
 
   // 5. Variables de entorno
   env: {
-    APP_VERSION: version,
+    APP_VERSION: appVersion,
     NEXT_PUBLIC_API_URL:
       process.env.NODE_ENV === 'production'
         ? 'https://petsqrbackend.fly.dev'

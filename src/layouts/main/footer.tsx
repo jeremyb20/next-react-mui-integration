@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 
 import { _socials } from '@/_mock';
 import Logo from '@/components/logo';
-import Label from '@/components/label';
 import { paths } from '@/routes/paths';
 import Iconify from '@/components/iconify';
 import { usePathname } from '@/routes/hooks';
@@ -77,12 +76,12 @@ export default function Footer() {
             underline="none"
             sx={{ ml: 1 }}
           >
-            <Label
+            <Typography
               color="info"
               sx={{ textTransform: 'unset', height: 22, px: 0.5 }}
             >
               v{process.env.APP_VERSION}
-            </Label>
+            </Typography>
           </Link>
         </Typography>
       </Container>
@@ -195,12 +194,12 @@ export default function Footer() {
             underline="none"
             sx={{ ml: 1 }}
           >
-            <Label
+            <Typography
               color="info"
               sx={{ textTransform: 'unset', height: 22, px: 0.5 }}
             >
               v{process.env.APP_VERSION}
-            </Label>
+            </Typography>
           </Link>
         </Typography>
       </Container>
