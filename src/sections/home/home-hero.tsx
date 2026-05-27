@@ -139,8 +139,6 @@ export default function HomeHero() {
 
       <m.div variants={varFade().in} initial={false}>
         <Typography variant="body2" sx={{ textAlign: 'center', py: 2 }}>
-          {/* Registra hasta 10 mascotas, gestiona su salud, agenda citas y disfruta
-          de descuentos exclusivos */}
           {t(
             'Register up to 10 pets, manage their health, schedule appointments and enjoy exclusive discounts'
           )}
@@ -157,7 +155,6 @@ export default function HomeHero() {
             <Button
               component={RouterLink}
               href={paths.auth.signUp}
-              color="primary"
               size="large"
               variant="contained"
               startIcon={<Iconify icon="mdi:paw" width={24} />}

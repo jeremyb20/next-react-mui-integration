@@ -108,6 +108,7 @@ export default function ProductItem({ product }: Props) {
           color="warning"
           size="medium"
           className="add-cart-btn"
+          aria-label="add to cart"
           onClick={handleAddCart}
           sx={{
             right: 16,
